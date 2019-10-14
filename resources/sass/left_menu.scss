@@ -1,0 +1,30 @@
+.left_menu {
+  background: #fff;
+  box-shadow: 0 0 5px 0 rgba(0,0,0,.3);
+  border-radius: 5px;
+  overflow: hidden;
+  font-size: 12px;
+
+  ul {
+    padding: 0px;
+    margin: 0px;
+    li {
+      list-style: none;
+      border-bottom: 1px solid rgb(230,230,230);
+      color: grey;
+      cursor: pointer;
+
+      a {
+        display: block;
+        padding: 0.5rem;
+        color: grey;
+
+        &:hover {
+          background: #F0F0F0;
+          text-decoration: none;
+          padding: 0.5rem;
+        }
+      }
+    }
+  }
+}

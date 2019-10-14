@@ -1,0 +1,21 @@
+.auth-form {
+  width: 600px;
+  margin: 50px auto;
+  background: #fff;
+
+  .auth-f {
+    width: 70%;
+    margin: 0 auto;
+  }
+  
+  .auth-header {
+    background: url("/images/header.jpg") center center no-repeat;
+    height: 200px;
+    background-size: cover;
+    margin-bottom: 20px;
+  }
+  h1 {
+    color: #339AC3;
+    text-align: center;
+  }
+}
