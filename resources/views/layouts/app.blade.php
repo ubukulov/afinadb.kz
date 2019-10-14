@@ -15,12 +15,12 @@
     @include('pattern.top_menu')
 
     <div class="wrap">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-2">
                     @include('pattern.left_menu')
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-10">
                     <div class="content">
                         @yield('content')
                     </div>

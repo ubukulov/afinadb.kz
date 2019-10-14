@@ -1,6 +1,7 @@
 <div class="left_menu">
     <ul>
         <li><a class="{{ \Request::is('/') ? 'active' : '' }}" href="{{ route('home') }}">Главная</a></li>
+        <li><a class="{{ \Request::is('leads*') ? 'active' : '' }}" href="{{ route('leads') }}">Запросы</a></li>
         <li><a href="#">Поиск туров</a></li>
         <li><a class="{{ \Request::is('contacts*') ? 'active' : '' }}" href="{{ route('contacts') }}">Контакты</a></li>
         <li><a class="{{ \Request::is('bonus*') ? 'active' : '' }}" href="{{ route('bonus') }}">Бонусы</a></li>

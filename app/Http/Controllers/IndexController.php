@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lead;
 use Illuminate\Http\Request;
+use Auth;
 
 class IndexController extends BaseController
 {
@@ -46,5 +48,18 @@ class IndexController extends BaseController
     {
         $this->seo()->setTitle('Спец. предложение по Турции');
         return view('abk');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
+    }
+
+    public function leads()
+    {
+        $this->seo()->setTitle('Список заявок');
+        $leads = Lead::getLeads();
+        return view('leads', compact('leads'));
     }
 }

@@ -12,10 +12,15 @@
 */
 Route::get('/login', 'AuthController@login')->name('login');
 Route::post('/authenticate', 'AuthController@authenticate')->name('authenticate');
-Route::get('/', 'IndexController@welcome')->name('home');
-Route::get('/contacts', 'IndexController@contacts')->name('contacts');
-Route::get('/bonus', 'IndexController@bonus')->name('bonus');
-Route::get('/suggestions', 'IndexController@suggestions')->name('suggestions');
-Route::get('/marketing', 'IndexController@marketing')->name('marketing');
-Route::get('/chemodan', 'IndexController@chemodan')->name('chemodan');
-Route::get('/abk', 'IndexController@abk')->name('abk');
+
+Route::group(['middleware' => ['web', 'auth']], function(){
+    Route::get('/', 'IndexController@welcome')->name('home');
+    Route::get('/contacts', 'IndexController@contacts')->name('contacts');
+    Route::get('/bonus', 'IndexController@bonus')->name('bonus');
+    Route::get('/suggestions', 'IndexController@suggestions')->name('suggestions');
+    Route::get('/marketing', 'IndexController@marketing')->name('marketing');
+    Route::get('/chemodan', 'IndexController@chemodan')->name('chemodan');
+    Route::get('/abk', 'IndexController@abk')->name('abk');
+    Route::get('/logout', 'IndexController@logout')->name('logout');
+    Route::get('/leads', 'IndexController@leads')->name('leads');
+});

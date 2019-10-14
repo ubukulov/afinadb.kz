@@ -10668,6 +10668,101 @@ a.text-dark:focus {
   border-radius: 5px;
   background: #fff;
   padding: 20px;
+  overflow-x: hidden;
+}
+
+.chem {
+  background: #FAAB1F;
+  color: #fff;
+}
+
+._257 {
+  background: #0099AB;
+  color: #fff;
+}
+
+.Website,
+.chemodan {
+  background: yellow;
+}
+
+.turkish {
+  background: #caf2ff;
+}
+
+.alanya {
+  background: green;
+  color: white;
+}
+
+.mardan {
+  background: teal;
+  color: white;
+}
+
+.egipt {
+  background: #F1B47D;
+  color: black;
+}
+
+.emirat {
+  background: #FF7F50;
+  color: white;
+}
+
+.tailand {
+  background: #2974AD;
+  color: white;
+}
+
+.hainan {
+  background: #874AEF;
+  color: white;
+}
+
+.goa {
+  background: #17B796;
+  color: white;
+}
+
+.dubai {
+  background: #5C3504;
+  color: white;
+}
+
+.abu_dhabi {
+  background: #34AF98;
+  color: white;
+}
+
+.sharjah {
+  background: #4683C3;
+  color: white;
+}
+
+.rah {
+  background: #750F7E;
+  color: white;
+}
+
+.fujairah {
+  background: #5C3BA5;
+  color: white;
+}
+
+.dominicana {
+  background: #002D62;
+  color: white;
+}
+
+.fr {
+  background: #853239;
+  color: white;
+}
+
+.Instagram {
+  background: #ff5876;
+  color: white;
 }
 
 .navbar {
@@ -10679,6 +10774,11 @@ a.text-dark:focus {
   left: 0;
   right: 0;
   z-index: 3;
+  padding: 0 120px;
+}
+
+.navbar-nav {
+  margin-left: 110px;
 }
 
 .auth-form {
@@ -10788,5 +10888,93 @@ a.text-dark:focus {
 .block .block_content:last-child {
   border: none;
   margin-bottom: 10px;
+}
+
+.leads_table {
+  font-size: 12px;
+}
+
+.leads_table button {
+  font-size: 12px;
+}
+
+.status_btn {
+  display: grid;
+  grid-template-columns: auto 28px;
+  grid-gap: 5px;
+}
+
+.status_btn div:first-child {
+  padding: 5px;
+  background: #FF7F50;
+  border-radius: 30px;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+}
+
+.status_btn div:last-child {
+  height: 28px;
+  background: white;
+  border-radius: 30px;
+  border: 2px solid #FF7F50;
+  position: relative;
+}
+
+.status_btn ._canceled {
+  border-color: #d00000 !important;
+}
+
+.status_btn ._canceled:after {
+  transform: translate(-50%, -50%) rotate(-45deg) !important;
+}
+
+.status_btn ._canceled:before,
+.status_btn ._canceled:after {
+  content: "";
+  position: absolute;
+  width: 13px;
+  height: 2px;
+  background: #d00000;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.status_btn ._processed:after {
+  width: 7px !important;
+  height: 2px !important;
+  margin: 13px 0 0 11px !important;
+}
+
+.status_btn ._processed:before,
+.status_btn ._processed:after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 10px;
+  background: coral;
+  margin: 5px 0 0 11px;
+}
+
+.status_btn ._completed {
+  border-color: green !important;
+}
+
+.status_btn ._completed:after {
+  width: 6px !important;
+  transform: rotate(45deg) !important;
+  margin: 13px 0 0 6px !important;
+}
+
+.status_btn ._completed:before,
+.status_btn ._completed:after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 2px;
+  background: green;
+  margin: 11px 0 0 8px;
+  transform: rotate(-45deg);
 }
 
