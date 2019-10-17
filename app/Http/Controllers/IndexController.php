@@ -66,6 +66,7 @@ class IndexController extends BaseController
 
     public function accounts()
     {
+        $this->seo()->setTitle('Список пользователей');
         $users = User::orderBy('id', 'DESC')->paginate(20);
         return view('accounts', compact('users'));
     }

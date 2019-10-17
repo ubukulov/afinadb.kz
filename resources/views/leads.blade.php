@@ -6,15 +6,15 @@
             <th width="100">Дата</th>
             <th width="100">Имя</th>
             <th width="150">Тел</th>
-            <th>Источник</th>
-            <th width="100">Комментарии</th>
-            <th>Подтверждение</th>
-            <th>Компания</th>
+            <th width="150">Источник</th>
+            <th width="250">Комментарии</th>
+            <th width="200">Подтверждение</th>
+            <th width="100">Компания</th>
         </thead>
         <tbody>
             @foreach($leads as $lead)
             <tr>
-                <td>{{ timeCount($lead->tm) . " #".$lead->id }}</td>
+                <td>{!! timeCount($lead->tm)!!} {{ " #".$lead->id }}</td>
                 <td>{{ $lead->name }}</td>
                 <td>{{ $lead->phone }}</td>
                 <td>{{ $source_list[$lead->type] }}</td>

@@ -15,9 +15,9 @@ class Lead extends Model
     public static function getLeads()
     {
         $result = Lead::orderBy('leads.tm', 'DESC')
-                ->select('leads.*', 'manager_leads.type AS m_type', 'users.name as user_name', 'users.last_name')
+                ->select('leads.*', 'manager_leads.type AS m_type', 'accounts.name as user_name', 'accounts.last_name')
                 ->leftJoin('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
-                ->leftJoin('users', 'users.id', '=', 'manager_leads.manager_id')
+                ->leftJoin('accounts', 'accounts.id', '=', 'manager_leads.manager_id')
                 ->paginate(20);
         return $result;
     }

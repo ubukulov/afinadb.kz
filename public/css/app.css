@@ -10825,6 +10825,7 @@ a.text-dark:focus {
   border-radius: 5px;
   overflow: hidden;
   font-size: 12px;
+  position: fixed;
 }
 
 .left_menu ul {
@@ -11004,5 +11005,15 @@ a.text-dark:focus {
   background: green;
   margin: 11px 0 0 8px;
   transform: rotate(-45deg);
+}
+
+.accounts_btn button {
+  padding: 5px;
+  background: #e6e6e6;
+  color: #0093ad;
+  border-radius: 100%;
+  text-align: center;
+  cursor: pointer;
+  margin-right: 10px;
 }
 
