@@ -27,4 +27,17 @@
       }
     }
   }
+  .all_education:after {
+    content: '';
+    border: 5px solid transparent;
+    border-top-color: grey;
+    border-bottom: none;
+    float: right;
+    margin-top: 8px;
+  }
+  .all_education_down {
+    &:after {
+      transform: rotate(180deg) !important;
+    }
+  }
 }

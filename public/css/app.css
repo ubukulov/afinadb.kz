@@ -10781,6 +10781,21 @@ a.text-dark:focus {
   margin-left: 110px;
 }
 
+.user_info {
+  float: left;
+  padding: 9px 0px 9px 5px;
+  border-left: 1px solid #8d8d8d;
+  overflow: hidden;
+}
+
+.user_info p {
+  margin-bottom: 0px !important;
+}
+
+.user_info i {
+  color: #8d8d8d;
+}
+
 .auth-form {
   width: 600px;
   margin: 50px auto;
@@ -10834,6 +10849,19 @@ a.text-dark:focus {
   background: #F0F0F0;
   text-decoration: none;
   padding: 0.5rem;
+}
+
+.left_menu .all_education:after {
+  content: "";
+  border: 5px solid transparent;
+  border-top-color: grey;
+  border-bottom: none;
+  float: right;
+  margin-top: 8px;
+}
+
+.left_menu .all_education_down:after {
+  transform: rotate(180deg) !important;
 }
 
 .content_title {

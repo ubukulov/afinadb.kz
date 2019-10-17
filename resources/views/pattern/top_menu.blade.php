@@ -6,6 +6,12 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
+    <div class="user_info">
+        <p><i class="fas fa-user"></i>&nbsp;{{ Auth::user()->name." ".Auth::user()->last_name }}</p>
+        <p><i class="fas fa-map-marker-alt"></i>&nbsp;</p>
+        <p><i class="fas fa-building"></i>&nbsp;</p>
+    </div>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">

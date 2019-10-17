@@ -23,4 +23,5 @@ Route::group(['middleware' => ['web', 'auth']], function(){
     Route::get('/abk', 'IndexController@abk')->name('abk');
     Route::get('/logout', 'IndexController@logout')->name('logout');
     Route::get('/leads', 'IndexController@leads')->name('leads');
+    Route::get('/accounts', 'IndexController@accounts')->name('accounts');
 });

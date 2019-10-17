@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lead;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -61,5 +62,11 @@ class IndexController extends BaseController
         $this->seo()->setTitle('Список заявок');
         $leads = Lead::getLeads();
         return view('leads', compact('leads'));
+    }
+
+    public function accounts()
+    {
+        $users = User::orderBy('id', 'DESC')->paginate(20);
+        return view('accounts', compact('users'));
     }
 }

@@ -12,3 +12,15 @@
 .navbar-nav {
   margin-left: 110px;
 }
+.user_info {
+  float: left;
+  padding: 9px 0px 9px 5px;
+  border-left: 1px solid #8d8d8d;
+  overflow: hidden;
+}
+.user_info p {
+  margin-bottom: 0px !important;
+}
+.user_info i {
+  color: #8d8d8d;
+}

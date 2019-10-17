@@ -7,21 +7,23 @@
         <li><a class="{{ \Request::is('bonus*') ? 'active' : '' }}" href="{{ route('bonus') }}">Бонусы</a></li>
         <li><a class="{{ \Request::is('suggestions*') ? 'active' : '' }}" href="{{ route('suggestions') }}">Рекомендуемые отели</a></li>
         <li>
-            <a href="#">Все обучение</a>
-            <ul style="display: none;">
-                <li><a href="">Начальное обучение</a></li>
-                <li><a href="">Обучение при стажировке</a></li>
-                <li><a href="">Обучение для менеджера</a></li>
-                <li><a href="">Обучение для руководителей</a></li>
-                <li><a href="">Тест</a></li>
-                <li><a href="">Закрытая часть</a></li>
+            <a class="all_education" href="#">Все обучение</a>
+            <ul class="all_education_content" style="display: none;">
+                <li><a href="">&gt;&nbsp;Обучение</a></li>
+                <li><a href="">&gt;&nbsp;Обучение при стажировке</a></li>
+                <li><a href="">&gt;&nbsp;Обучение для менеджера</a></li>
+                <li><a href="">&gt;&nbsp;Обучение для руководителей</a></li>
+                <li><a href="">&gt;&nbsp;Тест</a></li>
+                <li><a href="">&gt;&nbsp;Закрытая часть</a></li>
             </ul>
         </li>
         <li><a class="{{ \Request::is('marketing*') ? 'active' : '' }}" href="{{ route('marketing') }}">Маркетинг</a></li>
         <li><a class="{{ \Request::is('chemodan*') ? 'active' : '' }}" href="{{ route('chemodan') }}">Презентации от Тур Операторов</a></li>
         <li><a class="{{ \Request::is('abk*') ? 'active' : '' }}" href="{{ route('abk') }}">Обзор отелей (АВК)</a></li>
-        <li><a href="#">Запросы</a></li>
         <li><a href="#">Горящие туры</a></li>
         <li><a href="#">Отзывы</a></li>
+        <li><a href="#">Отказанные запросы</a></li>
+        <li><a class="{{ \Request::is('accounts*') ? 'active' : '' }}" href="{{ route('accounts') }}">Учетные записы</a></li>
+        <li><a href="#">Архив и Статистика</a></li>
     </ul>
 </div>

@@ -22,21 +22,21 @@
                 <td>
                     @if($lead->m_type == '0')
                         <div class="status_btn">
-                            <div>{{ $lead->name." ".$lead->last_name }}</div>
+                            <div>{{ $lead->user_name." ".$lead->last_name }}</div>
                             <div class="_completed"></div>
                         </div>
                     @endif
 
                     @if($lead->m_type == '2')
                         <div class="status_btn">
-                            <div>{{ $lead->name." ".$lead->last_name }}</div>
+                            <div>{{ $lead->user_name." ".$lead->last_name }}</div>
                             <div class="_canceled"></div>
                         </div>
                     @endif
 
                     @if($lead->m_type == '1')
                         <div class="status_btn">
-                            <div>{{ $lead->name." ".$lead->last_name }}</div>
+                            <div>{{ $lead->user_name." ".$lead->last_name }}</div>
                             <div class="_processed"></div>
                         </div>
                     @endif
