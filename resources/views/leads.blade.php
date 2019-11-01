@@ -4,11 +4,11 @@
     <table class="table leads_table table-bordered table-striped">
         <thead class="thead-light">
             <th width="100">Дата</th>
-            <th width="100">Имя</th>
-            <th width="150">Тел</th>
             <th width="150">Источник</th>
             <th width="250">Комментарии</th>
             <th width="200">Подтверждение</th>
+            <th width="100">Имя</th>
+            <th width="150">Тел</th>
             <th width="100">Компания</th>
         </thead>
         <tbody>

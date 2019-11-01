@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Lead extends Model
 {
@@ -12,13 +13,22 @@ class Lead extends Model
 
     public $timestamps = false;
 
-    public static function getLeads()
+    public static function getLeads($role = null)
     {
-        $result = Lead::orderBy('leads.tm', 'DESC')
+        if ($role == 'MANAGER') {
+            $result = Lead::orderBy('id', 'DESC')
+                ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn'))
+                ->where(['city_id' => \Auth::user()->city_id, 'ss' => '1'])
+                ->whereRaw('leads.tm >= DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY)')
+                ->paginate(20);
+        } else {
+            $result = Lead::orderBy('leads.tm', 'DESC')
                 ->select('leads.*', 'manager_leads.type AS m_type', 'accounts.name as user_name', 'accounts.last_name')
                 ->leftJoin('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
                 ->leftJoin('accounts', 'accounts.id', '=', 'manager_leads.manager_id')
                 ->paginate(20);
+        }
+
         return $result;
     }
 
@@ -34,8 +44,8 @@ class Lead extends Model
 
     public function isCanceled()
     {
-        $lead = ManagerLead::where(['lead_id' => $this->id])->first();
-        if ($lead && $lead->type == '2') {
+        $manager_lead = ManagerLead::where(['lead_id' => $this->id])->first();
+        if ($manager_lead && $manager_lead->type == '2') {
             return true;
         }
 
@@ -44,8 +54,8 @@ class Lead extends Model
 
     public function isProcessed()
     {
-        $lead = ManagerLead::where(['lead_id' => $this->id])->first();
-        if ($lead && $lead->type == '1') {
+        $manager_lead = ManagerLead::where(['lead_id' => $this->id])->first();
+        if ($manager_lead && $manager_lead->type == '1') {
             return true;
         }
 
@@ -55,5 +65,24 @@ class Lead extends Model
     public function isNew()
     {
         return ($this->ss == '1') ? true : false;
+    }
+
+    public static function getLeadsOfManager($manager)
+    {
+        $result = Lead::orderBy('id', 'DESC')
+            ->where(['manager_leads.manager_id' => $manager->id, 'leads.city_id' => $manager->city_id])
+            ->select('leads.*', 'manager_leads.type AS m_type')
+            ->join('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
+            ->paginate(20);
+
+        return $result;
+    }
+
+    // Получить новые лиды
+    public static function getLeadsOfFree($user_id)
+    {
+        $user = User::findOrFail($user_id);
+        $leads = Lead::orderBy('id', 'DESC')->where(['city_id' => $user->city_id, 'ss' => '1'])->take(200)->limit(200)->paginate(20);
+        return $leads;
     }
 }

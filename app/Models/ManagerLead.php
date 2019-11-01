@@ -23,4 +23,10 @@ class ManagerLead extends Model
     {
         return $this->belongsTo('App\Models\User', 'manager_id');
     }
+
+    public static function exists($lead_id)
+    {
+        $result = ManagerLead::where(['lead_id' => $lead_id])->first();
+        return ($result) ? true : false;
+    }
 }

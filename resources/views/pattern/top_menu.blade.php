@@ -8,8 +8,8 @@
 
     <div class="user_info">
         <p><i class="fas fa-user"></i>&nbsp;{{ Auth::user()->name." ".Auth::user()->last_name }}</p>
-        <p><i class="fas fa-map-marker-alt"></i>&nbsp;</p>
-        <p><i class="fas fa-building"></i>&nbsp;</p>
+        <p><i class="fas fa-map-marker-alt"></i>&nbsp; {{ Auth::user()->city->title }}</p>
+        <p><i class="fas fa-building"></i>&nbsp;{{ Auth::user()->company->title }}</p>
     </div>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">

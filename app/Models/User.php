@@ -18,7 +18,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'last_name', 'phone', 'home_phone', 'address', 'status', 'deleted', 'date', 'type', 'city_id'
+        'name', 'email', 'password', 'last_name', 'phone', 'home_phone', 'address', 'status', 'deleted', 'date', 'type', 'city_id',
+        'company_id', 'password','api_token'
     ];
 
     /**
@@ -27,7 +28,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'remember_token',
     ];
 
     /**
@@ -40,4 +41,19 @@ class User extends Authenticatable
     ];
 
     public $timestamps = false;
+
+    public function city()
+    {
+        return $this->belongsTo('App\Models\City', 'city_id');
+    }
+
+    public function company()
+    {
+        return $this->belongsTo('App\Models\Company', 'company_id');
+    }
+
+    public static function getAllManagers()
+    {
+        return User::where(['status' => 'MANAGER'])->get();
+    }
 }

@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
+    @csrf
+    @if(Auth::check())
+        <meta name="_token" content="{{ Auth::user()->api_token }}">
+    @endif
 </head>
 <body>
 <div class="default-background"></div>
@@ -19,7 +23,13 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-2">
-                    @include('pattern.left_menu')
+                    @if(Auth::user()->status == 'MANAGER')
+                        @include('pattern.manager-menu')
+                    @elseif(Auth::user()->status == 'CALL_CENTER')
+                        @include('pattern.call_center_menu')
+                    @else
+                        @include('pattern.left_menu')
+                    @endif
                 </div>
                 <div class="col-md-10">
                     <div class="content">

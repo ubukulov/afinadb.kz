@@ -19,8 +19,17 @@ window.Vue = require('vue');
 
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
+var token = $('meta[name="_token"]').attr('content');
+var csrf = $('input[name="_token"]').attr('value');
+
+axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+axios.defaults.headers.common['X-CSRF-TOKEN'] = csrf;
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('account', require('./components/Account.vue').default);
+Vue.component('manager-lead-free', require('./components/ManagerLeadFree.vue').default);
+Vue.component('call-center-leads', require('./components/CallCenterLeads.vue').default);
+Vue.component('manager-my-leads', require('./components/ManagerMyLeads.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

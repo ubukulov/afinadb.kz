@@ -13,4 +13,10 @@ class RejectedLead extends Model
     protected $fillable = [
         'id', 'lead_id', 'manager_id', 'comment', 'ss', 'tm'
     ];
+
+    public static function exists($lead_id)
+    {
+        $result = RejectedLead::where(['lead_id' => $lead_id])->first();
+        return ($result) ? true : false;
+    }
 }
