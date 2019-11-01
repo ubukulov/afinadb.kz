@@ -56,18 +56,4 @@ class IndexController extends BaseController
         Auth::logout();
         return redirect()->route('login');
     }
-
-    public function leads()
-    {
-        $this->seo()->setTitle('Список заявок');
-        $leads = Lead::getLeads();
-        return view('leads', compact('leads'));
-    }
-
-    public function accounts()
-    {
-        $this->seo()->setTitle('Список пользователей');
-        $users = User::orderBy('id', 'DESC')->paginate(20);
-        return view('accounts', compact('users'));
-    }
 }

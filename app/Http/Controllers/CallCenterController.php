@@ -17,6 +17,13 @@ class CallCenterController extends BaseController
         return view('callcenter.leads');
     }
 
+    // список пользователей
+    public function accounts()
+    {
+        $this->seo()->setTitle('Список пользователей');
+        return view('callcenter.accounts');
+    }
+
     // Set lead for manager
     public function setLeadForManager(Request $request)
     {

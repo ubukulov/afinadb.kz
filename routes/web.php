@@ -22,8 +22,7 @@ Route::group(['middleware' => ['web', 'auth']], function(){
     Route::get('/chemodan', 'IndexController@chemodan')->name('chemodan');
     Route::get('/abk', 'IndexController@abk')->name('abk');
     Route::get('/logout', 'IndexController@logout')->name('logout');
-    Route::get('/leads', 'IndexController@leads')->name('leads');
-    Route::get('/accounts', 'IndexController@accounts')->name('accounts');
+
     # Обучение
     Route::get('/education', 'EducationController@education')->name('education');
     Route::get('/internship-training', 'EducationController@internshipTraining')->name('internship-training');
@@ -45,4 +44,5 @@ Route::group(['prefix' => 'call_center'], function(){
     Route::get('/leads', 'CallCenterController@leads')->name('call_center.leads');
     Route::post('/manager/set/lead', 'CallCenterController@setLeadForManager');
     Route::post('/user/ban', 'CallCenterController@banUser');
+    Route::get('/accounts', 'CallCenterController@accounts')->name('accounts');
 });
