@@ -33,7 +33,7 @@
             <th>Действие</th>
             </thead>
             <tbody>
-                <tr v-for="user in users.data" v-bind:key="user.id">
+                <tr v-for="user in users" v-bind:key="user.id">
                     <td>{{ user.id }}</td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.password }}</td>
@@ -242,14 +242,15 @@
                 page_url = page_url || "/api/users";
                 axios.get(page_url)
                     .then(response => {
-                        this.users = response.data;
+                        this.users = response.data.data;
+                        console.log(response)
                         pagination = {
-                            prev_page_url: response.data.prev_page_url,
-                            next_page_url: response.data.next_page_url,
-                            last_page_url: response.data.last_page_url,
-                            first_page_url: response.data.first_page_url,
-                            current_page: response.data.current_page,
-                            last_page: response.data.last_page
+                            prev_page_url: response.data.links.prev,
+                            next_page_url: response.data.links.next,
+                            last_page_url: response.data.links.last,
+                            first_page_url: response.data.links.first,
+                            current_page: response.data.meta.current_page,
+                            last_page: response.data.meta.last_page
                         };
                         this.pagination = pagination;
                     })

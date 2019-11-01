@@ -51,8 +51,7 @@ class ApiController extends Controller
     public function getUsers()
     {
         $users = User::orderBy('id', 'DESC')->paginate(20);
-        UserResource::withoutWrapping();
-        return new UserResource($users);
+        return UserResource::collection($users);
     }
 
     // List of Leads

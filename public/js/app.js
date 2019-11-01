@@ -2082,14 +2082,15 @@ __webpack_require__.r(__webpack_exports__);
       var pagination;
       page_url = page_url || "/api/users";
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(page_url).then(function (response) {
-        _this4.users = response.data;
+        _this4.users = response.data.data;
+        console.log(response);
         pagination = {
-          prev_page_url: response.data.prev_page_url,
-          next_page_url: response.data.next_page_url,
-          last_page_url: response.data.last_page_url,
-          first_page_url: response.data.first_page_url,
-          current_page: response.data.current_page,
-          last_page: response.data.last_page
+          prev_page_url: response.data.links.prev,
+          next_page_url: response.data.links.next,
+          last_page_url: response.data.links.last,
+          first_page_url: response.data.links.first,
+          current_page: response.data.meta.current_page,
+          last_page: response.data.meta.last_page
         };
         _this4.pagination = pagination;
       })["catch"](function (err) {
@@ -38739,7 +38740,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "tbody",
-          _vm._l(_vm.users.data, function(user) {
+          _vm._l(_vm.users, function(user) {
             return _c("tr", { key: user.id }, [
               _c("td", [_vm._v(_vm._s(user.id))]),
               _vm._v(" "),
