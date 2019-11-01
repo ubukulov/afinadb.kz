@@ -6,7 +6,7 @@
                     <a class="page-link" v-on:click="getLeads(pagination.prev_page_url)" href="#" tabindex="-1">Предыдущая</a>
                 </li>
                 <li class="page-item" v-for="page in pagination.last_page" v-bind:class="[{ disabled: page == pagination.current_page}]">
-                    <a v-if="page <= 20" class="page-link" href="#" v-on:click="getLeads('/api/leads?page='+page)">
+                    <a v-if="page <= 10" class="page-link" href="#" v-on:click="getLeads('/api/leads?page='+page)">
                         {{ page }}
                         <span v-if="page == pagination.current_page" class="sr-only">(current)</span>
                     </a>
@@ -60,7 +60,7 @@
                     <a class="page-link" v-on:click="getLeads(pagination.prev_page_url)" href="#" tabindex="-1">Предыдущая</a>
                 </li>
                 <li class="page-item" v-for="page in pagination.last_page" v-bind:class="[{ disabled: page == pagination.current_page}]">
-                    <a v-if="page <= 20" class="page-link" href="#" v-on:click="getLeads('/api/leads?page='+page)">
+                    <a v-if="page <= 10" class="page-link" href="#" v-on:click="getLeads('/api/leads?page='+page)">
                         {{ page }}
                         <span v-if="page == pagination.current_page" class="sr-only">(current)</span>
                     </a>

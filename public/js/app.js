@@ -39317,7 +39317,7 @@ var render = function() {
                 class: [{ disabled: page == _vm.pagination.current_page }]
               },
               [
-                page <= 20
+                page <= 10
                   ? _c(
                       "a",
                       {
@@ -39484,7 +39484,7 @@ var render = function() {
                 class: [{ disabled: page == _vm.pagination.current_page }]
               },
               [
-                page <= 20
+                page <= 10
                   ? _c(
                       "a",
                       {
