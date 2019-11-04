@@ -56,4 +56,9 @@ class User extends Authenticatable
     {
         return User::where(['status' => 'MANAGER'])->get();
     }
+
+    public function getFullName()
+    {
+        return $this->name. " ".$this->last_name;
+    }
 }

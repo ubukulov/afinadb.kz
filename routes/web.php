@@ -38,6 +38,7 @@ Route::group(['prefix' => 'manager'], function(){
     Route::get('leads/free', 'ManagerController@getFreeLeads'); // получить список новых лидов
     Route::get('/my/leads', 'ManagerController@getMyLeads'); // получить список моих лидов
     Route::post('/change/lead/status', 'ManagerController@changeLeadStatus'); // изменить статус лида
+    Route::get('/pending/leads', 'ManagerController@pendingLeads')->name('pending.leads'); // список отложенных запросов
 });
 
 Route::group(['prefix' => 'call_center'], function(){
@@ -45,4 +46,11 @@ Route::group(['prefix' => 'call_center'], function(){
     Route::post('/manager/set/lead', 'CallCenterController@setLeadForManager');
     Route::post('/user/ban', 'CallCenterController@banUser');
     Route::get('/accounts', 'CallCenterController@accounts')->name('accounts');
+    Route::get('/rejected_leads', 'CallCenterController@rejectedLeads')->name('rejected.leads');
+    Route::get('/list/rejected-leads', 'CallCenterController@listRejectedLeads');
+    Route::get('/list/completed-leads', 'CallCenterController@listCompletedLeads');
+    Route::get('/list/processed-leads', 'CallCenterController@listProcessedLeads');
+    Route::post('/lead/restore', 'CallCenterController@restoreLead'); //
+    Route::post('/lead/remove', 'CallCenterController@removeLead'); // удалить лид
+    Route::post('/lead/return', 'CallCenterController@returnLead'); // возвращать лид обратно к менеджеру
 });

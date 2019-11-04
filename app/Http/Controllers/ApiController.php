@@ -61,6 +61,12 @@ class ApiController extends Controller
         return LeadResource::collection($leads);
     }
 
+    // получить список лидов по выбранному городу
+    public function getLeadsOfCity(Request $request)
+    {
+        return Lead::getLeadsOfCity($request->input('city_id'));
+    }
+
     // List of Free Leads
     public function getLeadsOfFree($user_id)
     {

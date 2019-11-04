@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Lead;
 use App\Models\ManagerLead;
+use App\Models\RejectedLead;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -65,5 +66,46 @@ class CallCenterController extends BaseController
         }
 
         return response('Пользователь не найден', 404);
+    }
+
+    // Список отказанные запросы
+    public function rejectedLeads()
+    {
+        $this->seo()->setTitle('Список отказанные запросы');
+        return view('callcenter.rejected_leads');
+    }
+
+    public function listRejectedLeads()
+    {
+        return Lead::getRejectedLeads();
+    }
+
+    public function listCompletedLeads()
+    {
+        return Lead::getCompletedLeads();
+    }
+
+    public function listProcessedLeads()
+    {
+        return Lead::getProcessingLeads();
+    }
+
+    // Восстановить запрос
+    public function restoreLead(Request $request)
+    {
+        $lead_id = $request->input('lead_id');
+        Lead::restoreLead($lead_id);
+    }
+
+    // Удаление запроса
+    public function removeLead(Request $request)
+    {
+        return Lead::remove($request->input('lead_id'));
+    }
+
+    // возвращать лид обратно к менеджеру
+    public function returnLead(Request $request)
+    {
+        return RejectedLead::returnLeadToManager($request->all());
     }
 }

@@ -107,4 +107,11 @@ class ManagerController extends BaseController
 
         return response('Запрос уже закреплен под другим менеджером', 409);
     }
+
+    // Список отложенных запросов
+    public function pendingLeads()
+    {
+        $this->seo()->setTitle('Список отложенных запросов');
+        return view('manager.pending_leads');
+    }
 }

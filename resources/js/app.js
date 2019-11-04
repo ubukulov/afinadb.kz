@@ -25,7 +25,7 @@ var csrf = $('input[name="_token"]').attr('value');
 axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 axios.defaults.headers.common['X-CSRF-TOKEN'] = csrf;
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('call-center-rejected-leads', require('./components/CallCenterRejectedLeads.vue').default);
 Vue.component('account', require('./components/Account.vue').default);
 Vue.component('manager-lead-free', require('./components/ManagerLeadFree.vue').default);
 Vue.component('call-center-leads', require('./components/CallCenterLeads.vue').default);

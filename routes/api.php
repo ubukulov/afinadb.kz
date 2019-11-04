@@ -18,5 +18,6 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::post('/user/create', 'ApiController@createUser'); // создать нового пользователя
     Route::post('/user/update', 'ApiController@updateUser'); // обновление информацию о пользователя
     Route::get('/leads', 'ApiController@leads'); // все лиды
+    Route::post('/leads/city', 'ApiController@getLeadsOfCity'); // получить список лидов по выбранному городу
     Route::get('/managers', 'ApiController@managers'); // список менеджеров
 });

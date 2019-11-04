@@ -1,12 +1,27 @@
 <template>
     <div>
+        <div class="row">
+            <div class="col-md-1">
+                <div class="form-group">
+                    <h6>Сортировка: </h6>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <select v-model="city_id" v-on:change="getLeads()" class="form-control">
+                        <option value="0">Все</option>
+                        <option v-for="city in cities" v-bind:key="city.id" v-bind:value="city.id">{{ city.title }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
         <nav aria-label="...">
             <ul class="pagination">
                 <li class="page-item" v-bind:class="[{disabled: !pagination.prev_page_url}]">
                     <a class="page-link" v-on:click="getLeads(pagination.prev_page_url)" href="#" tabindex="-1">Предыдущая</a>
                 </li>
                 <li class="page-item" v-for="page in pagination.last_page" v-bind:class="[{ disabled: page == pagination.current_page}]">
-                    <a v-if="page <= 10" class="page-link" href="#" v-on:click="getLeads('/api/leads?page='+page)">
+                    <a v-if="page <= 10" class="page-link" href="#" v-on:click="getLeads(page)">
                         {{ page }}
                         <span v-if="page == pagination.current_page" class="sr-only">(current)</span>
                     </a>
@@ -23,6 +38,7 @@
             <th width="100">Имя</th>
             <th width="150">Тел</th>
             <th width="150">Источник</th>
+            <th width="100">Город</th>
             <th width="250">Комментарии</th>
             <th width="200">Подтверждение</th>
             </thead>
@@ -32,6 +48,7 @@
                 <td>{{ lead.name }}</td>
                 <td>{{ lead.phone }}</td>
                 <td>{{ sourceList[lead.type] }}</td>
+                <td>{{ cities[lead.city_id - 1].title }}</td>
                 <td>{{ lead.comment }}</td>
                 <td>
                     <div v-if="lead.m_type == '0'" class="status_btn">
@@ -60,7 +77,7 @@
                     <a class="page-link" v-on:click="getLeads(pagination.prev_page_url)" href="#" tabindex="-1">Предыдущая</a>
                 </li>
                 <li class="page-item" v-for="page in pagination.last_page" v-bind:class="[{ disabled: page == pagination.current_page}]">
-                    <a v-if="page <= 10" class="page-link" href="#" v-on:click="getLeads('/api/leads?page='+page)">
+                    <a v-if="page <= 10" class="page-link" href="#" v-on:click="getLeads(page)">
                         {{ page }}
                         <span v-if="page == pagination.current_page" class="sr-only">(current)</span>
                     </a>
@@ -115,7 +132,8 @@
                 managers: [],
                 pagination: {},
                 modalTitle: 'ВЫБЕРИТЕ МЕНЕДЖЕРА ДЛЯ ЗАПРОСА',
-                manager_id: 0
+                manager_id: 0,
+                city_id: 0
             }
         },
         props: {
@@ -125,24 +143,48 @@
         },
         methods: {
             getLeads(url){
+                if (this.city_id === 0) {
+                    url = url || "/api/leads";
+                    if (typeof url === 'number') {
+                        url = "/api/leads?page="+url;
+                    }
+                    axios.get(url)
+                        .then(response => {
+                            this.leads = response.data.data;
+                            this.makePagination(response.data.links, response.data.meta);
+                        })
+                        .catch(e => {
+                            console.log(e);
+                        })
+                } else {
+                    url = url || "/api/leads/city";
+                    if (typeof url === 'number') {
+                        url = "/api/leads/city?page="+url;
+                    }
+                    axios.post(url, {
+                        city_id: this.city_id
+                    })
+                        .then(response => {
+                            this.leads = response.data.data;
+                            this.makePagination(response.data.links, response.data.meta);
+                        })
+                        .catch(e => {
+                            console.log(e);
+                        })
+                }
+            },
+            makePagination(links, meta){
                 let pagination;
-                url = url || "/api/leads";
-                axios.get(url)
-                    .then(response => {
-                        this.leads = response.data.data;
-                        pagination = {
-                            prev_page_url: response.data.links.prev,
-                            next_page_url: response.data.links.next,
-                            last_page_url: response.data.links.last,
-                            first_page_url: response.data.links.first,
-                            current_page: response.data.meta.current_page,
-                            last_page: response.data.meta.last_page
-                        };
-                        this.pagination = pagination;
-                    })
-                    .catch(e => {
-                        console.log(e);
-                    })
+                pagination = {
+                    prev_page_url: links.prev,
+                    next_page_url: links.next,
+                    last_page_url: links.last,
+                    first_page_url: links.first,
+                    current_page: meta.current_page,
+                    last_page: meta.last_page
+                };
+                this.pagination = pagination;
+                console.log(pagination);
             },
             getManagers(){
                 axios.get('/api/managers')
