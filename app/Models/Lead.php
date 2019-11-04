@@ -27,7 +27,7 @@ class Lead extends Model
                 ->select('leads.*', 'manager_leads.type AS m_type', 'accounts.name as user_name', 'accounts.last_name')
                 ->leftJoin('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
                 ->leftJoin('accounts', 'accounts.id', '=', 'manager_leads.manager_id')
-                ->paginate(20);
+                ->paginate(10);
         }
 
         return $result;
