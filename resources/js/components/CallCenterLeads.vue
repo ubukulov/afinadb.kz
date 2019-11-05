@@ -14,6 +14,16 @@
                     </select>
                 </div>
             </div>
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-7 text-right">
+                <div class="btn-group" role="button">
+                    <button v-on:click="createLeadForm()" class="btn btn-primary _create">Создать запрос</button>
+                    <button class="btn btn-default _257_btn">Загрузить отчет 257.kz</button>
+                    <button class="btn btn-default _chem">Загрузить отчет chemodan.kz</button>
+                </div>
+            </div>
         </div>
         <nav aria-label="...">
             <ul class="pagination">
@@ -119,6 +129,58 @@
                 </div>
             </div>
         </div>
+
+        <!-- Create Lead Form -->
+        <div class="modal fade" id="create_lead" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Создать запрос</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <select v-model="selectCity_id" class="form-control">
+                                        <option v-for="city in cities" v-bind:key="city.id" v-bind:value="city.id">{{ city.title }}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select v-model="type" class="form-control">
+                                        <option v-for="(source, index) in sourceList" v-bind:key="index" v-bind:value="index">{{ source }}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input v-model="first_name" type="text" class="form-control" placeholder="Имя">
+                                    <span v-if="errors.first_name" class="error alert-danger">{{ errors.first_name[0] }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <input v-model="email" type="email" class="form-control" placeholder="Email">
+                                    <span v-if="errors.email" class="error alert-danger">{{ errors.email[0] }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <input v-model="phone" id="phone_number" type="text" class="form-control" placeholder="Телефон">
+                                    <span v-if="errors.phone" class="error alert-danger">{{ errors.phone[0] }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <textarea v-model="comment" cols="30" rows="3" class="form-control" placeholder="Комментарий"></textarea>
+                                    <span v-if="errors.comment" class="error alert-danger">{{ errors.comment[0] }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <button v-on:click="createLead()" type="button" class="btn btn-primary">Создать запрос</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -133,7 +195,14 @@
                 pagination: {},
                 modalTitle: 'ВЫБЕРИТЕ МЕНЕДЖЕРА ДЛЯ ЗАПРОСА',
                 manager_id: 0,
-                city_id: 0
+                city_id: 0,
+                selectCity_id: 1,
+                type: 0,
+                first_name: '',
+                email: '',
+                phone: '',
+                comment: '',
+                errors: []
             }
         },
         props: {
@@ -217,6 +286,29 @@
             },
             getObjectValue(object, id){
                 return object.find(x => x.id === id).title;
+            },
+            createLeadForm(){
+                $('#create_lead').removeClass('fade').modal('toggle');
+            },
+            createLead(){
+                axios.post('/call_center/create/lead', {
+                    'first_name': this.first_name,
+                    'city_id': this.selectCity_id,
+                    'type': this.type,
+                    'email': this.email,
+                    'phone': this.phone,
+                    'comment': this.comment
+                })
+                    .then(res => {
+                        $('#create_lead').addClass('fade').modal('toggle');
+                        this.getLeads();
+                        console.log(res);
+                    })
+                    .catch(err => {
+                        if (err.response.status === 422) {
+                            this.errors = err.response.data.errors;
+                        }
+                    })
             }
         },
         created(){
@@ -225,3 +317,17 @@
         }
     }
 </script>
+<style scoped="">
+    ._chem {
+        background: #853239;
+        color: #fff;
+    }
+    ._create {
+        background: #E0735E;
+        border-color: #E0735E;
+    }
+    ._257_btn {
+        background: #0099AB;
+        color: #fff;
+    }
+</style>

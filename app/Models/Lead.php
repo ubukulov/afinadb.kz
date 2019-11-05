@@ -166,4 +166,15 @@ class Lead extends Model
             return response("Ошибка сервера: $exception", 500);
         }
     }
+
+    // Получить список лидов для директоров компании
+    public static function getLeadsForDirectors()
+    {
+        $leads = Lead::orderBy('id', 'DESC')
+            ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn'))
+            ->where(['city_id' => \Auth::user()->city_id, 'ss' => '1'])
+            ->whereRaw('leads.tm >= DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY)')
+            ->paginate(20);
+        return LeadResource::collection($leads);
+    }
 }

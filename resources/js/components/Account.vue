@@ -111,6 +111,8 @@
                                         <option value="MANAGER">MANAGER</option>
                                         <option value="TRAINEE">TRAINEE</option>
                                         <option value="CALL_CENTER">CALL_CENTER</option>
+                                        <option value="FRANCHISE_MANAGER">FRANCHISE_MANAGER</option>
+                                        <option value="FRANCHISE_DIRECTOR">FRANCHISE_DIRECTOR</option>
                                     </select>
                                 </div>
 

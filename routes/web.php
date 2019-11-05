@@ -53,4 +53,10 @@ Route::group(['prefix' => 'call_center'], function(){
     Route::post('/lead/restore', 'CallCenterController@restoreLead'); //
     Route::post('/lead/remove', 'CallCenterController@removeLead'); // удалить лид
     Route::post('/lead/return', 'CallCenterController@returnLead'); // возвращать лид обратно к менеджеру
+    Route::post('/create/lead', 'CallCenterController@createLead'); // создать лид
+});
+
+Route::group(['prefix' => 'director'], function(){
+    Route::get('/leads', 'DirectorController@leads')->name('director.leads');
+    Route::get('/leads/list', 'DirectorController@getLeads');
 });

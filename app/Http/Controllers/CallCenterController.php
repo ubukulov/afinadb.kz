@@ -108,4 +108,23 @@ class CallCenterController extends BaseController
     {
         return RejectedLead::returnLeadToManager($request->all());
     }
+
+    // создать лид
+    public function createLead(Request $request)
+    {
+        $this->validate($request, [
+           'first_name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'comment' => 'required'
+        ], [
+            'required' => 'Поля обязательно к заполнению'
+        ]);
+        $data = $request->all();
+        Lead::create([
+            'url' => '/', 'comment' => $data['comment'], 'phone' => $data['phone'], 'email' => $data['email'],
+            'name' => $data['first_name'], 'type' => $data['type'], 'ss' => '1', 'city_id' => $data['city_id']
+        ]);
+        return response('Запрос успешно создан');
+    }
 }

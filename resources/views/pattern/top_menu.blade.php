@@ -1,6 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="{{ route('home') }}">
+        @if(Auth::user()->type == 0)
         <img src="{{ asset('images/logo.png') }}" width="150" alt="">
+        @else
+        <img src="{{ asset('images/257.png') }}" width="150" alt="">
+        @endif
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -9,7 +13,11 @@
     <div class="user_info">
         <p><i class="fas fa-user"></i>&nbsp;{{ Auth::user()->name." ".Auth::user()->last_name }}</p>
         <p><i class="fas fa-map-marker-alt"></i>&nbsp; {{ Auth::user()->city->title }}</p>
+        @if(Auth::user()->status == 'CEO')
+        <p><i class="fas fa-building"></i>&nbsp;CEO</p>
+        @else
         <p><i class="fas fa-building"></i>&nbsp;{{ Auth::user()->company->title }}</p>
+        @endif
     </div>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
