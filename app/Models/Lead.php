@@ -21,7 +21,7 @@ class Lead extends Model
                 ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn'))
                 ->where(['city_id' => \Auth::user()->city_id, 'ss' => '1'])
                 ->whereRaw('leads.tm >= DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY)')
-                ->paginate(20);
+                ->paginate(10);
         } else {
             $result = Lead::orderBy('leads.tm', 'DESC')
                 ->select('leads.*', 'manager_leads.type AS m_type', 'accounts.name as user_name', 'accounts.last_name')
@@ -39,7 +39,7 @@ class Lead extends Model
             ->select('leads.*', 'manager_leads.type AS m_type', 'accounts.name as user_name', 'accounts.last_name')
             ->leftJoin('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
             ->leftJoin('accounts', 'accounts.id', '=', 'manager_leads.manager_id')
-            ->paginate(20);
+            ->paginate(10);
         return LeadResource::collection($leads);
     }
 
@@ -84,7 +84,7 @@ class Lead extends Model
             ->where(['manager_leads.manager_id' => $manager->id, 'leads.city_id' => $manager->city_id])
             ->select('leads.*', 'manager_leads.type AS m_type')
             ->join('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
-            ->paginate(20);
+            ->paginate(10);
 
         return $result;
     }
@@ -174,7 +174,7 @@ class Lead extends Model
             ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn'))
             ->where(['city_id' => \Auth::user()->city_id, 'ss' => '1'])
             ->whereRaw('leads.tm >= DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY)')
-            ->paginate(20);
+            ->paginate(10);
         return LeadResource::collection($leads);
     }
 }
