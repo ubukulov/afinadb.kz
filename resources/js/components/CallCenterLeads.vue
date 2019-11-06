@@ -86,10 +86,10 @@
                 <li class="page-item" v-bind:class="[{disabled: !pagination.prev_page_url}]">
                     <a class="page-link" v-on:click="getLeads(pagination.prev_page_url)" href="#" tabindex="-1">Предыдущая</a>
                 </li>
-                <li class="page-item" v-for="page in pagination.last_page" v-bind:class="[{ disabled: page == pagination.current_page}]">
-                    <a v-if="page <= 10" class="page-link" href="#" v-on:click="getLeads(page)">
-                        {{ page }}
-                        <span v-if="page == pagination.current_page" class="sr-only">(current)</span>
+                <li class="page-item" v-for="p in pagination.last_page" v-bind:class="[{ disabled: p == pagination.current_page}]">
+                    <a v-if="p <= 10" class="page-link" href="#" v-on:click="getLeads(p)">
+                        {{ p }}
+                        <span v-if="p == pagination.current_page" class="sr-only">(current)</span>
                     </a>
                 </li>
 
@@ -116,7 +116,7 @@
                                     <label for="manager_id">Выберите менеджера</label>
                                     <select id="manager_id" v-model="manager_id" class="form-control">
                                         <option v-for="manager in managers" v-bind:key="manager.id" v-bind:value="manager.id">
-                                            {{ manager.name + " " + manager.last_name }}
+                                            {{ manager.name + " " + manager.last_name + ", " + manager.c_title + ", " + manager.com_title }}
                                         </option>
                                     </select>
                                 </div>
