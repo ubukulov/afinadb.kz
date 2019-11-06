@@ -212,7 +212,7 @@
         },
         methods: {
             getLeads(url){
-                if (this.city_id === 0) {
+                if (this.city_id == 0) {
                     url = url || "/api/leads";
                     if (typeof url === 'number') {
                         url = "/api/leads?page="+url;

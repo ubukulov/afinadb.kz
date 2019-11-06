@@ -25,29 +25,12 @@ var csrf = $('input[name="_token"]').attr('value');
 axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 axios.defaults.headers.common['X-CSRF-TOKEN'] = csrf;
 
-Vue.component('call-center-rejected-leads', function(resolve) {
-    require(['./components/CallCenterRejectedLeads.vue'], resolve);
-});
-
-Vue.component('account', function(resolve){
-    require(['./components/Account.vue'], resolve);
-});
-
-Vue.component('manager-lead-free', function(resolve){
-    require(['./components/ManagerLeadFree.vue'], resolve);
-});
-
-Vue.component('call-center-leads', function(resolve){
-    require(['./components/CallCenterLeads.vue'], resolve);
-});
-
-Vue.component('manager-my-leads', function(resolve) {
-    require(['./components/ManagerMyLeads.vue'], resolve);
-});
-
-Vue.component('director-leads', function(resolve){
-    require(['./components/DirectorLeads.vue'], resolve);
-});
+Vue.component('call-center-rejected-leads', require('./components/CallCenterRejectedLeads.vue').default);
+Vue.component('account', require('./components/Account.vue').default);
+Vue.component('manager-lead-free', require('./components/ManagerLeadFree.vue').default);
+Vue.component('call-center-leads', require('./components/CallCenterLeads.vue').default);
+Vue.component('manager-my-leads', require('./components/ManagerMyLeads.vue').default);
+Vue.component('director-leads', require('./components/DirectorLeads.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -56,5 +39,5 @@ Vue.component('director-leads', function(resolve){
  */
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
 });
