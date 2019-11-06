@@ -48,7 +48,7 @@
             <th width="100">Имя</th>
             <th width="150">Тел</th>
             <th width="150">Источник</th>
-            <th width="100">Город</th>
+            <!--<th width="100">Город</th>-->
             <th width="250">Комментарии</th>
             <th width="200">Подтверждение</th>
             </thead>
@@ -58,7 +58,7 @@
                 <td>{{ lead.name }}</td>
                 <td>{{ lead.phone }}</td>
                 <td>{{ sourceList[lead.type] }}</td>
-                <td>{{ cities[lead.city_id - 1].title }}</td>
+                <!--<td>{{ cities[lead.city_id - 1].title }}</td>-->
                 <td>{{ lead.comment }}</td>
                 <td>
                     <div v-if="lead.m_type == '0'" class="status_btn">
