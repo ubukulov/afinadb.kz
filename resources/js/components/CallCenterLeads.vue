@@ -116,7 +116,7 @@
                                     <label for="manager_id">Выберите менеджера</label>
                                     <select id="manager_id" v-model="manager_id" class="form-control">
                                         <option v-for="manager in managers" v-bind:key="manager.id" v-bind:value="manager.id">
-                                            {{ manager.name + " " + manager.last_name + ", " + getObjectValue(cities, manager.city_id) + ", " + getObjectValue(companies, manager.company_id) }}
+                                            {{ manager.name + " " + manager.last_name }}
                                         </option>
                                     </select>
                                 </div>
@@ -284,9 +284,9 @@
                 $('#modal_lead').removeClass('fade').modal('toggle');
                 this.modalTitle = this.modalTitle + " #" +lead_id;
             },
-            getObjectValue(object, id){
+            /*getObjectValue(object, id){
                 return object.find(x => x.id === id).title;
-            },
+            },*/
             createLeadForm(){
                 $('#create_lead').removeClass('fade').modal('toggle');
             },
