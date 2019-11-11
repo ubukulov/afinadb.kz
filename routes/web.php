@@ -54,6 +54,7 @@ Route::group(['prefix' => 'call_center'], function(){
     Route::post('/lead/remove', 'CallCenterController@removeLead'); // удалить лид
     Route::post('/lead/return', 'CallCenterController@returnLead'); // возвращать лид обратно к менеджеру
     Route::post('/create/lead', 'CallCenterController@createLead'); // создать лид
+    Route::get('/incoming/calls', 'CallCenterController@incomingCalls')->name('incoming.calls'); // входящие звонки
 });
 
 Route::group(['prefix' => 'director'], function(){

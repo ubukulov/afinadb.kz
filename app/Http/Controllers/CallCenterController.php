@@ -9,6 +9,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Cache;
 
 class CallCenterController extends BaseController
 {
@@ -126,5 +127,24 @@ class CallCenterController extends BaseController
             'name' => $data['first_name'], 'type' => $data['type'], 'ss' => '1', 'city_id' => $data['city_id']
         ]);
         return response('Запрос успешно создан');
+    }
+
+    // входящие звонки
+    public function incomingCalls()
+    {
+        $this->seo()->setTitle('Входящие звонки');
+        try {
+            if (Cache::has('all_calls_per_day')) {
+                $all_calls_per_day = Cache::get('all_calls_per_day');
+            } else {
+                $client = new \denostr\Binotel\Client(env('BINOTEL_KEY'), env('BINOTEL_SECRET'));
+                $stats = $client->stats;
+                $all_calls_per_day = $stats->listOfCallsPerDay();
+                Cache::put('all_calls_per_day', $all_calls_per_day, 300);
+            }
+            return view('callcenter.calls', compact('all_calls_per_day'));
+        } catch (\denostr\Binotel\Exception $e) {
+            printf('Error (%d): %s' . PHP_EOL, $e->getCode(), $e->getMessage());
+        }
     }
 }

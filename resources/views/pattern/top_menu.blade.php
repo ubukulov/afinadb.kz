@@ -47,7 +47,7 @@
                     Звонки
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Входящие</a>
+                    <a class="dropdown-item" href="{{ route('incoming.calls') }}">Входящие</a>
                     <a class="dropdown-item" href="#">Исходящие</a>
                 </div>
             </li>

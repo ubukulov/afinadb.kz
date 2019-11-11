@@ -22,6 +22,23 @@ class BaseController extends Controller
         'Абу-Даби', 'Абу-Даби-Nur-Sultan', 'Шарджа', 'Шарджа-Nur-Sultan', 'Рас-эль-Хайма', 'Рас-эль-Хайма-Nur-Sultan', 'Фуджейра', 'Фуджейра - Nur-Sultan', 'Whatsapp-дубай','Whatsapp-Абу Даби', 'Whatsapp-Шарджа', 'Whatsapp-Рас-эль-Хайма', 'Whatsapp-Фуджерай', 'JivoSite-Дубай', 'JivoSite-Абу Даби', 'JivoSite-Шарджа', 'JivoSite-Рас-эл-Хайма','JivoSite-Фуджейра', 'dominicana.kz', 'dominicana.kz - Nur-Sultan', 'franchise.chemodan.kz', 'Whatsapp-dominicana.kz', 'JivoSite-dominicana.kz'];
     protected $cities;
     protected $companies;
+    protected $disposition = [
+        'ANSWER' => 'успешный звонок',
+        'TRANSFER' => 'успешный звонок который был переведен',
+        'ONLINE' => 'звонок в онлайне',
+        'BUSY' => 'неуспешный звонок по причине занято',
+        'NOANSWER' => 'неуспешный звонок по причине нет ответа',
+        'CANCEL' => 'неуспешный звонок по причине отмены звонка',
+        'CONGESTION' => 'неуспешный звонок',
+        'CHANUNAVAIL' => 'неуспешный звонок',
+        'VM' => 'голосовая почта без сообщения',
+        'VM-SUCCESS' => 'голосовая почта с сообщением',
+        'SMS-SENDING' => 'SMS сообщение на отправке',
+        'SMS-SUCCESS' => 'SMS сообщение успешно отправлено',
+        'SMS-FAILED' => 'SMS сообщение не отправлено',
+        'SUCCESS' => 'успешно принятый факс',
+        'FAILED' => 'непринятый факс'
+    ];
 
     public function __construct()
     {
@@ -43,5 +60,6 @@ class BaseController extends Controller
 
         View::share('agent', $this->agent);
         View::share('source_list', $this->source_list);
+        View::share('disposition', $this->disposition);
     }
 }

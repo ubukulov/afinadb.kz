@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7117b9956a81b71cbdef7f6041925324",
+    "content-hash": "a6a82f0911060827b7bdc531ad0d1e21",
     "packages": [
         {
             "name": "artesaos/seotools",
@@ -199,6 +199,46 @@
                 "sluggable"
             ],
             "time": "2019-03-01T05:04:21+00:00"
+        },
+        {
+            "name": "denostr/binotel-api",
+            "version": "0.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/denostr/binotel-api.git",
+                "reference": "17a7847d163472c095367d8c5519fe99e1279a75"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/denostr/binotel-api/zipball/17a7847d163472c095367d8c5519fe99e1279a75",
+                "reference": "17a7847d163472c095367d8c5519fe99e1279a75",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "denostr\\Binotel\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Denis Ostrovsky",
+                    "email": "4deni.kiev@gmail.com"
+                }
+            ],
+            "description": "Клиент для работы с API Binotel",
+            "keywords": [
+                "api",
+                "binotel"
+            ],
+            "time": "2018-12-27T10:17:59+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
