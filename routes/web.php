@@ -29,6 +29,12 @@ Route::group(['middleware' => ['web', 'auth']], function(){
     Route::get('/manager-training', 'EducationController@managerTraining')->name('manager-training');
     Route::get('/leadership-training', 'EducationController@leadershipTraining')->name('leadership-training');
     Route::get('/private', 'EducationController@privat')->name('private');
+    Route::get('/all-webinars', 'EducationController@webinars')->name('all-webinars');
+
+    # Звонки
+    Route::get('/incoming/calls', 'BinotelController@incomingCalls')->name('incoming.calls'); // входящие звонки
+    Route::get('/outgoing/calls', 'BinotelController@outgoingCalls')->name('outgoing.calls'); // исходящие звонки
+    Route::get('/missing/calls', 'BinotelController@missingCalls')->name('missing.calls'); // пропущенные звонки
 });
 
 Route::group(['prefix' => 'manager'], function(){
@@ -54,7 +60,6 @@ Route::group(['prefix' => 'call_center'], function(){
     Route::post('/lead/remove', 'CallCenterController@removeLead'); // удалить лид
     Route::post('/lead/return', 'CallCenterController@returnLead'); // возвращать лид обратно к менеджеру
     Route::post('/create/lead', 'CallCenterController@createLead'); // создать лид
-    Route::get('/incoming/calls', 'CallCenterController@incomingCalls')->name('incoming.calls'); // входящие звонки
 });
 
 Route::group(['prefix' => 'director'], function(){

@@ -14,3 +14,13 @@ function timeCount($a) {
         return $e.' дня';
     } else return $e.' дней';
 }
+
+function blockAllEducation($request_uri){
+    $arr = [
+        'education', 'internship-training', 'manager-training', 'leadership-training', 'private'
+    ];
+    if (in_array($request_uri, $arr)) {
+        return true;
+    }
+    return false;
+}

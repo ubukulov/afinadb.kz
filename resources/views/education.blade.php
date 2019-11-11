@@ -11,9 +11,10 @@
             <div class="bc_title">Выезд туристов за рубеж/запрет на выезд</div>
             <a href="/sources/files/Выезд_туристов_зарубеж_(запрет)_на_выезд.pdf" target="_blank"><div class="b_download_btn">Скачать</div></a>
         </div>
+        <i class="fa fa-re"></i>
         <div class="block_content">
             <div class="bc_title">Основные понятия в туризме:</div>
-            <div class="b_download_btn" onclick="return page.showVideoYoutube(this)" data-video="https://www.youtube.com/embed/jBLOKdZPfrA">Смотреть</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this)" data-video="https://www.youtube.com/embed/jBLOKdZPfrA">Смотреть</div>
         </div>
     </div>
     <div class="content_title">Знание направлений</div>
@@ -34,19 +35,19 @@
         </div>-->
         <div class="block_content">
             <div class="bc_title">Турция</div>
-            <div class="b_download_btn" onclick="return page.showVideoYoutube(this)" data-video="https://www.youtube.com/embed/kv0L5SS2J5U">Смотреть</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this)" data-video="https://www.youtube.com/embed/kv0L5SS2J5U">Смотреть</div>
         </div>
         <div class="block_content">
             <div class="bc_title">ОАЭ # 1:</div>
-            <div class="b_download_btn" onclick="return page.showVideoYoutube(this)" data-video="https://www.youtube.com/embed/mDg9efQVlYM">Смотреть</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this)" data-video="https://www.youtube.com/embed/mDg9efQVlYM">Смотреть</div>
         </div>
         <div class="block_content">
             <div class="bc_title">ОАЭ # 2:</div>
-            <div class="b_download_btn" onclick="return page.showVideoYoutube(this)" data-video="https://www.youtube.com/embed/X2AxXBY-c6E">Смотреть</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this)" data-video="https://www.youtube.com/embed/X2AxXBY-c6E">Смотреть</div>
         </div>
         <div class="block_content">
             <div class="bc_title">Египет:</div>
-            <div class="b_download_btn" onclick="return page.showVideo(this)" data-video="/sources/Египет с Kazunion..mp4">Смотреть</div>
+            <div class="b_download_btn" onclick="return showVideo(this)" data-video="/sources/Египет с Kazunion..mp4">Смотреть</div>
         </div>
     </div>
     <div class="content_title">Продажи</div>
@@ -54,11 +55,11 @@
         <div class="block_title">Знание и понимание основных этапов продаж и стандартов сети.</div>
         <div class="block_content">
             <div class="bc_title">ANEX TOUR: ТЕХНОЛОГИЯ ПРОДАЖ:</div>
-            <div class="b_download_btn" onclick="return page.showVideoYoutube(this)" data-video="https://www.youtube.com/embed/2FI6zFrDazI">Смотреть</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this)" data-video="https://www.youtube.com/embed/2FI6zFrDazI">Смотреть</div>
         </div>
         <div class="block_content">
             <div class="bc_title">ANEX TOUR: работа с претензиями</div>
-            <div class="b_download_btn" onclick="return page.showVideoYoutube(this)" data-video="https://www.youtube.com/embed/DYNhab_3hCs">Смотреть</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this)" data-video="https://www.youtube.com/embed/DYNhab_3hCs">Смотреть</div>
         </div>
         <div class="block_content">
             <div class="bc_title">Стандарты работы Чемодан</div>
@@ -93,7 +94,7 @@
         <div class="block_title">Алгоритм подбора тура. Знакомство с поиском туров.</div>
         <div class="block_content">
             <div class="bc_title">Азы подбора тура КЗ:</div>
-            <div class="b_download_btn" onclick="return page.showVideo(this)" data-video="/sources/Азы подбора тура КЗ.mp4">Смотреть</div>
+            <div class="b_download_btn" onclick="return showVideo(this)" data-video="/sources/Азы подбора тура КЗ.mp4">Смотреть</div>
         </div>
         <div class="block_content">
             <div class="bc_title">Онлайн подбор тура:</div>

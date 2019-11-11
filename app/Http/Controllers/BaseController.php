@@ -37,7 +37,8 @@ class BaseController extends Controller
         'SMS-SUCCESS' => 'SMS сообщение успешно отправлено',
         'SMS-FAILED' => 'SMS сообщение не отправлено',
         'SUCCESS' => 'успешно принятый факс',
-        'FAILED' => 'непринятый факс'
+        'FAILED' => 'непринятый факс',
+        'CALLING' => 'Идет звонок'
     ];
 
     public function __construct()

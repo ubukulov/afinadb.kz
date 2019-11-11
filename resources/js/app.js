@@ -5,7 +5,6 @@
  */
 
 require('./bootstrap');
-require('./my_scripts');
 
 window.Vue = require('vue');
 Vue.config.devtools = false;

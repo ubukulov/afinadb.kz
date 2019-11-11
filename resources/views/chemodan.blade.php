@@ -6,7 +6,7 @@
         <div class="block_title">Презентации от Туроператоров</div>
         <div class="block_content">
             <div class="bc_title">Презентация от Казюнион по системе (часть2)</div>
-            <div class="b_download_btn" onclick="return page.showVideoYoutube(this)" data-video="https://www.youtube.com/embed/gR_eMRorpp0">Смотреть</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this)" data-video="https://www.youtube.com/embed/gR_eMRorpp0">Смотреть</div>
         </div>
         <div class="block_content">
             <div class="bc_title">Презентация по системе Казюниона:</div>
