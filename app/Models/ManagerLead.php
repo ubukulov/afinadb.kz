@@ -46,7 +46,7 @@ class ManagerLead extends Model
         INNER JOIN companies ON companies.id=accounts.company_id
         INNER JOIN cities ON cities.id=accounts.city_id
         WHERE manager_leads.tm >= CURDATE()
-        GROUP BY manager_leads.manager_id");
+        GROUP BY manager_leads.manager_id, accounts.name, accounts.last_name, companies.title, cities.title");
         return $manager_leads;
     }
 }
