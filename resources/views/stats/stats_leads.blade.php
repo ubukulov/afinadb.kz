@@ -17,11 +17,11 @@
 
             var data = google.visualization.arrayToDataTable([
                 ['Task', 'Hours per Day'],
-                ['Общее количество',     "<?php echo $cnt ?>"],
-                ['Обработано',      "<?php echo $suc ?>"],
-                ['Отказы',  "<?php echo $can ?>"],
-                ['В процессе', "<?php echo $pro ?>"],
-                ['Новые',    "<?php echo $new ?>"]
+                ['Общее количество',     parseInt("<?php echo $cnt ?>")],
+                ['Обработано',      parseInt("<?php echo $suc ?>")],
+                ['Отказы', parseInt("<?php echo $can ?>")],
+                ['В процессе', parseInt("<?php echo $pro ?>")],
+                ['Новые',    parseInt("<?php echo $new ?>")]
             ]);
 
             var options = {
