@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class ManagerLead extends Model
 {
@@ -28,5 +29,24 @@ class ManagerLead extends Model
     {
         $result = ManagerLead::where(['lead_id' => $lead_id])->first();
         return ($result) ? true : false;
+    }
+
+    public static function getStatsOfManagers()
+    {
+        $manager_leads = DB::select("SELECT 
+        CONCAT(accounts.name, ' ', accounts.last_name) AS fio,
+        companies.title AS com_title,
+        cities.title AS city,
+        SUM(manager_leads.type='0') AS suc,
+        SUM(manager_leads.type='1') AS pro,
+        SUM(manager_leads.type='2') AS can
+        FROM `manager_leads`
+        INNER JOIN accounts ON accounts.id=manager_leads.manager_id
+        INNER JOIN leads ON leads.id=manager_leads.lead_id
+        INNER JOIN companies ON companies.id=accounts.company_id
+        INNER JOIN cities ON cities.id=accounts.city_id
+        WHERE manager_leads.tm >= CURDATE()
+        GROUP BY manager_leads.manager_id");
+        return $manager_leads;
     }
 }

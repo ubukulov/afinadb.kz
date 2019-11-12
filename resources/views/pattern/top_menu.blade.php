@@ -30,18 +30,18 @@
                     <a class="dropdown-item" href="#">Инструкция</a>
                     <a class="dropdown-item" href="#">Статьи</a>
                 </div>
-            </li>
+            </li>--}}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Статистика
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#">Статистика запросов</a>
-                    <a class="dropdown-item" href="#">Статистика менеджеров</a>
+                    <a class="dropdown-item" href="{{ route('stats.managers') }}">Статистика менеджеров</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Статистика горящих туров</a>
                 </div>
-            </li>--}}
+            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Звонки

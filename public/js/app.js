@@ -2047,7 +2047,7 @@ __webpack_require__.r(__webpack_exports__);
         'email': this.username,
         'password': this.password,
         'status': this.status,
-        'city_id': this.city_id,
+        'city_id': this.selectedCity,
         'company_id': this.company_id
       }).then(function (response) {
         console.log(response);
@@ -40108,7 +40108,11 @@ var render = function() {
           "tbody",
           _vm._l(_vm.leads, function(lead) {
             return _c("tr", [
-              _c("td", [_vm._v(_vm._s(lead.id))]),
+              _c("td", [
+                _vm._v(
+                  _vm._s(lead.dt + " #" + lead.id + " (" + lead.dn + ") дней")
+                )
+              ]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(lead.name))]),
               _vm._v(" "),
@@ -40763,7 +40767,13 @@ var render = function() {
                 "tbody",
                 _vm._l(_vm.rejectedLeads, function(lead) {
                   return _c("tr", [
-                    _c("td", [_vm._v(_vm._s(lead.id))]),
+                    _c("td", [
+                      _vm._v(
+                        _vm._s(
+                          lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"
+                        )
+                      )
+                    ]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(lead.first_name))]),
                     _vm._v(" "),
@@ -40790,26 +40800,28 @@ var render = function() {
                             "button",
                             {
                               staticClass: "btn btn-danger",
+                              attrs: { title: "Скрыть запрос" },
                               on: {
                                 click: function($event) {
                                   return _vm.removeLead(lead.id)
                                 }
                               }
                             },
-                            [_vm._v("Удалить")]
+                            [_c("i", { staticClass: "fas fa-eye-slash" })]
                           ),
                           _vm._v(" "),
                           _c(
                             "button",
                             {
                               staticClass: "btn btn-primary",
+                              attrs: { title: "Вернуть обратно менеджеру" },
                               on: {
                                 click: function($event) {
                                   return _vm.returnLeadForm(lead.id)
                                 }
                               }
                             },
-                            [_vm._v("Вернуть менеджеру")]
+                            [_c("i", { staticClass: "fas fa-undo" })]
                           )
                         ]
                       )
@@ -40844,7 +40856,13 @@ var render = function() {
                 "tbody",
                 _vm._l(_vm.completedLeads, function(lead) {
                   return _c("tr", [
-                    _c("td", [_vm._v(_vm._s(lead.id))]),
+                    _c("td", [
+                      _vm._v(
+                        _vm._s(
+                          lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"
+                        )
+                      )
+                    ]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(lead.first_name))]),
                     _vm._v(" "),
@@ -40891,7 +40909,13 @@ var render = function() {
                 "tbody",
                 _vm._l(_vm.processingLeads, function(lead) {
                   return _c("tr", [
-                    _c("td", [_vm._v(_vm._s(lead.id))]),
+                    _c("td", [
+                      _vm._v(
+                        _vm._s(
+                          lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"
+                        )
+                      )
+                    ]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(lead.first_name))]),
                     _vm._v(" "),
@@ -41113,9 +41137,9 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", { attrs: { width: "100" } }, [_vm._v("Имя")]),
       _vm._v(" "),
-      _c("th", { attrs: { width: "100" } }, [_vm._v("Телефон")]),
+      _c("th", { attrs: { width: "150" } }, [_vm._v("Телефон")]),
       _vm._v(" "),
-      _c("th", { attrs: { width: "250" } }, [_vm._v("Комментарии")]),
+      _c("th", { attrs: { width: "350" } }, [_vm._v("Комментарии")]),
       _vm._v(" "),
       _c("th", { attrs: { width: "200" } }, [_vm._v("Менеджер")]),
       _vm._v(" "),
@@ -41742,7 +41766,13 @@ var render = function() {
                 "tbody",
                 _vm._l(_vm.processing_leads, function(lead) {
                   return _c("tr", { key: lead.id }, [
-                    _c("td", [_vm._v(_vm._s(lead.id))]),
+                    _c("td", [
+                      _vm._v(
+                        _vm._s(
+                          lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"
+                        )
+                      )
+                    ]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(lead.name))]),
                     _vm._v(" "),
@@ -41755,32 +41785,28 @@ var render = function() {
                         "button",
                         {
                           staticClass: "btn btn-primary",
+                          attrs: { title: "Выполнено" },
                           on: {
                             click: function($event) {
                               return _vm.completeLead(lead.id)
                             }
                           }
                         },
-                        [
-                          _c("i", { staticClass: "fas fa-check" }),
-                          _vm._v(" Выполнено")
-                        ]
+                        [_c("i", { staticClass: "fas fa-check" })]
                       ),
                       _vm._v(" "),
                       _c(
                         "button",
                         {
                           staticClass: "btn btn-danger",
+                          attrs: { title: "Отказаться от запроса" },
                           on: {
                             click: function($event) {
                               return _vm.cancelLeadForm(lead.id)
                             }
                           }
                         },
-                        [
-                          _c("i", { staticClass: "fas fa-times" }),
-                          _vm._v("  Отказаться")
-                        ]
+                        [_c("i", { staticClass: "fas fa-times" })]
                       )
                     ])
                   ])
@@ -41813,7 +41839,13 @@ var render = function() {
                 "tbody",
                 _vm._l(_vm.completing_leads, function(lead) {
                   return _c("tr", { key: lead.id }, [
-                    _c("td", [_vm._v(_vm._s(lead.id))]),
+                    _c("td", [
+                      _vm._v(
+                        _vm._s(
+                          lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"
+                        )
+                      )
+                    ]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(lead.name))]),
                     _vm._v(" "),
@@ -41850,7 +41882,13 @@ var render = function() {
                 "tbody",
                 _vm._l(_vm.canceling_leads, function(lead) {
                   return _c("tr", { key: lead.id }, [
-                    _c("td", [_vm._v(_vm._s(lead.id))]),
+                    _c("td", [
+                      _vm._v(
+                        _vm._s(
+                          lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"
+                        )
+                      )
+                    ]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(lead.name))]),
                     _vm._v(" "),
@@ -42043,7 +42081,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "thead-light" }, [
-      _c("th", { attrs: { width: "100" } }, [_vm._v("Дата")]),
+      _c("th", { attrs: { width: "150" } }, [_vm._v("Дата")]),
       _vm._v(" "),
       _c("th", { attrs: { width: "150" } }, [_vm._v("Имя")]),
       _vm._v(" "),

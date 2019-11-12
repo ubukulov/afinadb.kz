@@ -24,7 +24,7 @@ class Lead extends Model
                 ->paginate(10);
         } else {
             $result = Lead::orderBy('leads.tm', 'DESC')
-                ->select('leads.*', 'manager_leads.type AS m_type', 'accounts.name as user_name', 'accounts.last_name')
+                ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, manager_leads.type AS m_type, accounts.name as user_name, accounts.last_name'))
                 ->leftJoin('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
                 ->leftJoin('accounts', 'accounts.id', '=', 'manager_leads.manager_id')
                 ->paginate(10);
@@ -82,7 +82,7 @@ class Lead extends Model
     {
         $result = Lead::orderBy('id', 'DESC')
             ->where(['manager_leads.manager_id' => $manager->id, 'leads.city_id' => $manager->city_id])
-            ->select('leads.*', 'manager_leads.type AS m_type')
+            ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, manager_leads.type AS m_type'))
             ->join('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
             ->paginate(10);
 
@@ -100,10 +100,10 @@ class Lead extends Model
     // Получить список отказанных запросов
     public static function getRejectedLeads()
     {
-        $leads = Lead::select('leads.*', 'rejected_leads.comment as comm', 'accounts.name as first_name', 'accounts.last_name')
+        $leads = Lead::where(['rejected_leads.ss' => '1'])
+            ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, rejected_leads.comment as comm, accounts.name as first_name, accounts.last_name'))
             ->join('rejected_leads', 'rejected_leads.lead_id', '=', 'leads.id')
             ->join('accounts', 'accounts.id', '=', 'rejected_leads.manager_id')
-            ->where(['rejected_leads.ss' => '1'])
             ->orderBy('rejected_leads.id', 'DESC')
             ->limit(20)
             ->get();
@@ -114,7 +114,7 @@ class Lead extends Model
     public static function getCompletedLeads()
     {
         $leads = ManagerLead::where(['manager_leads.ss' => '0', 'manager_leads.type' => '0'])
-            ->select('leads.*', 'rejected_leads.comment as comm', 'accounts.name as first_name', 'accounts.last_name')
+            ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, rejected_leads.comment as comm, accounts.name as first_name, accounts.last_name'))
             ->join('leads', 'leads.id', '=', 'manager_leads.lead_id')
             ->leftJoin('rejected_leads', 'rejected_leads.lead_id', '=', 'leads.id')
             ->join('accounts', 'accounts.id', '=', 'manager_leads.manager_id')
@@ -128,7 +128,7 @@ class Lead extends Model
     public static function getProcessingLeads()
     {
         $leads = ManagerLead::where(['manager_leads.ss' => '0', 'manager_leads.type' => '1'])
-            ->select('leads.*', 'rejected_leads.comment as comm', 'accounts.name as first_name', 'accounts.last_name')
+            ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, rejected_leads.comment as comm, accounts.name as first_name, accounts.last_name'))
             ->join('leads', 'leads.id', '=', 'manager_leads.lead_id')
             ->leftJoin('rejected_leads', 'rejected_leads.lead_id', '=', 'leads.id')
             ->join('accounts', 'accounts.id', '=', 'manager_leads.manager_id')

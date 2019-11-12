@@ -15,7 +15,7 @@
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                 <table class="table leads_table table-bordered table-striped">
                     <thead class="thead-light">
-                        <th width="100">Дата</th>
+                        <th width="150">Дата</th>
                         <th width="150">Имя</th>
                         <th width="150">Тел</th>
                         <th width="250">Комментарии</th>
@@ -23,13 +23,13 @@
                     </thead>
                     <tbody>
                         <tr v-for="lead in processing_leads" v-bind:key="lead.id">
-                            <td>{{ lead.id }}</td>
+                            <td>{{ lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"  }}</td>
                             <td>{{ lead.name }}</td>
                             <td>{{ lead.phone }}</td>
                             <td>{{ lead.comment }}</td>
                             <td>
-                                <button v-on:click="completeLead(lead.id)" class="btn btn-primary"><i class="fas fa-check"></i>&nbsp;Выполнено</button>
-                                <button v-on:click="cancelLeadForm(lead.id)" class="btn btn-danger"><i class="fas fa-times"></i>&nbsp; Отказаться</button>
+                                <button title="Выполнено" v-on:click="completeLead(lead.id)" class="btn btn-primary"><i class="fas fa-check"></i></button>
+                                <button title="Отказаться от запроса" v-on:click="cancelLeadForm(lead.id)" class="btn btn-danger"><i class="fas fa-times"></i></button>
                             </td>
                         </tr>
                     </tbody>
@@ -45,7 +45,7 @@
                     </thead>
                     <tbody>
                         <tr v-for="lead in completing_leads" v-bind:key="lead.id">
-                            <td>{{ lead.id }}</td>
+                            <td>{{ lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"  }}</td>
                             <td>{{ lead.name }}</td>
                             <td>{{ lead.phone }}</td>
                             <td>{{ lead.comment }}</td>
@@ -63,7 +63,7 @@
                     </thead>
                     <tbody>
                         <tr v-for="lead in canceling_leads" v-bind:key="lead.id">
-                            <td>{{ lead.id }}</td>
+                            <td>{{ lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"  }}</td>
                             <td>{{ lead.name }}</td>
                             <td>{{ lead.phone }}</td>
                             <td>{{ lead.comment }}</td>

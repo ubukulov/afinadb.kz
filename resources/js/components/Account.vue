@@ -208,7 +208,7 @@
                     'email': this.username,
                     'password': this.password,
                     'status': this.status,
-                    'city_id': this.city_id,
+                    'city_id': this.selectedCity,
                     'company_id': this.company_id
                 })
                     .then(response => {

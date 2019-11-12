@@ -54,7 +54,7 @@
             </thead>
             <tbody>
             <tr v-for="lead in leads">
-                <td>{{ lead.id }}</td>
+                <td>{{ lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"  }}</td>
                 <td>{{ lead.name }}</td>
                 <td>{{ lead.phone }}</td>
                 <td>{{ sourceList[lead.type] }}</td>

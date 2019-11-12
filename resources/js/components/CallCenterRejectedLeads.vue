@@ -17,14 +17,14 @@
                     <thead class="thead-light">
                     <th width="100">Дата</th>
                     <th width="100">Имя</th>
-                    <th width="100">Телефон</th>
-                    <th width="250">Комментарии</th>
+                    <th width="150">Телефон</th>
+                    <th width="350">Комментарии</th>
                     <th width="200">Менеджер</th>
                     <th>Действие</th>
                     </thead>
                     <tbody>
                     <tr v-for="lead in rejectedLeads">
-                        <td>{{ lead.id }}</td>
+                        <td>{{ lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"  }}</td>
                         <td>{{ lead.first_name }}</td>
                         <td>{{ lead.phone }}</td>
                         <td>{{ lead.comment }}</td>
@@ -36,8 +36,8 @@
                         </td>
                         <td>
                             <div class="btn-group" role="button">
-                                <button v-on:click="removeLead(lead.id)" class="btn btn-danger">Удалить</button>
-                                <button v-on:click="returnLeadForm(lead.id)" class="btn btn-primary">Вернуть менеджеру</button>
+                                <button title="Скрыть запрос" v-on:click="removeLead(lead.id)" class="btn btn-danger"><i class="fas fa-eye-slash"></i></button>
+                                <button title="Вернуть обратно менеджеру" v-on:click="returnLeadForm(lead.id)" class="btn btn-primary"><i class="fas fa-undo"></i></button>
                             </div>
                         </td>
                     </tr>
@@ -55,7 +55,7 @@
                     </thead>
                     <tbody>
                     <tr v-for="lead in completedLeads">
-                        <td>{{ lead.id }}</td>
+                        <td>{{ lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"  }}</td>
                         <td>{{ lead.first_name }}</td>
                         <td>{{ lead.phone }}</td>
                         <td>{{ lead.comment }}</td>
@@ -80,7 +80,7 @@
                     </thead>
                     <tbody>
                     <tr v-for="lead in processingLeads">
-                        <td>{{ lead.id }}</td>
+                        <td>{{ lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"  }}</td>
                         <td>{{ lead.first_name }}</td>
                         <td>{{ lead.phone }}</td>
                         <td>{{ lead.comment }}</td>
