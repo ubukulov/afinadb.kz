@@ -49,4 +49,17 @@ class ManagerLead extends Model
         GROUP BY manager_leads.manager_id, accounts.name, accounts.last_name, companies.title, cities.title");
         return $manager_leads;
     }
+
+    public static function getStatsOfLeads()
+    {
+        $leads = DB::select("SELECT
+        SUM(manager_leads.type='0') AS suc,
+        SUM(manager_leads.type='1') AS pro,
+        SUM(manager_leads.type='2') AS can,
+        SUM(leads.ss='1') AS new
+        FROM leads
+        LEFT JOIN manager_leads ON manager_leads.lead_id=leads.id
+        WHERE leads.tm >= CURDATE()");
+        return $leads;
+    }
 }

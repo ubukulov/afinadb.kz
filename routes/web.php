@@ -37,6 +37,7 @@ Route::group(['middleware' => ['web', 'auth']], function(){
     Route::get('/missing/calls', 'BinotelController@missingCalls')->name('missing.calls'); // пропущенные звонки
 
     # Статистика
+    Route::get('/stats/leads', 'StatController@getStatsOfLeads')->name('stats.leads'); // статистика запросов
     Route::get('/stats/managers', 'StatController@getStatsOfManagers')->name('stats.managers'); // статистика менеджеров
 });
 
