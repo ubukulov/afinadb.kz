@@ -7,7 +7,14 @@
             $can = $stats[0]->can;
             $new = $stats[0]->new;
             $cnt = $suc + $pro + $can + $new;
+            $alm = $stats[0]->alm;
+            $ast = $stats[0]->ast;
         @endphp
+    <div>
+        <p>Общее количество: {{ $cnt }}</p>
+        <p>Алматы - {{ $alm }}</p>
+        <p>Нур-Султан - {{ $ast }}</p>
+    </div>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
         google.charts.load('current', {'packages':['corechart']});

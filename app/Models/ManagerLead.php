@@ -56,7 +56,9 @@ class ManagerLead extends Model
         SUM(manager_leads.type='0') AS suc,
         SUM(manager_leads.type='1') AS pro,
         SUM(manager_leads.type='2') AS can,
-        SUM(leads.ss='1') AS new
+        SUM(leads.ss='1') AS new,
+        SUM(leads.city_id=1) AS alm,
+        SUM(leads.city_id=2) AS ast
         FROM leads
         LEFT JOIN manager_leads ON manager_leads.lead_id=leads.id
         WHERE leads.tm >= CURDATE()");
