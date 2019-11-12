@@ -128,4 +128,15 @@ class CallCenterController extends BaseController
         ]);
         return response('Запрос успешно создан');
     }
+
+    // Комментарии к запросу
+    public function leadComments(Request $request)
+    {
+        $lead_id = $request->input('lead_id');
+        $manager_lead = RejectedLead::where(['lead_id' => $lead_id])->first();
+        if ($manager_lead) {
+            return json_decode($manager_lead->comment, true);
+        }
+        return response('К этому запросу нет комментарии', 409);
+    }
 }

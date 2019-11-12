@@ -38,6 +38,7 @@
                             <div class="btn-group" role="button">
                                 <button title="Скрыть запрос" v-on:click="removeLead(lead.id)" class="btn btn-danger"><i class="fas fa-eye-slash"></i></button>
                                 <button title="Вернуть обратно менеджеру" v-on:click="returnLeadForm(lead.id)" class="btn btn-primary"><i class="fas fa-undo"></i></button>
+                                <button title="Комментарии" v-on:click="showComments(lead.id)" class="btn btn-success"><i class="far fa-comments"></i></button>
                             </div>
                         </td>
                     </tr>
@@ -128,6 +129,31 @@
                 </div>
             </div>
         </div>
+        <!-- Comment Modal -->
+        <div class="modal fade" id="modal_comment" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center" id="commentTitle">Комментарии</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="background: green url(/images/body_background.png); padding: 0px;">
+                        <div style="background: rgba(255,255,255,0.7);">
+                            <div class="row">
+                                <div class="col-md-12" style="padding: 40px;">
+                                    <div v-for="(com, i) in comments" style="background: #fff;padding: 10px;width: 100%;margin-bottom: 10px;border-radius: 20px;">
+                                        <span style="font-weight: bold;"><i class="fas fa-user"></i>&nbsp;{{ com.name }}</span> <br>
+                                        <span>{{ com.comment }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -141,7 +167,9 @@
               processingLeads: [],
               modalTitle: "",
               lead_id: 0,
-              comment: ''
+              comment: '',
+              comments: [],
+              j: false
           }
         },
         methods: {
@@ -233,6 +261,20 @@
             closeForm(){
                 $('#modal_lead').addClass('fade').modal('toggle');
                 this.comment = '';
+            },
+            showComments(lead_id){
+                axios.post('/call_center/lead/comments', {
+                    lead_id: lead_id
+                })
+                    .then(res => {
+                        this.comments = res.data;
+                        console.log(res.data);
+                        console.log('sss', this.comments);
+                        $('#modal_comment').removeClass('fade').modal('toggle');
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
             }
         },
         created(){

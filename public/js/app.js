@@ -2605,6 +2605,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2614,7 +2640,9 @@ __webpack_require__.r(__webpack_exports__);
       processingLeads: [],
       modalTitle: "",
       lead_id: 0,
-      comment: ''
+      comment: '',
+      comments: [],
+      j: false
     };
   },
   methods: {
@@ -2715,6 +2743,20 @@ __webpack_require__.r(__webpack_exports__);
     closeForm: function closeForm() {
       $('#modal_lead').addClass('fade').modal('toggle');
       this.comment = '';
+    },
+    showComments: function showComments(lead_id) {
+      var _this7 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/call_center/lead/comments', {
+        lead_id: lead_id
+      }).then(function (res) {
+        _this7.comments = res.data;
+        console.log(res.data);
+        console.log('sss', _this7.comments);
+        $('#modal_comment').removeClass('fade').modal('toggle');
+      })["catch"](function (err) {
+        console.log(err);
+      });
     }
   },
   created: function created() {
@@ -3129,6 +3171,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -3139,6 +3209,7 @@ __webpack_require__.r(__webpack_exports__);
       canceling_leads: [],
       modalTitle: '',
       comment: '',
+      comments: [],
       lead_id: 0
     };
   },
@@ -3204,6 +3275,20 @@ __webpack_require__.r(__webpack_exports__);
     closeForm: function closeForm() {
       $('#modal_lead').addClass('fade').modal('toggle');
       this.comment = '';
+    },
+    showComments: function showComments(lead_id) {
+      var _this4 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/call_center/lead/comments', {
+        lead_id: lead_id
+      }).then(function (res) {
+        _this4.comments = res.data;
+        console.log(res.data);
+        console.log('sss', _this4.comments);
+        $('#modal_comment').removeClass('fade').modal('toggle');
+      })["catch"](function (err) {
+        console.log(err);
+      });
     }
   },
   created: function created() {
@@ -40822,6 +40907,20 @@ var render = function() {
                               }
                             },
                             [_c("i", { staticClass: "fas fa-undo" })]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-success",
+                              attrs: { title: "Комментарии" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.showComments(lead.id)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "far fa-comments" })]
                           )
                         ]
                       )
@@ -41060,6 +41159,91 @@ var render = function() {
           ]
         )
       ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "modal_comment",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalCenterTitle",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(5),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "modal-body",
+                  staticStyle: {
+                    background: "green url(/images/body_background.png)",
+                    padding: "0px"
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    { staticStyle: { background: "rgba(255,255,255,0.7)" } },
+                    [
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "col-md-12",
+                            staticStyle: { padding: "40px" }
+                          },
+                          _vm._l(_vm.comments, function(com, i) {
+                            return _c(
+                              "div",
+                              {
+                                staticStyle: {
+                                  background: "#fff",
+                                  padding: "10px",
+                                  width: "100%",
+                                  "margin-bottom": "10px",
+                                  "border-radius": "20px"
+                                }
+                              },
+                              [
+                                _c(
+                                  "span",
+                                  { staticStyle: { "font-weight": "bold" } },
+                                  [
+                                    _c("i", { staticClass: "fas fa-user" }),
+                                    _vm._v(" " + _vm._s(com.name))
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("br"),
+                                _vm._v(" "),
+                                _c("span", [_vm._v(_vm._s(com.comment))])
+                              ]
+                            )
+                          }),
+                          0
+                        )
+                      ])
+                    ]
+                  )
+                ]
+              )
+            ])
+          ]
+        )
+      ]
     )
   ])
 }
@@ -41194,6 +41378,34 @@ var staticRenderFns = [
       },
       [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        {
+          staticClass: "modal-title text-center",
+          attrs: { id: "commentTitle" }
+        },
+        [_vm._v("Комментарии")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
   }
 ]
 render._withStripped = true
@@ -41894,7 +42106,23 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(lead.phone))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(lead.comment))])
+                    _c("td", [_vm._v(_vm._s(lead.comment))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success",
+                          attrs: { title: "Комментарии" },
+                          on: {
+                            click: function($event) {
+                              return _vm.showComments(lead.id)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "far fa-comments" })]
+                      )
+                    ])
                   ])
                 }),
                 0
@@ -42008,6 +42236,91 @@ var render = function() {
           ]
         )
       ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "modal_comment",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalCenterTitle",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(6),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "modal-body",
+                  staticStyle: {
+                    background: "green url(/images/body_background.png)",
+                    padding: "0px"
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    { staticStyle: { background: "rgba(255,255,255,0.7)" } },
+                    [
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "col-md-12",
+                            staticStyle: { padding: "40px" }
+                          },
+                          _vm._l(_vm.comments, function(com, i) {
+                            return _c(
+                              "div",
+                              {
+                                staticStyle: {
+                                  background: "#fff",
+                                  padding: "10px",
+                                  width: "100%",
+                                  "margin-bottom": "10px",
+                                  "border-radius": "20px"
+                                }
+                              },
+                              [
+                                _c(
+                                  "span",
+                                  { staticStyle: { "font-weight": "bold" } },
+                                  [
+                                    _c("i", { staticClass: "fas fa-user" }),
+                                    _vm._v(" " + _vm._s(com.name))
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("br"),
+                                _vm._v(" "),
+                                _c("span", [_vm._v(_vm._s(com.comment))])
+                              ]
+                            )
+                          }),
+                          0
+                        )
+                      ])
+                    ]
+                  )
+                ]
+              )
+            ])
+          ]
+        )
+      ]
     )
   ])
 }
@@ -42117,7 +42430,9 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", { attrs: { width: "150" } }, [_vm._v("Тел")]),
       _vm._v(" "),
-      _c("th", { attrs: { width: "250" } }, [_vm._v("Комментарии")])
+      _c("th", { attrs: { width: "250" } }, [_vm._v("Комментарии")]),
+      _vm._v(" "),
+      _c("th", { attrs: { width: "100" } }, [_vm._v("Действие")])
     ])
   },
   function() {
@@ -42147,6 +42462,34 @@ var staticRenderFns = [
           "Этот запрос будет обработан Колл - Центром! В связи с этим просим Вас описать причину отказа в разделе комментарий."
         )
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        {
+          staticClass: "modal-title text-center",
+          attrs: { id: "commentTitle" }
+        },
+        [_vm._v("Комментарии")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
     ])
   }
 ]

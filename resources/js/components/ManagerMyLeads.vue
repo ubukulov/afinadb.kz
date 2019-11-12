@@ -60,6 +60,7 @@
                         <th width="150">Имя</th>
                         <th width="150">Тел</th>
                         <th width="250">Комментарии</th>
+                        <th width="100">Действие</th>
                     </thead>
                     <tbody>
                         <tr v-for="lead in canceling_leads" v-bind:key="lead.id">
@@ -67,6 +68,7 @@
                             <td>{{ lead.name }}</td>
                             <td>{{ lead.phone }}</td>
                             <td>{{ lead.comment }}</td>
+                            <td><button title="Комментарии" v-on:click="showComments(lead.id)" class="btn btn-success"><i class="far fa-comments"></i></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -107,6 +109,32 @@
                 </div>
             </div>
         </div>
+
+        <!-- Comment Modal -->
+        <div class="modal fade" id="modal_comment" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center" id="commentTitle">Комментарии</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="background: green url(/images/body_background.png); padding: 0px;">
+                        <div style="background: rgba(255,255,255,0.7);">
+                            <div class="row">
+                                <div class="col-md-12" style="padding: 40px;">
+                                    <div v-for="(com, i) in comments" style="background: #fff;padding: 10px;width: 100%;margin-bottom: 10px;border-radius: 20px;">
+                                        <span style="font-weight: bold;"><i class="fas fa-user"></i>&nbsp;{{ com.name }}</span> <br>
+                                        <span>{{ com.comment }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -121,6 +149,7 @@
                 canceling_leads : [],
                 modalTitle: '',
                 comment: '',
+                comments: [],
                 lead_id: 0
             }
         },
@@ -178,6 +207,20 @@
             closeForm(){
                 $('#modal_lead').addClass('fade').modal('toggle');
                 this.comment = '';
+            },
+            showComments(lead_id){
+                axios.post('/call_center/lead/comments', {
+                    lead_id: lead_id
+                })
+                    .then(res => {
+                        this.comments = res.data;
+                        console.log(res.data);
+                        console.log('sss', this.comments);
+                        $('#modal_comment').removeClass('fade').modal('toggle');
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
             }
         },
         created(){
