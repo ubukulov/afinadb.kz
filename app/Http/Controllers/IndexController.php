@@ -56,4 +56,10 @@ class IndexController extends BaseController
         Auth::logout();
         return redirect()->route('login');
     }
+
+    public function triphacker(Request $request)
+    {
+        $data = $request->all();
+        return response($data);
+    }
 }

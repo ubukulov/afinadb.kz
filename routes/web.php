@@ -71,3 +71,5 @@ Route::group(['prefix' => 'director'], function(){
     Route::get('/leads', 'DirectorController@leads')->name('director.leads');
     Route::get('/leads/list', 'DirectorController@getLeads');
 });
+
+Route::post('/triphacker', 'IndexController@triphacker'); // принимает данные из поисковика TripHacker
