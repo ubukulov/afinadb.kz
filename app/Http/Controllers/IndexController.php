@@ -66,7 +66,7 @@ class IndexController extends BaseController
         $comment .= ", Кол-во людей: ".$data['all_people'];
         $lead = Lead::create([
             'url' => '/triphacker', 'tm' => Carbon::now(), 'phone' => $data['phone'], 'email' => $data['email'],
-            'name' => $data['name'], 'type' => '5', 'ss' => '1', 'company' => '1', 'city_id' => $city_id,
+            'name' => $data['name'], 'type' => '5', 'ss' => '1', 'company' => '0', 'city_id' => $city_id,
             'comment' => $comment
         ]);
         return response()->json([

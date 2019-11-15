@@ -2320,6 +2320,62 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2336,7 +2392,12 @@ __webpack_require__.r(__webpack_exports__);
       email: '',
       phone: '',
       comment: '',
-      errors: []
+      errors: [],
+      file: '',
+      success: '',
+      fbcity_id: 1,
+      fbcompany_id: 0,
+      typeClasses: ['Website', 'Instagram', 'Facebook', 'Whatsapp', 'chemodan', '257', 'turkish', 'alanya', 'Website', 'Website', 'Website', 'Website', 'Website', 'Website', 'mardan', 'egipt', 'emirat', 'turkish', 'alanya', 'egipt', 'emirat', 'tailand', 'tailand', 'hainan', 'hainan', 'goa', 'goa']
     };
   },
   props: {
@@ -2423,10 +2484,6 @@ __webpack_require__.r(__webpack_exports__);
       $('#modal_lead').removeClass('fade').modal('toggle');
       this.modalTitle = this.modalTitle + " #" + lead_id;
     },
-
-    /*getObjectValue(object, id){
-        return object.find(x => x.id === id).title;
-    },*/
     createLeadForm: function createLeadForm() {
       $('#create_lead').removeClass('fade').modal('toggle');
     },
@@ -2451,6 +2508,91 @@ __webpack_require__.r(__webpack_exports__);
           _this4.errors = err.response.data.errors;
         }
       });
+    },
+    onFileChange: function onFileChange(e) {
+      console.log(e.target.files[0]);
+      this.file = e.target.files[0];
+    },
+    formSubmit: function formSubmit(e) {
+      var _this5 = this;
+
+      e.preventDefault();
+      var config = {
+        headers: {
+          'content-type': 'multipart/form-data'
+        }
+      };
+      var formData = new FormData();
+      formData.append('file', this.file);
+      formData.append('city_id', this.fbcity_id);
+      formData.append('company_id', this.fbcompany_id);
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/call_center/lead/file', formData, config).then(function (res) {
+        console.log(res);
+
+        _this5.getLeads();
+
+        $('#upload_file').addClass('fade').modal('toggle');
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    openUploadFileForm: function openUploadFileForm() {
+      $('#upload_file').removeClass('fade').modal('toggle');
+    },
+    findClassName: function findClassName(i) {
+      switch (i) {
+        case i > 26 && i < 36:
+          return 'Whatsapp';
+          break;
+
+        case i > 35 && i < 45:
+          return 'Website';
+          break;
+
+        case i == 45 || i == 46:
+          return 'dubai';
+          break;
+
+        case i == 47 || i == 48:
+          return 'abu_dhabi';
+          break;
+
+        case i == 49 || i == 50:
+          return 'sharjah';
+          break;
+
+        case i == 51 || i == 52:
+          return 'rah';
+          break;
+
+        case i == 53 || i == 54:
+          return 'fujairah';
+          break;
+
+        case i > 54 && i < 60:
+          return 'Whatsapp';
+          break;
+
+        case i > 59 && i < 65:
+          return 'Whatsapp';
+          break;
+
+        case i > 54 && i < 67:
+          return 'dominicana';
+          break;
+
+        case i == 67:
+          return 'fr';
+          break;
+
+        case i == 70 || i == 71:
+          return 'maldiv';
+          break;
+
+        default:
+          return this.typeClasses[i];
+          break;
+      }
     }
   },
   created: function created() {
@@ -7774,7 +7916,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n._chem[data-v-7c01e32e] {\n    background: #853239;\n    color: #fff;\n}\n._create[data-v-7c01e32e] {\n    background: #E0735E;\n    border-color: #E0735E;\n}\n._257_btn[data-v-7c01e32e] {\n    background: #0099AB;\n    color: #fff;\n}\n", ""]);
+exports.push([module.i, "\n._chem[data-v-7c01e32e] {\n    background: #853239;\n    color: #fff;\n}\n._create[data-v-7c01e32e] {\n    background: #E0735E;\n    border-color: #E0735E;\n}\n._257_btn[data-v-7c01e32e] {\n    background: #0099AB;\n    color: #fff;\n}\n.Website[data-v-7c01e32e], .chemodan[data-v-7c01e32e] {background: yellow;}\n._257[data-v-7c01e32e] {background: #a95959;}\n.turkish[data-v-7c01e32e] {background: #caf2ff;}\n.alanya[data-v-7c01e32e] {background: green; color: white;}\n.mardan[data-v-7c01e32e] {background: teal; color: white;}\n.egipt[data-v-7c01e32e] {background: #F1B47D; color: black;}\n.emirat[data-v-7c01e32e] {background: #FF7F50; color: white;}\n.tailand[data-v-7c01e32e] {background: #2974AD; color: white;}\n.hainan[data-v-7c01e32e] {background: #874AEF; color: white;}\n.goa[data-v-7c01e32e] {background: #17B796; color: white;}\n.dubai[data-v-7c01e32e] {background: #5C3504; color: white;}\n.abu_dhabi[data-v-7c01e32e] {background: #34AF98; color: white;}\n.sharjah[data-v-7c01e32e] {background: #4683C3; color: white;}\n.rah[data-v-7c01e32e] {background: #750F7E; color: white;}\n.fujairah[data-v-7c01e32e] {background: #5C3BA5; color: white;}\n.dominicana[data-v-7c01e32e] {background: #002D62; color: white;}\n.fr[data-v-7c01e32e] {background: #853239; color: white;}\n.maldiv[data-v-7c01e32e] {background: #007E3A; color: white;}\n.Instagram[data-v-7c01e32e] {\n    background: #ff5876;\n    color: white;\n}\n.Facebook[data-v-7c01e32e] {\n    background: #339ac3;\n    color: white;\n}\n.Whatsapp[data-v-7c01e32e] {\n    background: #afffaf;\n}\n", ""]);
 
 // exports
 
@@ -40079,13 +40221,18 @@ var render = function() {
             [_vm._v("Создать запрос")]
           ),
           _vm._v(" "),
-          _c("button", { staticClass: "btn btn-default _257_btn" }, [
-            _vm._v("Загрузить отчет 257.kz")
-          ]),
-          _vm._v(" "),
-          _c("button", { staticClass: "btn btn-default _chem" }, [
-            _vm._v("Загрузить отчет chemodan.kz")
-          ])
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-default _257_btn",
+              on: {
+                click: function($event) {
+                  return _vm.openUploadFileForm()
+                }
+              }
+            },
+            [_vm._v("Загрузить отчет")]
+          )
         ])
       ])
     ]),
@@ -40203,11 +40350,21 @@ var render = function() {
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(lead.phone))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(_vm.sourceList[lead.type]))]),
+              _c("td", { class: _vm.findClassName[lead.type] }, [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.sourceList[lead.type]) +
+                    "\n            "
+                )
+              ]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(_vm.cities[lead.city_id - 1].title))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(lead.comment))]),
+              _c("td", [
+                _vm._v(
+                  "\n                " + _vm._s(lead.comment) + "\n            "
+                )
+              ]),
               _vm._v(" "),
               _c("td", [
                 lead.m_type == "0"
@@ -40254,6 +40411,22 @@ var render = function() {
                       },
                       [_vm._v("Выбрать Менеджера")]
                     )
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                lead.company == "0"
+                  ? _c("div", { staticClass: "_chem" }, [
+                      _vm._v(
+                        "\n                    chemodan.kz\n                "
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                lead.company == "1"
+                  ? _c("div", { staticClass: "_257_btn" }, [
+                      _vm._v("\n                    257.kz\n                ")
+                    ])
                   : _vm._e()
               ])
             ])
@@ -40737,6 +40910,160 @@ var render = function() {
           ]
         )
       ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "upload_file",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalCenterTitle",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(4),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _vm.success != ""
+                      ? _c(
+                          "div",
+                          {
+                            staticClass: "alert alert-success",
+                            attrs: { role: "alert" }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                " +
+                                _vm._s(_vm.success) +
+                                "\n                            "
+                            )
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c(
+                      "form",
+                      {
+                        attrs: { enctype: "multipart/form-data" },
+                        on: { submit: _vm.formSubmit }
+                      },
+                      [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.fbcompany_id,
+                                  expression: "fbcompany_id"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.fbcompany_id = $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "0" } }, [
+                                _vm._v("chemodan.kz")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "1" } }, [
+                                _vm._v("257.kz")
+                              ])
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group" }, [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.fbcity_id,
+                                  expression: "fbcity_id"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.fbcity_id = $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "1" } }, [
+                                _vm._v("Алматы")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "2" } }, [
+                                _vm._v("Нур-Султан")
+                              ])
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("input", {
+                            staticClass: "form-control",
+                            attrs: { type: "file", required: "" },
+                            on: { change: _vm.onFileChange }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(5)
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            ])
+          ]
+        )
+      ]
     )
   ])
 }
@@ -40768,7 +41095,9 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", { attrs: { width: "250" } }, [_vm._v("Комментарии")]),
       _vm._v(" "),
-      _c("th", { attrs: { width: "200" } }, [_vm._v("Подтверждение")])
+      _c("th", { attrs: { width: "200" } }, [_vm._v("Подтверждение")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Компания")])
     ])
   },
   function() {
@@ -40807,6 +41136,39 @@ var staticRenderFns = [
         },
         [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
       )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h5", { staticClass: "modal-title" }, [
+        _vm._v("Форма загрузки лиды от Facebook")
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("button", { staticClass: "btn btn-primary" }, [
+        _vm._v("Отправить лиды")
+      ])
     ])
   }
 ]

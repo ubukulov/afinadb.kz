@@ -20,8 +20,7 @@
             <div class="col-md-7 text-right">
                 <div class="btn-group" role="button">
                     <button v-on:click="createLeadForm()" class="btn btn-primary _create">Создать запрос</button>
-                    <button class="btn btn-default _257_btn">Загрузить отчет 257.kz</button>
-                    <button class="btn btn-default _chem">Загрузить отчет chemodan.kz</button>
+                    <button v-on:click="openUploadFileForm()" class="btn btn-default _257_btn">Загрузить отчет</button>
                 </div>
             </div>
         </div>
@@ -51,15 +50,20 @@
             <th width="100">Город</th>
             <th width="250">Комментарии</th>
             <th width="200">Подтверждение</th>
+            <th>Компания</th>
             </thead>
             <tbody>
             <tr v-for="lead in leads">
                 <td>{{ lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"  }}</td>
                 <td>{{ lead.name }}</td>
                 <td>{{ lead.phone }}</td>
-                <td>{{ sourceList[lead.type] }}</td>
+                <td v-bind:class="findClassName[lead.type]">
+                    {{ sourceList[lead.type] }}
+                </td>
                 <td>{{ cities[lead.city_id - 1].title }}</td>
-                <td>{{ lead.comment }}</td>
+                <td>
+                    {{ lead.comment }}
+                </td>
                 <td>
                     <div v-if="lead.m_type == '0'" class="status_btn">
                         <div>{{ lead.user_name + " " + lead.last_name }}</div>
@@ -77,6 +81,14 @@
                     </div>
 
                     <button v-if="lead.ss == '1'" v-on:click="selectManager(lead.id)" type="button" class="btn btn-primary">Выбрать Менеджера</button>
+                </td>
+                <td>
+                    <div v-if="lead.company == '0'" class="_chem">
+                        chemodan.kz
+                    </div>
+                    <div v-if="lead.company == '1'" class="_257_btn">
+                        257.kz
+                    </div>
                 </td>
             </tr>
         </tbody>
@@ -181,6 +193,50 @@
                 </div>
             </div>
         </div>
+
+        <!-- Upload File Form -->
+        <div class="modal fade" id="upload_file" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Форма загрузки лиды от Facebook</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div v-if="success != ''" class="alert alert-success" role="alert">
+                                    {{success}}
+                                </div>
+                                <form v-on:submit="formSubmit" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <select v-model="fbcompany_id" class="form-control">
+                                            <option value="0">chemodan.kz</option>
+                                            <option value="1">257.kz</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <select v-model="fbcity_id" class="form-control">
+                                            <option value="1">Алматы</option>
+                                            <option value="2">Нур-Султан</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="file" v-on:change="onFileChange" class="form-control" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button class="btn btn-primary">Отправить лиды</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -202,7 +258,12 @@
                 email: '',
                 phone: '',
                 comment: '',
-                errors: []
+                errors: [],
+                file: '',
+                success: '',
+                fbcity_id: 1,
+                fbcompany_id: 0,
+                typeClasses: ['Website','Instagram', 'Facebook','Whatsapp','chemodan','257','turkish','alanya','Website','Website','Website','Website','Website','Website','mardan', 'egipt', 'emirat', 'turkish', 'alanya', 'egipt', 'emirat', 'tailand', 'tailand', 'hainan', 'hainan', 'goa', 'goa']
             }
         },
         props: {
@@ -284,9 +345,6 @@
                 $('#modal_lead').removeClass('fade').modal('toggle');
                 this.modalTitle = this.modalTitle + " #" +lead_id;
             },
-            /*getObjectValue(object, id){
-                return object.find(x => x.id === id).title;
-            },*/
             createLeadForm(){
                 $('#create_lead').removeClass('fade').modal('toggle');
             },
@@ -309,6 +367,78 @@
                             this.errors = err.response.data.errors;
                         }
                     })
+            },
+            onFileChange(e){
+                console.log(e.target.files[0]);
+                this.file = e.target.files[0];
+            },
+            formSubmit(e) {
+                e.preventDefault();
+
+                const config = {
+                    headers: { 'content-type': 'multipart/form-data' }
+                };
+
+                let formData = new FormData();
+                formData.append('file', this.file);
+                formData.append('city_id', this.fbcity_id);
+                formData.append('company_id', this.fbcompany_id);
+
+                axios.post('/call_center/lead/file', formData, config)
+                    .then(res => {
+                        console.log(res);
+                        this.getLeads();
+                        $('#upload_file').addClass('fade').modal('toggle');
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+            },
+            openUploadFileForm(){
+                $('#upload_file').removeClass('fade').modal('toggle');
+            },
+            findClassName(i){
+                switch (i) {
+                    case (i > 26 && i < 36):
+                        return 'Whatsapp';
+                        break;
+                    case (i > 35 && i < 45):
+                        return 'Website';
+                        break;
+                    case (i == 45 || i == 46):
+                        return 'dubai';
+                        break;
+                    case (i == 47 || i == 48):
+                        return 'abu_dhabi';
+                        break;
+                    case (i == 49 || i == 50):
+                        return 'sharjah';
+                        break;
+                    case (i == 51 || i == 52):
+                        return 'rah';
+                        break;
+                    case (i == 53 || i == 54):
+                        return 'fujairah';
+                        break;
+                    case (i > 54 && i < 60):
+                        return 'Whatsapp';
+                        break;
+                    case (i > 59 && i < 65):
+                        return 'Whatsapp';
+                        break;
+                    case (i > 54 && i < 67):
+                        return 'dominicana';
+                        break;
+                    case (i == 67):
+                        return 'fr';
+                        break;
+                    case (i == 70 || i == 71):
+                        return 'maldiv';
+                        break;
+                    default:
+                        return this.typeClasses[i];
+                        break;
+                }
             }
         },
         created(){
@@ -329,5 +459,34 @@
     ._257_btn {
         background: #0099AB;
         color: #fff;
+    }
+    .Website, .chemodan {background: yellow;}
+    ._257 {background: #a95959;}
+    .turkish {background: #caf2ff;}
+    .alanya {background: green; color: white;}
+    .mardan {background: teal; color: white;}
+    .egipt {background: #F1B47D; color: black;}
+    .emirat {background: #FF7F50; color: white;}
+    .tailand {background: #2974AD; color: white;}
+    .hainan {background: #874AEF; color: white;}
+    .goa {background: #17B796; color: white;}
+    .dubai {background: #5C3504; color: white;}
+    .abu_dhabi {background: #34AF98; color: white;}
+    .sharjah {background: #4683C3; color: white;}
+    .rah {background: #750F7E; color: white;}
+    .fujairah {background: #5C3BA5; color: white;}
+    .dominicana {background: #002D62; color: white;}
+    .fr {background: #853239; color: white;}
+    .maldiv {background: #007E3A; color: white;}
+    .Instagram {
+        background: #ff5876;
+        color: white;
+    }
+    .Facebook {
+        background: #339ac3;
+        color: white;
+    }
+    .Whatsapp {
+        background: #afffaf;
     }
 </style>

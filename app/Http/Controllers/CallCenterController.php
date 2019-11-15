@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Cache;
+use Excel;
 
 class CallCenterController extends BaseController
 {
@@ -138,5 +139,34 @@ class CallCenterController extends BaseController
             return json_decode($manager_lead->comment, true);
         }
         return response('К этому запросу нет комментарии', 409);
+    }
+
+    public function loadLeadFromFile(Request $request)
+    {
+        $file = $request->file('file');
+        $city_id = $request->input('city_id');
+        $company_id = $request->input('company_id');
+        Excel::selectSheetsByIndex(0)->load($file->getPathname(), function($reader) use ($city_id, $company_id){
+            $worksheet = $reader->getActiveSheet();
+            $numberLastRow = $worksheet->getHighestDataRow();
+            for($i=2; $i <= $numberLastRow; $i++) {
+                Lead::create([
+                    'url' => '/', 'tm' => Carbon::now(), 'comment' => "Комментарий: ".$worksheet->getCell('H'.$i)->getValue(), 'phone' => $worksheet->getCell('N'.$i)->getValue(),
+                    'name' => $worksheet->getCell('M'.$i)->getValue(), 'type' => $this->parseType($worksheet->getCell('L'.$i)->getValue()),
+                    'ss' => '1', 'company' => $company_id, 'city_id' => $city_id, 'email' => ''
+                ]);
+            }
+            return response('Лиды успешно импортированы');
+        });
+    }
+
+    public function parseType($a) {
+        if ($a==='ig') {
+            return 1; // инстаграмм
+        } else if ($a==='fb') {
+            return 2; // facebook
+        } elseif ($a==='wa') {
+            return 3; // whatsapp
+        } else return 0;
     }
 }
