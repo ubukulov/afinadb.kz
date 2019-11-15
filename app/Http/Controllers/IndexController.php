@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Lead;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -60,6 +61,16 @@ class IndexController extends BaseController
     public function triphacker(Request $request)
     {
         $data = $request->all();
-        return response($data);
+        $city_id = ($data['city'] == 'Алматы') ? 1 : 2;
+        $comment = $data['country'].", ".$data['name_hotel'].", ".$data['date'].", ".$data['price'].", ".$data['count_day'];
+        $comment .= ", Кол-во людей: ".$data['all_people'];
+        $lead = Lead::create([
+            'url' => '/triphacker', 'tm' => Carbon::now(), 'phone' => $data['phone'], 'email' => $data['email'],
+            'name' => $data['name'], 'type' => '5', 'ss' => '1', 'company' => '1', 'city_id' => $city_id,
+            'comment' => $comment
+        ]);
+        return response()->json([
+            'success' => $lead
+        ]);
     }
 }
