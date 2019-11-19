@@ -77,14 +77,13 @@ class IndexController extends BaseController
     public function leadsFromOtherSources(Request $request)
     {
         $data = $request->all();
-        dd($data);
-        if (!isset($data['city_id'])) {
-            $data['city_id'] = 1;
+        if (!isset($data['leads']['city_id'])) {
+            $data['leads']['city_id'] = 1;
         }
         $lead = Lead::create([
-            'url' => $data['url'], 'tm' => Carbon::now(), 'phone' => $data['phone'], 'email' => $data['email'],
-            'name' => $data['name'], 'type' => $data['type'], 'ss' => '1', 'company' => $data['company'], 'city_id' => $data['city_id'],
-            'comment' => $data['comment']
+            'url' => $data['leads']['url'], 'tm' => Carbon::now(), 'phone' => $data['leads']['phone'], 'email' => $data['leads']['email'],
+            'name' => $data['leads']['name'], 'type' => $data['leads']['type'], 'ss' => '1', 'company' => $data['leads']['company'], 'city_id' => $data['leads']['city_id'],
+            'comment' => $data['leads']['comment']
         ]);
         if ($lead) {
             return response('Lead successfully created');
