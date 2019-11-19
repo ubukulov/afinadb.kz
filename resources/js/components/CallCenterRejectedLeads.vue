@@ -24,7 +24,9 @@
                     </thead>
                     <tbody>
                     <tr v-for="lead in rejectedLeads">
-                        <td>{{ lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"  }}</td>
+                        <td v-if="lead.dn == 0">{{ lead.dt + " #" + lead.id + " (сегодня)"  }}</td>
+                        <td v-else-if="lead.dn == 1">{{ lead.dt + " #" + lead.id + " (вчера)" }}</td>
+                        <td v-else="lead.dn > 1">{{ lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"  }}</td>
                         <td>{{ lead.first_name }}</td>
                         <td>{{ lead.phone }}</td>
                         <td>{{ lead.comment }}</td>
@@ -56,7 +58,9 @@
                     </thead>
                     <tbody>
                     <tr v-for="lead in completedLeads">
-                        <td>{{ lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"  }}</td>
+                        <td v-if="lead.dn == 0">{{ lead.dt + " #" + lead.id + " (сегодня)"  }}</td>
+                        <td v-else-if="lead.dn == 1">{{ lead.dt + " #" + lead.id + " (вчера)" }}</td>
+                        <td v-else="lead.dn > 1">{{ lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"  }}</td>
                         <td>{{ lead.first_name }}</td>
                         <td>{{ lead.phone }}</td>
                         <td>{{ lead.comment }}</td>
@@ -81,7 +85,9 @@
                     </thead>
                     <tbody>
                     <tr v-for="lead in processingLeads">
-                        <td>{{ lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"  }}</td>
+                        <td v-if="lead.dn == 0">{{ lead.dt + " #" + lead.id + " (сегодня)"  }}</td>
+                        <td v-else-if="lead.dn == 1">{{ lead.dt + " #" + lead.id + " (вчера)" }}</td>
+                        <td v-else="lead.dn > 1">{{ lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"  }}</td>
                         <td>{{ lead.first_name }}</td>
                         <td>{{ lead.phone }}</td>
                         <td>{{ lead.comment }}</td>
