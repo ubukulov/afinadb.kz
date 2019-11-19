@@ -40288,9 +40288,7 @@ var render = function() {
                 ? _c("td", [
                     _vm._v(_vm._s(lead.dt + " #" + lead.id + " (сегодня)"))
                   ])
-                : _vm._e(),
-              _vm._v(" "),
-              lead.dn == 1
+                : lead.dn == 1
                 ? _c("td", [
                     _vm._v(_vm._s(lead.dt + " #" + lead.id + " (вчера) дней"))
                   ])
