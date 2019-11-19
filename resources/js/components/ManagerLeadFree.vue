@@ -73,7 +73,6 @@
                 axios.get(url)
                     .then(response => {
                         this.leads = response.data.data;
-                        console.log("asdasd",response);
                         pagination = {
                             prev_page_url: response.data.links.prev,
                             next_page_url: response.data.links.next,
@@ -83,7 +82,6 @@
                             last_page: response.data.meta.last_page
                         };
                         this.pagination = pagination;
-                        console.log('page', pagination);
                     })
                     .catch(e => {
                         console.log(e);

@@ -3097,7 +3097,6 @@ __webpack_require__.r(__webpack_exports__);
       url = url || "/manager/leads/free";
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(url).then(function (response) {
         _this.leads = response.data.data;
-        console.log("asdasd", response);
         pagination = {
           prev_page_url: response.data.links.prev,
           next_page_url: response.data.links.next,
@@ -3107,7 +3106,6 @@ __webpack_require__.r(__webpack_exports__);
           last_page: response.data.meta.last_page
         };
         _this.pagination = pagination;
-        console.log('page', pagination);
       })["catch"](function (e) {
         console.log(e);
       });
