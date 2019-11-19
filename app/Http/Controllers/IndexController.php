@@ -77,6 +77,7 @@ class IndexController extends BaseController
     public function leadsFromOtherSources(Request $request)
     {
         $data = $request->all();
+        dd($data);
         if (!isset($data['city_id'])) {
             $data['city_id'] = 1;
         }
