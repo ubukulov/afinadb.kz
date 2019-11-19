@@ -2374,8 +2374,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2396,8 +2394,7 @@ __webpack_require__.r(__webpack_exports__);
       file: '',
       success: '',
       fbcity_id: 1,
-      fbcompany_id: 0,
-      typeClasses: ['Website', 'Instagram', 'Facebook', 'Whatsapp', 'chemodan', '257', 'turkish', 'alanya', 'Website', 'Website', 'Website', 'Website', 'Website', 'Website', 'mardan', 'egipt', 'emirat', 'turkish', 'alanya', 'egipt', 'emirat', 'tailand', 'tailand', 'hainan', 'hainan', 'goa', 'goa']
+      fbcompany_id: 0
     };
   },
   props: {
@@ -2538,61 +2535,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     openUploadFileForm: function openUploadFileForm() {
       $('#upload_file').removeClass('fade').modal('toggle');
-    },
-    findClassName: function findClassName(i) {
-      switch (i) {
-        case i > 26 && i < 36:
-          return 'Whatsapp';
-          break;
-
-        case i > 35 && i < 45:
-          return 'Website';
-          break;
-
-        case i == 45 || i == 46:
-          return 'dubai';
-          break;
-
-        case i == 47 || i == 48:
-          return 'abu_dhabi';
-          break;
-
-        case i == 49 || i == 50:
-          return 'sharjah';
-          break;
-
-        case i == 51 || i == 52:
-          return 'rah';
-          break;
-
-        case i == 53 || i == 54:
-          return 'fujairah';
-          break;
-
-        case i > 54 && i < 60:
-          return 'Whatsapp';
-          break;
-
-        case i > 59 && i < 65:
-          return 'Whatsapp';
-          break;
-
-        case i > 54 && i < 67:
-          return 'dominicana';
-          break;
-
-        case i == 67:
-          return 'fr';
-          break;
-
-        case i == 70 || i == 71:
-          return 'maldiv';
-          break;
-
-        default:
-          return this.typeClasses[i];
-          break;
-      }
     }
   },
   created: function created() {
@@ -7916,7 +7858,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n._chem[data-v-7c01e32e] {\n    background: #853239;\n    color: #fff;\n}\n._create[data-v-7c01e32e] {\n    background: #E0735E;\n    border-color: #E0735E;\n}\n._257_btn[data-v-7c01e32e] {\n    background: #0099AB;\n    color: #fff;\n}\n.Website[data-v-7c01e32e], .chemodan[data-v-7c01e32e] {background: yellow;}\n._257[data-v-7c01e32e] {background: #a95959;}\n.turkish[data-v-7c01e32e] {background: #caf2ff;}\n.alanya[data-v-7c01e32e] {background: green; color: white;}\n.mardan[data-v-7c01e32e] {background: teal; color: white;}\n.egipt[data-v-7c01e32e] {background: #F1B47D; color: black;}\n.emirat[data-v-7c01e32e] {background: #FF7F50; color: white;}\n.tailand[data-v-7c01e32e] {background: #2974AD; color: white;}\n.hainan[data-v-7c01e32e] {background: #874AEF; color: white;}\n.goa[data-v-7c01e32e] {background: #17B796; color: white;}\n.dubai[data-v-7c01e32e] {background: #5C3504; color: white;}\n.abu_dhabi[data-v-7c01e32e] {background: #34AF98; color: white;}\n.sharjah[data-v-7c01e32e] {background: #4683C3; color: white;}\n.rah[data-v-7c01e32e] {background: #750F7E; color: white;}\n.fujairah[data-v-7c01e32e] {background: #5C3BA5; color: white;}\n.dominicana[data-v-7c01e32e] {background: #002D62; color: white;}\n.fr[data-v-7c01e32e] {background: #853239; color: white;}\n.maldiv[data-v-7c01e32e] {background: #007E3A; color: white;}\n.Instagram[data-v-7c01e32e] {\n    background: #ff5876;\n    color: white;\n}\n.Facebook[data-v-7c01e32e] {\n    background: #339ac3;\n    color: white;\n}\n.Whatsapp[data-v-7c01e32e] {\n    background: #afffaf;\n}\n", ""]);
+exports.push([module.i, "\n._chem[data-v-7c01e32e] {\n    background: #853239;\n    color: #fff;\n}\n._create[data-v-7c01e32e] {\n    background: #E0735E;\n    border-color: #E0735E;\n}\n._257_btn[data-v-7c01e32e] {\n    background: #0099AB;\n    color: #fff;\n}\n", ""]);
 
 // exports
 
@@ -40350,7 +40292,7 @@ var render = function() {
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(lead.phone))]),
               _vm._v(" "),
-              _c("td", { class: _vm.findClassName[lead.type] }, [
+              _c("td", [
                 _vm._v(
                   "\n                " +
                     _vm._s(_vm.sourceList[lead.type]) +
@@ -40414,21 +40356,17 @@ var render = function() {
                   : _vm._e()
               ]),
               _vm._v(" "),
-              _c("td", [
-                lead.company == "0"
-                  ? _c("div", { staticClass: "_chem" }, [
-                      _vm._v(
-                        "\n                    chemodan.kz\n                "
-                      )
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                lead.company == "1"
-                  ? _c("div", { staticClass: "_257_btn" }, [
-                      _vm._v("\n                    257.kz\n                ")
-                    ])
-                  : _vm._e()
-              ])
+              lead.company == "0"
+                ? _c("td", { staticClass: "_chem" }, [
+                    _vm._v("\n                chemodan.kz\n            ")
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              lead.company == "1"
+                ? _c("td", { staticClass: "_257_btn" }, [
+                    _vm._v("\n                257.kz\n            ")
+                  ])
+                : _vm._e()
             ])
           }),
           0
@@ -41097,7 +41035,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", { attrs: { width: "200" } }, [_vm._v("Подтверждение")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Компания")])
+      _c("th", { attrs: { width: "100" } }, [_vm._v("Компания")])
     ])
   },
   function() {

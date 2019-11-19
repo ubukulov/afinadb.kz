@@ -73,4 +73,19 @@ class IndexController extends BaseController
             'success' => $lead
         ]);
     }
+
+    public function leadsFromOtherSources(Request $request)
+    {
+        $data = $request->all();
+        $lead = Lead::create([
+            'url' => $data['url'], 'tm' => Carbon::now(), 'phone' => $data['phone'], 'email' => $data['email'],
+            'name' => $data['name'], 'type' => $data['type'], 'ss' => '1', 'company' => $data['company'], 'city_id' => $data['city_id'],
+            'comment' => $data['comment']
+        ]);
+        if ($lead) {
+            return response('Lead successfully created');
+        }
+
+        return response('Error: Lead not created', 500);
+    }
 }

@@ -50,14 +50,14 @@
             <th width="100">Город</th>
             <th width="250">Комментарии</th>
             <th width="200">Подтверждение</th>
-            <th>Компания</th>
+            <th width="100">Компания</th>
             </thead>
             <tbody>
             <tr v-for="lead in leads">
                 <td>{{ lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"  }}</td>
                 <td>{{ lead.name }}</td>
                 <td>{{ lead.phone }}</td>
-                <td v-bind:class="findClassName[lead.type]">
+                <td>
                     {{ sourceList[lead.type] }}
                 </td>
                 <td>{{ cities[lead.city_id - 1].title }}</td>
@@ -82,13 +82,11 @@
 
                     <button v-if="lead.ss == '1'" v-on:click="selectManager(lead.id)" type="button" class="btn btn-primary">Выбрать Менеджера</button>
                 </td>
-                <td>
-                    <div v-if="lead.company == '0'" class="_chem">
-                        chemodan.kz
-                    </div>
-                    <div v-if="lead.company == '1'" class="_257_btn">
-                        257.kz
-                    </div>
+                <td v-if="lead.company == '0'" class="_chem">
+                    chemodan.kz
+                </td>
+                <td v-if="lead.company == '1'" class="_257_btn">
+                    257.kz
                 </td>
             </tr>
         </tbody>
@@ -262,8 +260,7 @@
                 file: '',
                 success: '',
                 fbcity_id: 1,
-                fbcompany_id: 0,
-                typeClasses: ['Website','Instagram', 'Facebook','Whatsapp','chemodan','257','turkish','alanya','Website','Website','Website','Website','Website','Website','mardan', 'egipt', 'emirat', 'turkish', 'alanya', 'egipt', 'emirat', 'tailand', 'tailand', 'hainan', 'hainan', 'goa', 'goa']
+                fbcompany_id: 0
             }
         },
         props: {
@@ -396,49 +393,6 @@
             },
             openUploadFileForm(){
                 $('#upload_file').removeClass('fade').modal('toggle');
-            },
-            findClassName(i){
-                switch (i) {
-                    case (i > 26 && i < 36):
-                        return 'Whatsapp';
-                        break;
-                    case (i > 35 && i < 45):
-                        return 'Website';
-                        break;
-                    case (i == 45 || i == 46):
-                        return 'dubai';
-                        break;
-                    case (i == 47 || i == 48):
-                        return 'abu_dhabi';
-                        break;
-                    case (i == 49 || i == 50):
-                        return 'sharjah';
-                        break;
-                    case (i == 51 || i == 52):
-                        return 'rah';
-                        break;
-                    case (i == 53 || i == 54):
-                        return 'fujairah';
-                        break;
-                    case (i > 54 && i < 60):
-                        return 'Whatsapp';
-                        break;
-                    case (i > 59 && i < 65):
-                        return 'Whatsapp';
-                        break;
-                    case (i > 54 && i < 67):
-                        return 'dominicana';
-                        break;
-                    case (i == 67):
-                        return 'fr';
-                        break;
-                    case (i == 70 || i == 71):
-                        return 'maldiv';
-                        break;
-                    default:
-                        return this.typeClasses[i];
-                        break;
-                }
             }
         },
         created(){
@@ -459,34 +413,5 @@
     ._257_btn {
         background: #0099AB;
         color: #fff;
-    }
-    .Website, .chemodan {background: yellow;}
-    ._257 {background: #a95959;}
-    .turkish {background: #caf2ff;}
-    .alanya {background: green; color: white;}
-    .mardan {background: teal; color: white;}
-    .egipt {background: #F1B47D; color: black;}
-    .emirat {background: #FF7F50; color: white;}
-    .tailand {background: #2974AD; color: white;}
-    .hainan {background: #874AEF; color: white;}
-    .goa {background: #17B796; color: white;}
-    .dubai {background: #5C3504; color: white;}
-    .abu_dhabi {background: #34AF98; color: white;}
-    .sharjah {background: #4683C3; color: white;}
-    .rah {background: #750F7E; color: white;}
-    .fujairah {background: #5C3BA5; color: white;}
-    .dominicana {background: #002D62; color: white;}
-    .fr {background: #853239; color: white;}
-    .maldiv {background: #007E3A; color: white;}
-    .Instagram {
-        background: #ff5876;
-        color: white;
-    }
-    .Facebook {
-        background: #339ac3;
-        color: white;
-    }
-    .Whatsapp {
-        background: #afffaf;
     }
 </style>
