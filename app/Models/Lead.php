@@ -17,7 +17,7 @@ class Lead extends Model
     public static function getLeads($role = null)
     {
         if ($role == 'MANAGER') {
-            $result = Lead::orderBy('id', 'DESC')
+            $result = Lead::orderBy('tm', 'DESC')
                 ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn'))
                 ->where(['city_id' => \Auth::user()->city_id, 'ss' => '1'])
                 ->whereRaw('leads.tm >= DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY)')

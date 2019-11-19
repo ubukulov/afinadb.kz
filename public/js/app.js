@@ -3079,7 +3079,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -40290,7 +40289,7 @@ var render = function() {
                   ])
                 : lead.dn == 1
                 ? _c("td", [
-                    _vm._v(_vm._s(lead.dt + " #" + lead.id + " (вчера) дней"))
+                    _vm._v(_vm._s(lead.dt + " #" + lead.id + " (вчера)"))
                   ])
                 : _c("td", [
                     _vm._v(
@@ -42104,13 +42103,21 @@ var render = function() {
           "tbody",
           _vm._l(_vm.leads, function(lead) {
             return _c("tr", [
-              _c("td", [
-                _vm._v(
-                  _vm._s(lead.dt + " #" + lead.id + " (" + lead.dn + ") дней")
-                )
-              ]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(_vm.sourceList[lead.type]))]),
+              lead.dn == 0
+                ? _c("td", [
+                    _vm._v(_vm._s(lead.dt + " #" + lead.id + " (сегодня)"))
+                  ])
+                : lead.dn == 1
+                ? _c("td", [
+                    _vm._v(_vm._s(lead.dt + " #" + lead.id + " (вчера)"))
+                  ])
+                : _c("td", [
+                    _vm._v(
+                      _vm._s(
+                        lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"
+                      )
+                    )
+                  ]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(lead.comment))]),
               _vm._v(" "),
@@ -42239,10 +42246,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "thead-light" }, [
       _c("th", { attrs: { width: "100" } }, [_vm._v("Дата")]),
-      _vm._v(" "),
-      _c("th", { attrs: { width: "150" } }, [_vm._v("Источник")]),
-      _vm._v(" "),
-      _c("th", { attrs: { width: "250" } }, [_vm._v("Комментарии")]),
       _vm._v(" "),
       _c("th", { attrs: { width: "200" } }, [_vm._v("Подтверждение")])
     ])
