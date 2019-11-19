@@ -86,7 +86,8 @@ class IndexController extends BaseController
             'comment' => $data['leads']['comment']
         ]);
         if ($lead) {
-            return response('Lead successfully created');
+            return response('Lead successfully created', 200)
+                ->header('Access-Control-Allow-Origin', '*');
         }
 
         return response('Error: Lead not created', 500);
