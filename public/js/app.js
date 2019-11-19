@@ -3078,7 +3078,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -42119,8 +42118,6 @@ var render = function() {
                     )
                   ]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(lead.comment))]),
-              _vm._v(" "),
               _c("td", [
                 _c(
                   "button",
@@ -42245,7 +42242,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "thead-light" }, [
-      _c("th", { attrs: { width: "100" } }, [_vm._v("Дата")]),
+      _c("th", { attrs: { width: "150" } }, [_vm._v("Дата")]),
       _vm._v(" "),
       _c("th", { attrs: { width: "200" } }, [_vm._v("Подтверждение")])
     ])

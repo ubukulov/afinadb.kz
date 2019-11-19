@@ -19,7 +19,7 @@
         </nav>
         <table class="table leads_table table-bordered table-striped">
             <thead class="thead-light">
-            <th width="100">Дата</th>
+            <th width="150">Дата</th>
             <th width="200">Подтверждение</th>
             </thead>
             <tbody>
@@ -27,7 +27,6 @@
                     <td v-if="lead.dn == 0">{{ lead.dt + " #" + lead.id + " (сегодня)"  }}</td>
                     <td v-else-if="lead.dn == 1">{{ lead.dt + " #" + lead.id + " (вчера)" }}</td>
                     <td v-else="lead.dn > 1">{{ lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"  }}</td>
-                    <td>{{ lead.comment }}</td>
                     <td>
                         <button type="button" v-on:click="getLead(lead.id)" class="btn btn-primary">Выбрать запрос</button>
                     </td>
