@@ -54,7 +54,9 @@
             </thead>
             <tbody>
             <tr v-for="lead in leads">
-                <td>{{ lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"  }}</td>
+                <td v-if="lead.dn == 0">{{ lead.dt + " #" + lead.id + " (сегодня)"  }}</td>
+                <td v-if="lead.dn == 1">{{ lead.dt + " #" + lead.id + " (вчера) дней"  }}</td>
+                <td v-else="lead.dn > 1">{{ lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"  }}</td>
                 <td>{{ lead.name }}</td>
                 <td>{{ lead.phone }}</td>
                 <td>
