@@ -87,7 +87,7 @@ class IndexController extends BaseController
         ]);
         if ($lead) {
             return response('Lead successfully created', 200)
-                ->header('Access-Control-Allow-Origin', '*');
+                ->header('Access-Control-Allow-Origin', 'new.afinadb.kz');
         }
 
         return response('Error: Lead not created', 500);
