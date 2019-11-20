@@ -30,6 +30,7 @@
             <th width="150">ФИО</th>
             <th width="150">Роль в системе</th>
             <th width="150">Статус</th>
+            <th width="250">Компания</th>
             <th>Действие</th>
             </thead>
             <tbody>
@@ -42,6 +43,9 @@
                     <td>
                         <span v-if="user.deleted == '0'">Заблокирован</span>
                         <span v-if="user.deleted == '1'">Активно</span>
+                    </td>
+                    <td>
+                        {{ companies[user.company_id - 1].title }}
                     </td>
                     <td class="accounts_btn">
                         <button type="button" v-on:click="editAccount(user.id)"><i class="fas fa-edit"></i></button>

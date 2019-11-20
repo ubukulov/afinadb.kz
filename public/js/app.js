@@ -1984,6 +1984,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -39597,6 +39601,14 @@ var render = function() {
                 user.deleted == "1" ? _c("span", [_vm._v("Активно")]) : _vm._e()
               ]),
               _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.companies[user.company_id - 1].title) +
+                    "\n                "
+                )
+              ]),
+              _vm._v(" "),
               _c("td", { staticClass: "accounts_btn" }, [
                 _c(
                   "button",
@@ -40079,6 +40091,8 @@ var staticRenderFns = [
       _c("th", { attrs: { width: "150" } }, [_vm._v("Роль в системе")]),
       _vm._v(" "),
       _c("th", { attrs: { width: "150" } }, [_vm._v("Статус")]),
+      _vm._v(" "),
+      _c("th", { attrs: { width: "250" } }, [_vm._v("Компания")]),
       _vm._v(" "),
       _c("th", [_vm._v("Действие")])
     ])
