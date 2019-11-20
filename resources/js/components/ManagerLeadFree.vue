@@ -23,12 +23,15 @@
             <th width="200">Подтверждение</th>
             </thead>
             <tbody>
-                <tr v-for="lead in leads">
+                <tr v-for="(lead, index) in leads">
                     <td v-if="lead.dn == 0">{{ lead.dt + " #" + lead.id + " (сегодня)"  }}</td>
                     <td v-else-if="lead.dn == 1">{{ lead.dt + " #" + lead.id + " (вчера)" }}</td>
                     <td v-else="lead.dn > 1">{{ lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"  }}</td>
-                    <td>
+                    <td v-if="index == 0">
                         <button type="button" v-on:click="getLead(lead.id)" class="btn btn-primary">Выбрать запрос</button>
+                    </td>
+                    <td v-else="index != 0">
+                        <button type="button" class="btn btn-primary disabled">Выбрать запрос</button>
                     </td>
                 </tr>
             </tbody>

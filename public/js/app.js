@@ -3084,6 +3084,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -42149,7 +42152,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "tbody",
-          _vm._l(_vm.leads, function(lead) {
+          _vm._l(_vm.leads, function(lead, index) {
             return _c("tr", [
               lead.dn == 0
                 ? _c("td", [
@@ -42167,21 +42170,32 @@ var render = function() {
                     )
                   ]),
               _vm._v(" "),
-              _c("td", [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary",
-                    attrs: { type: "button" },
-                    on: {
-                      click: function($event) {
-                        return _vm.getLead(lead.id)
-                      }
-                    }
-                  },
-                  [_vm._v("Выбрать запрос")]
-                )
-              ])
+              index == 0
+                ? _c("td", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.getLead(lead.id)
+                          }
+                        }
+                      },
+                      [_vm._v("Выбрать запрос")]
+                    )
+                  ])
+                : _c("td", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary disabled",
+                        attrs: { type: "button" }
+                      },
+                      [_vm._v("Выбрать запрос")]
+                    )
+                  ])
             ])
           }),
           0
