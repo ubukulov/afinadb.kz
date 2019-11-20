@@ -35,6 +35,7 @@ Route::group(['middleware' => ['web', 'auth']], function(){
     Route::get('/incoming/calls', 'BinotelController@incomingCalls')->name('incoming.calls'); // входящие звонки
     Route::get('/outgoing/calls', 'BinotelController@outgoingCalls')->name('outgoing.calls'); // исходящие звонки
     Route::get('/missing/calls', 'BinotelController@missingCalls')->name('missing.calls'); // пропущенные звонки
+    Route::post('/audio/talking-with-customers', 'BinotelController@getAudioTalkingWithCustomers');
 
     # Статистика
     Route::get('/stats/leads', 'StatController@getStatsOfLeads')->name('stats.leads'); // статистика запросов

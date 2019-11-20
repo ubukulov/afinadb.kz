@@ -66,4 +66,34 @@ class BinotelController extends BaseController
         }
         return view('binotel.missing_calls', compact('missing_calls'));
     }
+
+    public function getAudioTalkingWithCustomers(Request $request)
+    {
+        $phone = $request->input('phone');
+        $arr = [
+            '+7 771 800 0093',
+            '+77027606701',
+            '87477928926',
+            '7 701 284 -22-71'
+        ];
+        $phone = preg_replace("/[^+0-9]/", '', $phone);
+        if (strlen($phone) ==  12) {
+            $phone = '8'.substr($phone, 2);
+        }
+
+        if (strlen($phone) == 11 && $phone[0] == 8) {
+            $audio_talks = $this->client->stats->historyByNumber([
+                'number' => $phone
+            ]);
+            $audios = [];
+            foreach($audio_talks as $audio_talk) {
+                if ($audio_talk['billsec'] != 0) {
+                    $audios[] = $this->client->stats->callRecord([
+                        'callID' => $audio_talk['callID']
+                    ]);
+                }
+            }
+            return json_encode($audios);
+        }
+    }
 }

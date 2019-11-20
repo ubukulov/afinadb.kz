@@ -12,6 +12,7 @@
             </li>
         </ul>
         <div class="tab-content" id="myTabContent">
+            <!-- В процессе -->
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                 <table class="table leads_table table-bordered table-striped">
                     <thead class="thead-light">
@@ -35,6 +36,8 @@
                     </tbody>
                 </table>
             </div>
+
+            <!-- Обработанные -->
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 <table class="table leads_table table-bordered table-striped">
                     <thead class="thead-light">
@@ -53,6 +56,8 @@
                     </tbody>
                 </table>
             </div>
+
+            <!-- Необработанные -->
             <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                 <table class="table leads_table table-bordered table-striped">
                     <thead class="thead-light">
@@ -68,7 +73,12 @@
                             <td>{{ lead.name }}</td>
                             <td>{{ lead.phone }}</td>
                             <td>{{ lead.comment }}</td>
-                            <td><button title="Комментарии" v-on:click="showComments(lead.id)" class="btn btn-success"><i class="far fa-comments"></i></button></td>
+                            <td>
+                                <div class="btn-group">
+                                    <button title="Комментарии" v-on:click="showComments(lead.id)" class="btn btn-success"><i class="far fa-comments"></i></button>
+                                    <button title="Прослушать разговоры с клиентами" v-on:click="showAudioTalkWithCustomers(lead.phone)" class="btn btn-danger"><i class="fas fa-file-audio"></i></button>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -135,6 +145,35 @@
                 </div>
             </div>
         </div>
+
+        <!-- Audio Talking Modal -->
+        <div class="modal fade" id="modal_audio" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center">Список аудио файлы</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="background: green url(/images/body_background.png); padding: 0px;">
+                        <div style="background: rgba(255,255,255,0.7);">
+                            <div class="row">
+                                <div class="col-md-12" style="padding: 40px;">
+                                    <div v-for="(audio, i) in audio_talking" style="background: #fff;padding: 10px;width: 100%;margin-bottom: 10px;border-radius: 20px;">
+                                        <span style="font-weight: bold;">
+                                            <audio controls>
+                                                <source v-bind:src="audio" type="audio/mpeg">
+                                            </audio>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -150,7 +189,8 @@
                 modalTitle: '',
                 comment: '',
                 comments: [],
-                lead_id: 0
+                lead_id: 0,
+                audio_talking: []
             }
         },
         methods: {
@@ -215,8 +255,19 @@
                     .then(res => {
                         this.comments = res.data;
                         console.log(res.data);
-                        console.log('sss', this.comments);
                         $('#modal_comment').removeClass('fade').modal('toggle');
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+            },
+            showAudioTalkWithCustomers(phone){
+                $('#modal_audio').removeClass('fade').modal('toggle');
+                axios.post('/audio/talking-with-customers', {
+                    phone: phone
+                })
+                    .then(res => {
+                        this.audio_talking = res.data;
                     })
                     .catch(err => {
                         console.log(err);

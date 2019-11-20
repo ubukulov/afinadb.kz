@@ -3326,6 +3326,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -3337,7 +3376,8 @@ __webpack_require__.r(__webpack_exports__);
       modalTitle: '',
       comment: '',
       comments: [],
-      lead_id: 0
+      lead_id: 0,
+      audio_talking: []
     };
   },
   methods: {
@@ -3411,8 +3451,19 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (res) {
         _this4.comments = res.data;
         console.log(res.data);
-        console.log('sss', _this4.comments);
         $('#modal_comment').removeClass('fade').modal('toggle');
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    showAudioTalkWithCustomers: function showAudioTalkWithCustomers(phone) {
+      var _this5 = this;
+
+      $('#modal_audio').removeClass('fade').modal('toggle');
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/audio/talking-with-customers', {
+        phone: phone
+      }).then(function (res) {
+        _this5.audio_talking = res.data;
       })["catch"](function (err) {
         console.log(err);
       });
@@ -42530,19 +42581,39 @@ var render = function() {
                     _c("td", [_vm._v(_vm._s(lead.comment))]),
                     _vm._v(" "),
                     _c("td", [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-success",
-                          attrs: { title: "Комментарии" },
-                          on: {
-                            click: function($event) {
-                              return _vm.showComments(lead.id)
+                      _c("div", { staticClass: "btn-group" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-success",
+                            attrs: { title: "Комментарии" },
+                            on: {
+                              click: function($event) {
+                                return _vm.showComments(lead.id)
+                              }
                             }
-                          }
-                        },
-                        [_c("i", { staticClass: "far fa-comments" })]
-                      )
+                          },
+                          [_c("i", { staticClass: "far fa-comments" })]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger",
+                            attrs: {
+                              title: "Прослушать разговоры с клиентами"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.showAudioTalkWithCustomers(
+                                  lead.phone
+                                )
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "fas fa-file-audio" })]
+                        )
+                      ])
                     ])
                   ])
                 }),
@@ -42742,6 +42813,93 @@ var render = function() {
           ]
         )
       ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "modal_audio",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalCenterTitle",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(7),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "modal-body",
+                  staticStyle: {
+                    background: "green url(/images/body_background.png)",
+                    padding: "0px"
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    { staticStyle: { background: "rgba(255,255,255,0.7)" } },
+                    [
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "col-md-12",
+                            staticStyle: { padding: "40px" }
+                          },
+                          _vm._l(_vm.audio_talking, function(audio, i) {
+                            return _c(
+                              "div",
+                              {
+                                staticStyle: {
+                                  background: "#fff",
+                                  padding: "10px",
+                                  width: "100%",
+                                  "margin-bottom": "10px",
+                                  "border-radius": "20px"
+                                }
+                              },
+                              [
+                                _c(
+                                  "span",
+                                  { staticStyle: { "font-weight": "bold" } },
+                                  [
+                                    _c("audio", { attrs: { controls: "" } }, [
+                                      _c("source", {
+                                        attrs: {
+                                          src: audio,
+                                          type: "audio/mpeg"
+                                        }
+                                      })
+                                    ])
+                                  ]
+                                )
+                              ]
+                            )
+                          }),
+                          0
+                        )
+                      ])
+                    ]
+                  )
+                ]
+              )
+            ])
+          ]
+        )
+      ]
     )
   ])
 }
@@ -42898,6 +43056,29 @@ var staticRenderFns = [
         },
         [_vm._v("Комментарии")]
       ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h5", { staticClass: "modal-title text-center" }, [
+        _vm._v("Список аудио файлы")
+      ]),
       _vm._v(" "),
       _c(
         "button",
