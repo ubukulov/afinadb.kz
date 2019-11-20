@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\LeadResource;
 use App\Models\Lead;
+use App\Models\ManagerLead;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class ApiController extends Controller
@@ -78,5 +80,42 @@ class ApiController extends Controller
     public function managers()
     {
         return UserResource::collection(User::getAllManagers());
+    }
+
+    public function destroyUser(Request $request)
+    {
+        $id = $request->input('id');
+        $user = User::findOrFail($id);
+        if ($user) {
+            User::destroy($id);
+            return response('Пользовател успешно удален');
+        } else {
+            return response('Ошибка: Пользовател не найден', 422);
+        }
+    }
+
+    public function deleteManager(Request $request)
+    {
+        $id = $request->input('id');
+        $manager_id = $request->input('manager_id');
+        $user = User::findOrFail($id);
+        if ($user) {
+            if (count($user->leads) > 0) {
+                DB::beginTransaction();
+                try {
+                    DB::update("UPDATE manager_leads SET manager_id='$manager_id' WHERE manager_id='$id'");
+                    DB::update("UPDATE rejected_leads SET manager_id='$manager_id' WHERE manager_id='$id'");
+                    User::destroy($id);
+                } catch (\Exception $exception) {
+                    DB::rollBack();
+                    return response("Ошибка сервера: $exception", 500);
+                }
+            } else {
+                User::destroy($id);
+                return response("Пользовател успешно удален", 200);
+            }
+        }
+
+        return response("Ошибка сервера: Не найден пользовател", 404);
     }
 }

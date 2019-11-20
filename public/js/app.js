@@ -1988,6 +1988,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2005,7 +2037,10 @@ __webpack_require__.r(__webpack_exports__);
       selectedCity: 0,
       company_id: 1,
       editProfile: true,
-      pagination: {}
+      pagination: {},
+      manager_id: 0,
+      managers: [],
+      userLeads: []
     };
   },
   props: ['companies', 'cities'],
@@ -2021,11 +2056,15 @@ __webpack_require__.r(__webpack_exports__);
       $('#modal_lead').removeClass('fade').modal('toggle');
     },
     editAccount: function editAccount(id) {
-      var _this = this;
-
       this.editProfile = true;
       this.modalTitle = 'Редактировать профиль';
       this.buttonTitle = 'Изменить данные';
+      this.getUserById(id);
+      $('#modal_lead').removeClass('fade').modal('toggle');
+    },
+    getUserById: function getUserById(id) {
+      var _this = this;
+
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/user/' + id).then(function (response) {
         _this.id = response.data.id;
         _this.firstName = response.data.name;
@@ -2039,7 +2078,6 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (e) {
         console.log(e);
       });
-      $('#modal_lead').removeClass('fade').modal('toggle');
     },
     updateAccount: function updateAccount() {
       var _this2 = this;
@@ -2089,7 +2127,6 @@ __webpack_require__.r(__webpack_exports__);
       page_url = page_url || "/api/users";
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(page_url).then(function (response) {
         _this4.users = response.data.data;
-        console.log(response);
         pagination = {
           prev_page_url: response.data.links.prev,
           next_page_url: response.data.links.next,
@@ -2115,10 +2152,51 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         console.log(err);
       });
+    },
+    deleteAccount: function deleteAccount(user_id) {
+      var _this6 = this;
+
+      if (confirm('Вы хотите удалить пользователя?')) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/user/destroy', {
+          id: user_id
+        }).then(function (res) {
+          _this6.getUsers();
+
+          console.log(res);
+        })["catch"](function (err) {
+          console.log(err);
+        });
+      }
+    },
+    getManagers: function getManagers() {
+      var _this7 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/managers').then(function (response) {
+        _this7.managers = response.data.data;
+      })["catch"](function (e) {
+        console.log(e);
+      });
+    },
+    destroyManagerForm: function destroyManagerForm(user_id) {
+      $('#modal_delete_user').removeClass('fade').modal('toggle');
+      this.id = user_id;
+    },
+    destroyManager: function destroyManager() {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/user/delete', {
+        id: this.id,
+        manager_id: this.manager_id
+      }).then(function (res) {
+        console.log(res);
+      })["catch"](function (err) {
+        console.log(err);
+      });
+      this.getUsers();
+      $('#modal_delete_user').addClass('fade').modal('toggle');
     }
   },
   created: function created() {
     this.users = this.getUsers();
+    this.managers = this.getManagers();
   },
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -39753,7 +39831,31 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _vm._m(1, true)
+                user.status !== "MANAGER"
+                  ? _c(
+                      "button",
+                      {
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.deleteAccount(user.id)
+                          }
+                        }
+                      },
+                      [_c("i", { staticClass: "fas fa-trash-alt" })]
+                    )
+                  : _c(
+                      "button",
+                      {
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.destroyManagerForm(user.id)
+                          }
+                        }
+                      },
+                      [_c("i", { staticClass: "fas fa-trash-alt" })]
+                    )
               ])
             ])
           }),
@@ -39884,7 +39986,7 @@ var render = function() {
                   [_vm._v(_vm._s(_vm.modalTitle))]
                 ),
                 _vm._v(" "),
-                _vm._m(2)
+                _vm._m(1)
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
@@ -40183,6 +40285,120 @@ var render = function() {
           ]
         )
       ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "modal_delete_user",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalCenterTitle",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "manager_id" } }, [
+                        _vm._v("Выберите менеджера")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.manager_id,
+                              expression: "manager_id"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { id: "manager_id" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.manager_id = $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            }
+                          }
+                        },
+                        _vm._l(_vm.managers, function(manager) {
+                          return _c(
+                            "option",
+                            {
+                              key: manager.id,
+                              domProps: { value: manager.id }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                        " +
+                                  _vm._s(
+                                    manager.id +
+                                      ") " +
+                                      manager.name +
+                                      " " +
+                                      manager.last_name +
+                                      ", " +
+                                      manager.c_title +
+                                      ", " +
+                                      manager.com_title
+                                  ) +
+                                  "\n                                    "
+                              )
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.destroyManager()
+                      }
+                    }
+                  },
+                  [_vm._v("Удалить менеджера и присвоить запросы")]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
     )
   ])
 }
@@ -40213,14 +40429,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("button", { attrs: { type: "button" } }, [
-      _c("i", { staticClass: "fas fa-trash-alt" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c(
       "button",
       {
@@ -40233,6 +40441,29 @@ var staticRenderFns = [
       },
       [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h5", { staticClass: "modal-title" }, [
+        _vm._v("Удаление пользователя")
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
   }
 ]
 render._withStripped = true

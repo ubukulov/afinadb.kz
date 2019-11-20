@@ -66,4 +66,9 @@ class User extends Authenticatable
     {
         return $this->name. " ".$this->last_name;
     }
+
+    public function leads()
+    {
+        return $this->hasMany('App\Models\ManagerLead', 'manager_id');
+    }
 }

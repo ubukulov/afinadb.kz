@@ -50,7 +50,8 @@
                     <td class="accounts_btn">
                         <button type="button" v-on:click="editAccount(user.id)"><i class="fas fa-edit"></i></button>
                         <button v-on:click="changeDeleted(user.id)" type="button"><i v-bind:class="[{ ban: user.deleted == '0' }]" class="fas fa-power-off"></i></button>
-                        <button type="button"><i class="fas fa-trash-alt"></i></button>
+                        <button v-if="user.status !== 'MANAGER'" type="button" v-on:click="deleteAccount(user.id)"><i class="fas fa-trash-alt"></i></button>
+                        <button v-else="user.status === 'MANAGER'" type="button" v-on:click="destroyManagerForm(user.id)"><i class="fas fa-trash-alt"></i></button>
                     </td>
                 </tr>
             </tbody>
@@ -143,6 +144,37 @@
                 </div>
             </div>
         </div>
+
+        <!-- Delete User Modal -->
+        <div class="modal fade" id="modal_delete_user" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Удаление пользователя</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="manager_id">Выберите менеджера</label>
+                                    <select id="manager_id" v-model="manager_id" class="form-control">
+                                        <option v-for="manager in managers" v-bind:key="manager.id" v-bind:value="manager.id">
+                                            {{ manager.id + ") " + manager.name + " " + manager.last_name + ", " + manager.c_title + ", " + manager.com_title }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" v-on:click="destroyManager()" class="btn btn-primary">Удалить менеджера и присвоить запросы</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -165,7 +197,10 @@
                 selectedCity: 0,
                 company_id: 1,
                 editProfile: true,
-                pagination: {}
+                pagination: {},
+                manager_id: 0,
+                managers: [],
+                userLeads: []
             }
         },
         props: [
@@ -187,6 +222,10 @@
                 this.editProfile = true;
                 this.modalTitle = 'Редактировать профиль';
                 this.buttonTitle = 'Изменить данные';
+                this.getUserById(id);
+                $('#modal_lead').removeClass('fade').modal('toggle');
+            },
+            getUserById(id){
                 axios.get('/api/user/'+id)
                     .then(response => {
                         this.id = response.data.id;
@@ -202,7 +241,6 @@
                     .catch(e => {
                         console.log(e);
                     });
-                $('#modal_lead').removeClass('fade').modal('toggle');
             },
             updateAccount(){
                 axios.post('/api/user/update', {
@@ -249,7 +287,6 @@
                 axios.get(page_url)
                     .then(response => {
                         this.users = response.data.data;
-                        console.log(response)
                         pagination = {
                             prev_page_url: response.data.links.prev,
                             next_page_url: response.data.links.next,
@@ -275,10 +312,52 @@
                     .catch(err => {
                         console.log(err);
                     })
+            },
+            deleteAccount(user_id){
+                if (confirm('Вы хотите удалить пользователя?')) {
+                    axios.post('/api/user/destroy', {
+                        id: user_id
+                    })
+                        .then(res => {
+                            this.getUsers();
+                            console.log(res);
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        })
+                }
+            },
+            getManagers(){
+                axios.get('/api/managers')
+                    .then(response => {
+                        this.managers = response.data.data;
+                    })
+                    .catch(e => {
+                        console.log(e);
+                    })
+            },
+            destroyManagerForm(user_id){
+                $('#modal_delete_user').removeClass('fade').modal('toggle');
+                this.id = user_id;
+            },
+            destroyManager(){
+                axios.post('/api/user/delete', {
+                    id: this.id,
+                    manager_id: this.manager_id
+                })
+                    .then(res => {
+                        console.log(res);
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+                this.getUsers();
+                $('#modal_delete_user').addClass('fade').modal('toggle');
             }
         },
         created() {
             this.users = this.getUsers();
+            this.managers = this.getManagers();
         },
         mounted() {
             console.log('Component mounted.');
