@@ -59,7 +59,7 @@
                 <td v-else="lead.dn > 1">{{ lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"  }}</td>
                 <td>{{ lead.name }}</td>
                 <td>{{ lead.phone }}</td>
-                <td>
+                <td v-bind:class="setClassName(lead.type)">
                     {{ sourceList[lead.type] }}
                 </td>
                 <td>{{ cities[lead.city_id - 1].title }}</td>
@@ -262,7 +262,8 @@
                 file: '',
                 success: '',
                 fbcity_id: 1,
-                fbcompany_id: 0
+                fbcompany_id: 0,
+                class_list: ['Website','Instagram', 'Facebook','Whatsapp','chemodan','257','turkish','alanya','Website','Website','Website','Website','Website','Website','mardan', 'egipt', 'emirat', 'turkish', 'alanya', 'egipt', 'emirat', 'tailand', 'tailand', 'hainan', 'hainan', 'goa', 'goa']
             }
         },
         props: {
@@ -395,6 +396,35 @@
             },
             openUploadFileForm(){
                 $('#upload_file').removeClass('fade').modal('toggle');
+            },
+            setClassName(index){
+                if (index > 26 && index < 36) {
+                    return 'Whatsapp';
+                } else if (index > 35 && index < 45) {
+                    return 'Website';
+                } else if (index == 45 || index == 46){
+                    return 'dubai';
+                } else if (index == 47 || index == 48){
+                    return 'abu_dhabi';
+                } else if (index == 49 || index == 50){
+                    return 'sharjah';
+                } else if (index == 51 || index == 52){
+                    return 'rah';
+                } else if (index == 53 || index == 54){
+                    return 'fujairah';
+                } else if (index > 54 && index < 60) {
+                    return 'Whatsapp';
+                } else if (index > 59 && index < 65) {
+                    return 'Whatsapp';
+                } else if (index > 64 && index < 67) {
+                    return 'dominicana';
+                } else if(index == 67){
+                    return 'fr';
+                } else if (index == 70 || index == 71){
+                    return 'maldiv';
+                } else {
+                    return this.class_list[index];
+                }
             }
         },
         created(){
@@ -415,5 +445,34 @@
     ._257_btn {
         background: #0099AB;
         color: #fff;
+    }
+    .Website, .chemodan {background: yellow;}
+    ._257 {background: #a95959;}
+    .turkish {background: #caf2ff;}
+    .alanya {background: green; color: white;}
+    .mardan {background: teal; color: white;}
+    .egipt {background: #F1B47D; color: black;}
+    .emirat {background: #FF7F50; color: white;}
+    .tailand {background: #2974AD; color: white;}
+    .hainan {background: #874AEF; color: white;}
+    .goa {background: #17B796; color: white;}
+    .dubai {background: #5C3504; color: white;}
+    .abu_dhabi {background: #34AF98; color: white;}
+    .sharjah {background: #4683C3; color: white;}
+    .rah {background: #750F7E; color: white;}
+    .fujairah {background: #5C3BA5; color: white;}
+    .dominicana {background: #002D62; color: white;}
+    .fr {background: #853239; color: white;}
+    .maldiv {background: #007E3A; color: white;}
+    .Instagram {
+        background: #ff5876;
+        color: white;
+    }
+    .Facebook {
+        background: #339ac3;
+        color: white;
+    }
+    .Whatsapp {
+        background: #afffaf;
     }
 </style>

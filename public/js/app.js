@@ -2396,7 +2396,8 @@ __webpack_require__.r(__webpack_exports__);
       file: '',
       success: '',
       fbcity_id: 1,
-      fbcompany_id: 0
+      fbcompany_id: 0,
+      class_list: ['Website', 'Instagram', 'Facebook', 'Whatsapp', 'chemodan', '257', 'turkish', 'alanya', 'Website', 'Website', 'Website', 'Website', 'Website', 'Website', 'mardan', 'egipt', 'emirat', 'turkish', 'alanya', 'egipt', 'emirat', 'tailand', 'tailand', 'hainan', 'hainan', 'goa', 'goa']
     };
   },
   props: {
@@ -2537,6 +2538,35 @@ __webpack_require__.r(__webpack_exports__);
     },
     openUploadFileForm: function openUploadFileForm() {
       $('#upload_file').removeClass('fade').modal('toggle');
+    },
+    setClassName: function setClassName(index) {
+      if (index > 26 && index < 36) {
+        return 'Whatsapp';
+      } else if (index > 35 && index < 45) {
+        return 'Website';
+      } else if (index == 45 || index == 46) {
+        return 'dubai';
+      } else if (index == 47 || index == 48) {
+        return 'abu_dhabi';
+      } else if (index == 49 || index == 50) {
+        return 'sharjah';
+      } else if (index == 51 || index == 52) {
+        return 'rah';
+      } else if (index == 53 || index == 54) {
+        return 'fujairah';
+      } else if (index > 54 && index < 60) {
+        return 'Whatsapp';
+      } else if (index > 59 && index < 65) {
+        return 'Whatsapp';
+      } else if (index > 64 && index < 67) {
+        return 'dominicana';
+      } else if (index == 67) {
+        return 'fr';
+      } else if (index == 70 || index == 71) {
+        return 'maldiv';
+      } else {
+        return this.class_list[index];
+      }
     }
   },
   created: function created() {
@@ -7865,7 +7895,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n._chem[data-v-7c01e32e] {\n    background: #853239;\n    color: #fff;\n}\n._create[data-v-7c01e32e] {\n    background: #E0735E;\n    border-color: #E0735E;\n}\n._257_btn[data-v-7c01e32e] {\n    background: #0099AB;\n    color: #fff;\n}\n", ""]);
+exports.push([module.i, "\n._chem[data-v-7c01e32e] {\n    background: #853239;\n    color: #fff;\n}\n._create[data-v-7c01e32e] {\n    background: #E0735E;\n    border-color: #E0735E;\n}\n._257_btn[data-v-7c01e32e] {\n    background: #0099AB;\n    color: #fff;\n}\n.Website[data-v-7c01e32e], .chemodan[data-v-7c01e32e] {background: yellow;}\n._257[data-v-7c01e32e] {background: #a95959;}\n.turkish[data-v-7c01e32e] {background: #caf2ff;}\n.alanya[data-v-7c01e32e] {background: green; color: white;}\n.mardan[data-v-7c01e32e] {background: teal; color: white;}\n.egipt[data-v-7c01e32e] {background: #F1B47D; color: black;}\n.emirat[data-v-7c01e32e] {background: #FF7F50; color: white;}\n.tailand[data-v-7c01e32e] {background: #2974AD; color: white;}\n.hainan[data-v-7c01e32e] {background: #874AEF; color: white;}\n.goa[data-v-7c01e32e] {background: #17B796; color: white;}\n.dubai[data-v-7c01e32e] {background: #5C3504; color: white;}\n.abu_dhabi[data-v-7c01e32e] {background: #34AF98; color: white;}\n.sharjah[data-v-7c01e32e] {background: #4683C3; color: white;}\n.rah[data-v-7c01e32e] {background: #750F7E; color: white;}\n.fujairah[data-v-7c01e32e] {background: #5C3BA5; color: white;}\n.dominicana[data-v-7c01e32e] {background: #002D62; color: white;}\n.fr[data-v-7c01e32e] {background: #853239; color: white;}\n.maldiv[data-v-7c01e32e] {background: #007E3A; color: white;}\n.Instagram[data-v-7c01e32e] {\n    background: #ff5876;\n    color: white;\n}\n.Facebook[data-v-7c01e32e] {\n    background: #339ac3;\n    color: white;\n}\n.Whatsapp[data-v-7c01e32e] {\n    background: #afffaf;\n}\n", ""]);
 
 // exports
 
@@ -40309,7 +40339,7 @@ var render = function() {
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(lead.phone))]),
               _vm._v(" "),
-              _c("td", [
+              _c("td", { class: _vm.setClassName(lead.type) }, [
                 _vm._v(
                   "\n                " +
                     _vm._s(_vm.sourceList[lead.type]) +
