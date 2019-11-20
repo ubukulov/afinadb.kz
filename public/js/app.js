@@ -2564,6 +2564,8 @@ __webpack_require__.r(__webpack_exports__);
         return 'fr';
       } else if (index == 70 || index == 71) {
         return 'maldiv';
+      } else if (index == 72) {
+        return 'Whatsapp';
       } else {
         return this.class_list[index];
       }
