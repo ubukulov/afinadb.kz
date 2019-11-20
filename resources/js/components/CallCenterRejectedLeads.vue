@@ -12,6 +12,7 @@
             </li>
         </ul>
         <div class="tab-content" id="myTabContent">
+            <!-- НОВЫЕ ОТКАЗЫ -->
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                 <table class="table leads_table table-bordered table-striped">
                     <thead class="thead-light">
@@ -41,12 +42,15 @@
                                 <button title="Скрыть запрос" v-on:click="removeLead(lead.id)" class="btn btn-danger"><i class="fas fa-eye-slash"></i></button>
                                 <button title="Вернуть обратно менеджеру" v-on:click="returnLeadForm(lead.id)" class="btn btn-primary"><i class="fas fa-undo"></i></button>
                                 <button title="Комментарии" v-on:click="showComments(lead.id)" class="btn btn-success"><i class="far fa-comments"></i></button>
+                                <button title="Прослушать разговоры с клиентами" v-on:click="showAudioTalkWithCustomers(lead.phone)" class="btn btn-danger"><i class="fas fa-headphones"></i></button>
                             </div>
                         </td>
                     </tr>
                     </tbody>
                 </table>
             </div>
+
+            <!-- ОБРАБОТАННЫЕ -->
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 <table class="table leads_table table-bordered table-striped">
                     <thead class="thead-light">
@@ -74,6 +78,8 @@
                     </tbody>
                 </table>
             </div>
+
+            <!-- В ПРОЦЕССЕ -->
             <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                 <table class="table leads_table table-bordered table-striped">
                     <thead class="thead-light">
@@ -135,6 +141,7 @@
                 </div>
             </div>
         </div>
+
         <!-- Comment Modal -->
         <div class="modal fade" id="modal_comment" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -160,6 +167,41 @@
                 </div>
             </div>
         </div>
+
+        <!-- Audio Talking Modal -->
+        <div class="modal fade" id="modal_audio" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center">Список аудио файлы</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="background: green url(/images/body_background.png); padding: 0px;">
+                        <div style="background: rgba(255,255,255,0.7);">
+                            <div class="row">
+                                <div v-if="audio_talking.length > 0" class="col-md-12" style="padding: 40px;">
+                                    <div v-for="(audio, i) in audio_talking" style="background: #fff;padding: 10px;width: 100%;margin-bottom: 10px;border-radius: 20px;">
+                                        <span style="font-weight: bold;">
+                                            <audio controls>
+                                                <source v-bind:src="audio" type="audio/mpeg">
+                                            </audio>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div v-else="audio_talking.length == 0" class="col-md-12 text-center" style="padding: 40px;">
+                                    <p style="font-size: 20px;">
+                                        <i style="font-size: 40px;" class="fas fa-exclamation-triangle"></i> <br>
+                                        Аудио запись не найдено!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -175,7 +217,8 @@
               lead_id: 0,
               comment: '',
               comments: [],
-              j: false
+              j: false,
+              audio_talking: []
           }
         },
         methods: {
@@ -277,6 +320,18 @@
                         console.log(res.data);
                         console.log('sss', this.comments);
                         $('#modal_comment').removeClass('fade').modal('toggle');
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+            },
+            showAudioTalkWithCustomers(phone){
+                axios.post('/audio/talking-with-customers', {
+                    phone: phone
+                })
+                    .then(res => {
+                        this.audio_talking = res.data;
+                        $('#modal_audio').removeClass('fade').modal('toggle');
                     })
                     .catch(err => {
                         console.log(err);

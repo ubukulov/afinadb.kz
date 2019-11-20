@@ -76,7 +76,7 @@
                             <td>
                                 <div class="btn-group">
                                     <button title="Комментарии" v-on:click="showComments(lead.id)" class="btn btn-success"><i class="far fa-comments"></i></button>
-                                    <button title="Прослушать разговоры с клиентами" v-on:click="showAudioTalkWithCustomers(lead.phone)" class="btn btn-danger"><i class="fas fa-file-audio"></i></button>
+                                    <button title="Прослушать разговоры с клиентами" v-on:click="showAudioTalkWithCustomers(lead.phone)" class="btn btn-danger"><i class="fas fa-headphones"></i></button>
                                 </div>
                             </td>
                         </tr>
@@ -159,7 +159,7 @@
                     <div class="modal-body" style="background: green url(/images/body_background.png); padding: 0px;">
                         <div style="background: rgba(255,255,255,0.7);">
                             <div class="row">
-                                <div class="col-md-12" style="padding: 40px;">
+                                <div v-if="audio_talking.length > 0" class="col-md-12" style="padding: 40px;">
                                     <div v-for="(audio, i) in audio_talking" style="background: #fff;padding: 10px;width: 100%;margin-bottom: 10px;border-radius: 20px;">
                                         <span style="font-weight: bold;">
                                             <audio controls>
@@ -167,6 +167,12 @@
                                             </audio>
                                         </span>
                                     </div>
+                                </div>
+                                <div v-else="audio_talking.length == 0" class="col-md-12 text-center" style="padding: 40px;">
+                                    <p style="font-size: 20px;">
+                                        <i style="font-size: 40px;" class="fas fa-exclamation-triangle"></i> <br>
+                                        Аудио запись не найдено!
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -262,12 +268,12 @@
                     })
             },
             showAudioTalkWithCustomers(phone){
-                $('#modal_audio').removeClass('fade').modal('toggle');
                 axios.post('/audio/talking-with-customers', {
                     phone: phone
                 })
                     .then(res => {
                         this.audio_talking = res.data;
+                        $('#modal_audio').removeClass('fade').modal('toggle');
                     })
                     .catch(err => {
                         console.log(err);
