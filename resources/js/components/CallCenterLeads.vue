@@ -83,9 +83,6 @@
                     </div>
 
                     <button v-if="lead.ss == '1'" v-on:click="selectManager(lead.id)" type="button" class="btn btn-primary"><i class="fas fa-user-check"></i></button>
-                    <b-col md="3" class="py-3">
-                        <b-button v-b-tooltip.hover.right="'Tooltip!'" variant="primary">Right</b-button>
-                    </b-col>
                 </td>
                 <td v-if="lead.company == '0'" class="_chem">
                     chemodan.kz

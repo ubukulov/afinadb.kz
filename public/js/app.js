@@ -2458,9 +2458,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -40730,81 +40727,53 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c(
-                "td",
-                [
-                  lead.m_type == "0"
-                    ? _c("div", { staticClass: "status_btn" }, [
-                        _c("div", [
-                          _vm._v(_vm._s(lead.user_name + " " + lead.last_name))
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "_completed" })
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  lead.m_type == "2"
-                    ? _c("div", { staticClass: "status_btn" }, [
-                        _c("div", [
-                          _vm._v(_vm._s(lead.user_name + " " + lead.last_name))
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "_canceled" })
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  lead.m_type == "1"
-                    ? _c("div", { staticClass: "status_btn" }, [
-                        _c("div", [
-                          _vm._v(_vm._s(lead.user_name + " " + lead.last_name))
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "_processed" })
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  lead.ss == "1"
-                    ? _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-primary",
-                          attrs: { type: "button" },
-                          on: {
-                            click: function($event) {
-                              return _vm.selectManager(lead.id)
-                            }
+              _c("td", [
+                lead.m_type == "0"
+                  ? _c("div", { staticClass: "status_btn" }, [
+                      _c("div", [
+                        _vm._v(_vm._s(lead.user_name + " " + lead.last_name))
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "_completed" })
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                lead.m_type == "2"
+                  ? _c("div", { staticClass: "status_btn" }, [
+                      _c("div", [
+                        _vm._v(_vm._s(lead.user_name + " " + lead.last_name))
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "_canceled" })
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                lead.m_type == "1"
+                  ? _c("div", { staticClass: "status_btn" }, [
+                      _c("div", [
+                        _vm._v(_vm._s(lead.user_name + " " + lead.last_name))
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "_processed" })
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                lead.ss == "1"
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.selectManager(lead.id)
                           }
-                        },
-                        [_c("i", { staticClass: "fas fa-user-check" })]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c(
-                    "b-col",
-                    { staticClass: "py-3", attrs: { md: "3" } },
-                    [
-                      _c(
-                        "b-button",
-                        {
-                          directives: [
-                            {
-                              name: "b-tooltip",
-                              rawName: "v-b-tooltip.hover.right",
-                              value: "Tooltip!",
-                              expression: "'Tooltip!'",
-                              modifiers: { hover: true, right: true }
-                            }
-                          ],
-                          attrs: { variant: "primary" }
-                        },
-                        [_vm._v("Right")]
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
+                        }
+                      },
+                      [_c("i", { staticClass: "fas fa-user-check" })]
+                    )
+                  : _vm._e()
+              ]),
               _vm._v(" "),
               lead.company == "0"
                 ? _c("td", { staticClass: "_chem" }, [
