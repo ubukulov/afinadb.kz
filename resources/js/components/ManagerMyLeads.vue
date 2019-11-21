@@ -31,6 +31,7 @@
                             <td>
                                 <button title="Выполнено" v-on:click="completeLead(lead.id)" class="btn btn-primary"><i class="fas fa-check"></i></button>
                                 <button title="Отказаться от запроса" v-on:click="cancelLeadForm(lead.id)" class="btn btn-danger"><i class="fas fa-times"></i></button>
+                                <button title="Прослушать разговоры с клиентами" v-on:click="showAudioTalkWithCustomers(lead.phone)" class="btn btn-danger"><i class="fas fa-headphones"></i></button>
                             </td>
                         </tr>
                     </tbody>
@@ -45,6 +46,7 @@
                         <th width="150">Имя</th>
                         <th width="150">Тел</th>
                         <th width="250">Комментарии</th>
+                        <th width="100">Действие</th>
                     </thead>
                     <tbody>
                         <tr v-for="lead in completing_leads" v-bind:key="lead.id">
@@ -52,6 +54,11 @@
                             <td>{{ lead.name }}</td>
                             <td>{{ lead.phone }}</td>
                             <td>{{ lead.comment }}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button title="Прослушать разговоры с клиентами" v-on:click="showAudioTalkWithCustomers(lead.phone)" class="btn btn-danger"><i class="fas fa-headphones"></i></button>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

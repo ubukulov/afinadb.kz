@@ -2458,6 +2458,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2672,6 +2675,12 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3319,6 +3328,13 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -40714,53 +40730,81 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("td", [
-                lead.m_type == "0"
-                  ? _c("div", { staticClass: "status_btn" }, [
-                      _c("div", [
-                        _vm._v(_vm._s(lead.user_name + " " + lead.last_name))
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "_completed" })
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                lead.m_type == "2"
-                  ? _c("div", { staticClass: "status_btn" }, [
-                      _c("div", [
-                        _vm._v(_vm._s(lead.user_name + " " + lead.last_name))
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "_canceled" })
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                lead.m_type == "1"
-                  ? _c("div", { staticClass: "status_btn" }, [
-                      _c("div", [
-                        _vm._v(_vm._s(lead.user_name + " " + lead.last_name))
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "_processed" })
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                lead.ss == "1"
-                  ? _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-primary",
-                        attrs: { type: "button" },
-                        on: {
-                          click: function($event) {
-                            return _vm.selectManager(lead.id)
+              _c(
+                "td",
+                [
+                  lead.m_type == "0"
+                    ? _c("div", { staticClass: "status_btn" }, [
+                        _c("div", [
+                          _vm._v(_vm._s(lead.user_name + " " + lead.last_name))
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "_completed" })
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  lead.m_type == "2"
+                    ? _c("div", { staticClass: "status_btn" }, [
+                        _c("div", [
+                          _vm._v(_vm._s(lead.user_name + " " + lead.last_name))
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "_canceled" })
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  lead.m_type == "1"
+                    ? _c("div", { staticClass: "status_btn" }, [
+                        _c("div", [
+                          _vm._v(_vm._s(lead.user_name + " " + lead.last_name))
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "_processed" })
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  lead.ss == "1"
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              return _vm.selectManager(lead.id)
+                            }
                           }
-                        }
-                      },
-                      [_vm._v("Выбрать Менеджера")]
-                    )
-                  : _vm._e()
-              ]),
+                        },
+                        [_c("i", { staticClass: "fas fa-user-check" })]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "b-col",
+                    { staticClass: "py-3", attrs: { md: "3" } },
+                    [
+                      _c(
+                        "b-button",
+                        {
+                          directives: [
+                            {
+                              name: "b-tooltip",
+                              rawName: "v-b-tooltip.hover.right",
+                              value: "Tooltip!",
+                              expression: "'Tooltip!'",
+                              modifiers: { hover: true, right: true }
+                            }
+                          ],
+                          attrs: { variant: "primary" }
+                        },
+                        [_vm._v("Right")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
               _vm._v(" "),
               lead.company == "0"
                 ? _c("td", { staticClass: "_chem" }, [
@@ -41731,6 +41775,32 @@ var render = function() {
                         _vm._v(" "),
                         _c("div", { staticClass: "_completed" })
                       ])
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "div",
+                        { staticClass: "btn-group", attrs: { role: "button" } },
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-danger",
+                              attrs: {
+                                title: "Прослушать разговоры с клиентами"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.showAudioTalkWithCustomers(
+                                    lead.phone
+                                  )
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-headphones" })]
+                          )
+                        ]
+                      )
                     ])
                   ])
                 }),
@@ -42214,7 +42284,9 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", { attrs: { width: "250" } }, [_vm._v("Комментарии")]),
       _vm._v(" "),
-      _c("th", { attrs: { width: "200" } }, [_vm._v("Менеджер")])
+      _c("th", { attrs: { width: "200" } }, [_vm._v("Менеджер")]),
+      _vm._v(" "),
+      _c("th", { attrs: { width: "100" } }, [_vm._v("Действие")])
     ])
   },
   function() {
@@ -42942,6 +43014,20 @@ var render = function() {
                           }
                         },
                         [_c("i", { staticClass: "fas fa-times" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger",
+                          attrs: { title: "Прослушать разговоры с клиентами" },
+                          on: {
+                            click: function($event) {
+                              return _vm.showAudioTalkWithCustomers(lead.phone)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "fas fa-headphones" })]
                       )
                     ])
                   ])
@@ -42986,7 +43072,29 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(lead.phone))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(lead.comment))])
+                    _c("td", [_vm._v(_vm._s(lead.comment))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("div", { staticClass: "btn-group" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger",
+                            attrs: {
+                              title: "Прослушать разговоры с клиентами"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.showAudioTalkWithCustomers(
+                                  lead.phone
+                                )
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "fas fa-headphones" })]
+                        )
+                      ])
+                    ])
                   ])
                 }),
                 0
@@ -43461,7 +43569,9 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", { attrs: { width: "150" } }, [_vm._v("Тел")]),
       _vm._v(" "),
-      _c("th", { attrs: { width: "250" } }, [_vm._v("Комментарии")])
+      _c("th", { attrs: { width: "250" } }, [_vm._v("Комментарии")]),
+      _vm._v(" "),
+      _c("th", { attrs: { width: "100" } }, [_vm._v("Действие")])
     ])
   },
   function() {

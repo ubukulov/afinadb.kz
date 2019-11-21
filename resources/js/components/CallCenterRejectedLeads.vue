@@ -59,6 +59,7 @@
                     <th width="100">Телефон</th>
                     <th width="250">Комментарии</th>
                     <th width="200">Менеджер</th>
+                    <th width="100">Действие</th>
                     </thead>
                     <tbody>
                     <tr v-for="lead in completedLeads">
@@ -72,6 +73,11 @@
                             <div class="status_btn">
                                 <div>{{ lead.first_name + " " + lead.last_name }}</div>
                                 <div class="_completed"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group" role="button">
+                                <button title="Прослушать разговоры с клиентами" v-on:click="showAudioTalkWithCustomers(lead.phone)" class="btn btn-danger"><i class="fas fa-headphones"></i></button>
                             </div>
                         </td>
                     </tr>
