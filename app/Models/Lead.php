@@ -146,6 +146,7 @@ class Lead extends Model
             DB::update("UPDATE leads SET ss = '1' WHERE id='$lead_id'");
             DB::update("UPDATE manager_leads SET ss = '1' WHERE lead_id = '$lead_id'");
             DB::update("UPDATE rejected_leads SET ss = '0' WHERE lead_id = '$lead_id'");
+            DB::commit();
             return response('Запрос успешно восстановлено', 200);
         } catch (\Exception $exception) {
             DB::rollBack();
@@ -160,6 +161,7 @@ class Lead extends Model
         try {
             DB::update("UPDATE manager_leads SET ss = '1' WHERE lead_id='$lead_id'");
             DB::update("UPDATE rejected_leads SET ss = '0' WHERE lead_id='$lead_id'");
+            DB::commit();
             return response('Запрос успешно восстановлено', 200);
         } catch (\Exception $exception) {
             DB::rollBack();

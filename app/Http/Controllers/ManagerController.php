@@ -66,7 +66,7 @@ class ManagerController extends BaseController
                             'lead_id' => $lead_id, 'manager_id' => $manager_id, 'ss' => '1', 'tm' => Carbon::now(),
                             'comment' => json_encode($comments, JSON_UNESCAPED_UNICODE)
                         ]);
-
+                        DB::commit();
                         return response('Запрос успешно отменен!', 200);
                     } else {
                         $rejected_lead = RejectedLead::where(['lead_id' => $lead_id])->first();
@@ -77,7 +77,7 @@ class ManagerController extends BaseController
                             $rejected_lead->ss = '1';
                             $rejected_lead->save();
                         }
-
+                        DB::commit();
                         return response('Запрос успешно отменен!', 200);
                     }
                 } catch (\Exception $e) {

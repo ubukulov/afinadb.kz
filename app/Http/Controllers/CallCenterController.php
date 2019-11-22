@@ -42,7 +42,7 @@ class CallCenterController extends BaseController
                 $lead = Lead::findOrFail($lead_id);
                 $lead->ss = '0';
                 $lead->save();
-
+                DB::commit();
                 return response('Запрос успешно закреплен за вами', 200);
             } catch (\Exception $e) {
                 DB::rollBack();

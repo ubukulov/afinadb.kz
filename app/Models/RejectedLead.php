@@ -39,6 +39,7 @@ class RejectedLead extends Model
                         $c = json_encode($comm, JSON_UNESCAPED_UNICODE);
                         DB::update("UPDATE rejected_leads SET comment = '$c', ss = '2' WHERE lead_id = '$lead_id'");
                         DB::update("UPDATE manager_leads SET type='1' WHERE lead_id='$lead_id'");
+                        DB::commit();
                         return response('Запрос на рассмотрений у Менеджера!', 200);
                     } catch (\Exception $exception) {
                         DB::rollBack();

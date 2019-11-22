@@ -106,6 +106,7 @@ class ApiController extends Controller
                     DB::update("UPDATE manager_leads SET manager_id='$manager_id' WHERE manager_id='$id'");
                     DB::update("UPDATE rejected_leads SET manager_id='$manager_id' WHERE manager_id='$id'");
                     User::destroy($id);
+                    DB::commit();
                 } catch (\Exception $exception) {
                     DB::rollBack();
                     return response("Ошибка сервера: $exception", 500);
