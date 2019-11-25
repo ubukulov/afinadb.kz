@@ -20,7 +20,7 @@ class AuthController extends BaseController
     public function authenticate(Request $request)
     {
         $user = User::where(['email' => $request->input('username'), 'password' => $request->input('password')])->first();
-        if ($user) {
+        if ($user && $user->deleted == '1') {
             Auth::login($user);
             $_token = Str::random(60);
             if (empty($user->api_token)) {
@@ -31,7 +31,11 @@ class AuthController extends BaseController
                 $user->save();
             }
             return redirect()->route('home');
+        } elseif ($user && $user->deleted == '0') {
+            flash('Ваш аккаунт заблокировано.')->warning();
+            return redirect()->back();
         } else {
+            flash('Логин или пароль не правильно')->error();
             return redirect()->back();
         }
     }

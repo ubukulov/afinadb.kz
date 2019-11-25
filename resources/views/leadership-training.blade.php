@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('content')
     <div class="content_title">Обучение для Руководителей</div>
+
+    @include('partials.sales_standarts')
+
     <div class="block">
         <div class="block_title">Начальное обучение</div>
         <div class="block_content">

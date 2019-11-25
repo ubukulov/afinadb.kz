@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('content')
     <div class="content_title">Начальное обучение</div>
+
+    @include('partials.sales_standarts')
+
     <div class="block">
         <div class="block_title">Введение в туризм</div>
         <div class="block_content">
@@ -60,10 +63,6 @@
         <div class="block_content">
             <div class="bc_title">ANEX TOUR: работа с претензиями</div>
             <div class="b_download_btn" onclick="return showVideoYoutube(this)" data-video="https://www.youtube.com/embed/DYNhab_3hCs">Смотреть</div>
-        </div>
-        <div class="block_content">
-            <div class="bc_title">Стандарты работы Чемодан</div>
-            <a href="/sources/files/Стандарты_работы.pdf" target="_blank"><div class="b_download_btn">Скачать</div></a>
         </div>
         <div class="block_content">
             <div class="bc_title">Правила и стандарты работы офиса</div>
