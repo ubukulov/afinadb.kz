@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HotTour;
 use App\Models\Lead;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -95,5 +96,34 @@ class AjaxController extends BaseController
             DB::rollBack();
             return response("Ошибка сервера: $exception", 500);
         }
+    }
+
+    public function getHotTours()
+    {
+        $COUNTRY = '';
+        if (isset($_GET['country'])) {
+            $COUNTRY = " AND `country`='".$_GET['country']."'";
+        }
+        $CITY = '';
+        if (isset($_GET['city'])) {
+            $CITY = " AND `city`='".$_GET['city']."'";
+        }
+        $hot_tours = DB::select("SELECT * FROM `hottours`  WHERE `date_from` >= CURDATE() AND `ss`='0' ".$COUNTRY." ".$CITY." ORDER BY `ct` DESC");
+        $tours = [];
+        $countries = ['Болгария','Вьетнам','Греция','Индия','Китай','Куба','Малайзия','Грузия','Доминикана','Египет','Мальдивы','ОАЭ','Таиланд','Турция','Чехия','О.Бали','Хургада'];
+        $office_list = ['Алматы','Нур-Султан','Актау','Караганда','Шымкент','Актобе','Атырау'];
+        foreach($hot_tours as $hot_tour) {
+            $tours[] = [
+                'url'=> $hot_tour->url, 'id'=> $hot_tour->id, 'title'=> $hot_tour->title, 'text' => $hot_tour->text, 'price' => $hot_tour->price,
+                'date_from' => $this->dateDiff($hot_tour->date_from), 'ss' => $hot_tour->ss, 'ct' => $hot_tour->ct, 'sale' => $hot_tour->sale,
+                'country' => $countries[$hot_tour->country], 'city' => $office_list[$hot_tour->city]
+            ];
+        }
+        return json_encode($tours);
+    }
+
+    public function dateDiff ($d1) {
+        // Return the number of days between the two dates:
+        return round(abs(strtotime($d1)-strtotime("today"))/86400);
     }
 }

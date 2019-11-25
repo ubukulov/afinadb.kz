@@ -78,4 +78,5 @@ Route::post('/triphacker', 'IndexController@triphacker'); // принимает 
 Route::group(['middleware' => 'cors'], function(){
     Route::post('/ajax', 'AjaxController@leadsFromOtherSources');
     Route::post('/leads-for-credit', 'AjaxController@leadsForCredit');
+    Route::get('/get/hot-tours', 'AjaxController@getHotTours');
 });
