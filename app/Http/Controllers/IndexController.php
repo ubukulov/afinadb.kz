@@ -80,9 +80,9 @@ class IndexController extends BaseController
         if (!isset($data['leads']['city_id'])) {
             $data['leads']['city_id'] = 1;
         }
-        dd($data['leads']['phone']);
+        $email = (isset($data['leads']['email'])) ? $data['leads']['email'] : '';
         $lead = Lead::create([
-            'url' => $data['leads']['url'], 'tm' => Carbon::now(), 'phone' => $data['leads']['phone'], 'email' => $data['leads']['email'],
+            'url' => $data['leads']['url'], 'tm' => Carbon::now(), 'phone' => $data['leads']['phone'], 'email' => $email,
             'name' => $data['leads']['name'], 'type' => $data['leads']['type'], 'ss' => '1', 'company' => $data['leads']['company'], 'city_id' => $data['leads']['city_id'],
             'comment' => $data['leads']['comment']
         ]);
