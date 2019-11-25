@@ -84,7 +84,7 @@
 <script src="{{ asset('js/my_scripts.js') }}"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
 <script type="text/javascript">
-    $("#phone_number").mask("+7 999 999 9999");
+    $("#phone_number, #get_phone_number").mask("+7 999 999 9999");
     $('.navbar-nav>li>a').on('click', function(){
         $('.navbar-collapse').collapse('hide');
     });
