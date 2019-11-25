@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://sb.homecredit.kz/Form/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Form" targetNamespace="http://sb.homecredit.kz/Form/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://sb.homecredit.kz/Form/">
+      <xsd:element name="SendAppl">
+        <xsd:complexType>
+          <xsd:sequence>
+			<xsd:element name="P_USER" type="xsd:string">
+          		<xsd:annotation>
+          			<xsd:documentation>
+				User Name
+				</xsd:documentation>
+          		</xsd:annotation></xsd:element>
+  
+			<xsd:element name="P_PASSWORD" type="xsd:string">
+          		<xsd:annotation>
+          			<xsd:documentation>
+				User password
+				</xsd:documentation>
+          		</xsd:annotation></xsd:element>
+
+			<xsd:element name="P_APPL_NUM" type="xsd:string">
+          		<xsd:annotation>
+          			<xsd:documentation>
+				Number of application (Sulpak)
+				</xsd:documentation>
+          		</xsd:annotation></xsd:element>
+  
+          		<xsd:element name="P_IIN" type="xsd:string">
+          		<xsd:annotation>
+          			<xsd:documentation>
+				Client IIN
+				</xsd:documentation>
+          		</xsd:annotation></xsd:element>
+               		
+			<xsd:element name="P_CL_NAME" type="xsd:string">
+          		<xsd:annotation>
+          			<xsd:documentation>
+				Client name
+				</xsd:documentation>
+          		</xsd:annotation></xsd:element>
+
+			<xsd:element name="P_MOBPHONE" type="xsd:string">
+          		<xsd:annotation>
+				<xsd:documentation>
+				Mobile Number
+				</xsd:documentation>
+          		</xsd:annotation></xsd:element>
+				
+			<xsd:element name="P_AMOUNT" type="xsd:string">
+          		<xsd:annotation>
+          			<xsd:documentation>
+				Amount of application
+				</xsd:documentation>
+          		</xsd:annotation></xsd:element>
+				
+			<xsd:element name="P_GOODS" type="xsd:string">
+          		<xsd:annotation>
+          			<xsd:documentation>
+				Goods
+				</xsd:documentation>
+          		</xsd:annotation></xsd:element>
+				
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SendApplResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+          	<xsd:element name="RETCODE" type="xsd:string">
+	       		 <xsd:annotation>
+			<xsd:documentation>
+			Retcode 1 means OK, 0 wrong paramenets, -1 auth error, -3 internal error,
+			2 Application exsist, 3 Incorrect IIN, 4 Incorrect amount, 
+			5 wrong format of mob phone, 6 incorrect mob phone
+			</xsd:documentation>
+          		 </xsd:annotation>
+          	</xsd:element>
+          	<xsd:element name="MSG" type="xsd:string">
+	       		 <xsd:annotation>
+			<xsd:documentation>
+			Error message
+			</xsd:documentation>
+          		 </xsd:annotation>
+          	</xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="CheckStatus">
+        <xsd:complexType>
+          <xsd:sequence>
+			<xsd:element name="P_USER" type="xsd:string">
+          		<xsd:annotation>
+          			<xsd:documentation>
+				User name
+				</xsd:documentation>
+          		</xsd:annotation></xsd:element>
+			<xsd:element name="P_PASSWORD" type="xsd:string">
+          		<xsd:annotation>
+          			<xsd:documentation>
+				User password
+				</xsd:documentation>
+          		</xsd:annotation></xsd:element>
+			<xsd:element name="P_APPL_NUM" type="xsd:string">
+          		<xsd:annotation>
+          			<xsd:documentation>
+				APPL_NUM
+				</xsd:documentation>
+          		</xsd:annotation></xsd:element>
+          </xsd:sequence>
+          </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CheckStatusResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+          	<xsd:element name="STATUS" type="xsd:string">
+	       		 <xsd:annotation>
+			<xsd:documentation>
+			Status of application
+			</xsd:documentation>
+          		 </xsd:annotation>
+          	</xsd:element>
+          	<xsd:element name="SCODE" type="xsd:string">
+	       		 <xsd:annotation>
+			<xsd:documentation>
+			Status code
+			</xsd:documentation>
+          		 </xsd:annotation>
+          	</xsd:element>
+          	<xsd:element name="RETCODE" type="xsd:string">
+	       		 <xsd:annotation>
+			<xsd:documentation>
+			Retcode 1 means OK,0 Internal error, -1 auth error, 2 Application is not exist
+			</xsd:documentation>
+          		 </xsd:annotation>
+          	</xsd:element>
+          	<xsd:element name="MSG" type="xsd:string">
+	       		 <xsd:annotation>
+			<xsd:documentation>
+			Error message
+			</xsd:documentation>
+          		 </xsd:annotation>
+          	</xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="Confirm">
+          <xsd:complexType>
+          <xsd:sequence>
+			<xsd:element name="P_USER" type="xsd:string">
+          		<xsd:annotation>
+          			<xsd:documentation>
+				User name
+				</xsd:documentation>
+          		</xsd:annotation></xsd:element>
+			<xsd:element name="P_PASSWORD" type="xsd:string">
+          		<xsd:annotation>
+          			<xsd:documentation>
+				User password
+				</xsd:documentation>
+          		</xsd:annotation></xsd:element>
+			<xsd:element name="P_APPL_NUM" type="xsd:string">
+          		<xsd:annotation>
+          			<xsd:documentation>
+				Number of application (Sulpak)
+				</xsd:documentation>
+          		</xsd:annotation></xsd:element>
+			<xsd:element name="P_ORDER_NUM" type="xsd:string">
+          		<xsd:annotation>
+          			<xsd:documentation>
+				Number of order (Sulpak)
+				</xsd:documentation>
+          		</xsd:annotation></xsd:element>
+			<xsd:element name="P_PICKUP_STORE" type="xsd:string">
+          		<xsd:annotation>
+          			<xsd:documentation>
+				Place of shop (Sulpak)
+				</xsd:documentation>
+          		</xsd:annotation></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+        <xsd:element name="ConfirmResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+          	<xsd:element name="RETCODE" type="xsd:string">
+	       		 <xsd:annotation>
+	       		 <xsd:documentation>
+			Retcode 1 means OK, 0 Internal error, -1 Auth error, 2 Application is not exist
+			</xsd:documentation>
+          		 </xsd:annotation>
+          	</xsd:element>
+          	<xsd:element name="MSG" type="xsd:string">
+	       		 <xsd:annotation>
+			<xsd:documentation>
+			Message
+			</xsd:documentation>
+          		 </xsd:annotation>
+          	</xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+
+  <wsdl:message name="SendApplRequest">
+    <wsdl:part element="tns:SendAppl" name="parameters"/>
+  </wsdl:message>
+    <wsdl:message name="SendApplResponse">
+    <wsdl:part element="tns:SendApplResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="CheckStatusRequest">
+    <wsdl:part element="tns:CheckStatus" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="CheckStatusResponse">
+    <wsdl:part element="tns:CheckStatusResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="ConfirmRequest">
+    <wsdl:part element="tns:Confirm" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ConfirmResponse">
+    <wsdl:part element="tns:ConfirmResponse" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:portType name="Form">
+    <wsdl:operation name="SendAppl">
+      <wsdl:input message="tns:SendApplRequest"/>
+      <wsdl:output message="tns:SendApplResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="CheckStatus">
+      <wsdl:input message="tns:CheckStatusRequest"/>
+      <wsdl:output message="tns:CheckStatusResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="Confirm">
+      <wsdl:input message="tns:ConfirmRequest"/>
+      <wsdl:output message="tns:ConfirmResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FormSOAP" type="tns:Form">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="SendAppl">
+      <soap:operation soapAction="https://sb.homecredit.kz/Form/SendForm"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckStatus">
+      <soap:operation soapAction="https://sb.homecredit.kz/Form/SendForm"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Confirm">
+      <soap:operation soapAction="https://sb.homecredit.kz/Form/SendForm"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Form">
+    <wsdl:port binding="tns:FormSOAP" name="FormSOAP">
+      <soap:address location="https://sb.homecredit.kz/Form/eshop.php"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

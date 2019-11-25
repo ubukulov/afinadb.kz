@@ -75,4 +75,7 @@ Route::group(['prefix' => 'director'], function(){
 });
 
 Route::post('/triphacker', 'IndexController@triphacker'); // принимает данные из поисковика TripHacker
-Route::post('/ajax', 'IndexController@leadsFromOtherSources')->middleware(['cors']);
+Route::group(['middleware' => 'cors'], function(){
+    Route::post('/ajax', 'AjaxController@leadsFromOtherSources');
+    Route::post('/leads-for-credit', 'AjaxController@leadsForCredit');
+});

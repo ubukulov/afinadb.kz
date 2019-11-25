@@ -73,23 +73,4 @@ class IndexController extends BaseController
             'success' => $lead
         ]);
     }
-
-    public function leadsFromOtherSources(Request $request)
-    {
-        $data = $request->all();
-        if (!isset($data['leads']['city_id'])) {
-            $data['leads']['city_id'] = 1;
-        }
-        $email = (isset($data['leads']['email'])) ? $data['leads']['email'] : '';
-        $lead = Lead::create([
-            'url' => $data['leads']['url'], 'tm' => Carbon::now(), 'phone' => $data['leads']['phone'], 'email' => $email,
-            'name' => $data['leads']['name'], 'type' => $data['leads']['type'], 'ss' => '1', 'company' => $data['leads']['company'], 'city_id' => $data['leads']['city_id'],
-            'comment' => $data['leads']['comment']
-        ]);
-        if ($lead) {
-            return response('Lead successfully created', 200);
-        }
-
-        return response('Error: Lead not created', 500);
-    }
 }
