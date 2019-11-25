@@ -6,6 +6,7 @@ use App\Http\Resources\LeadResource;
 use App\Models\Lead;
 use App\Models\ManagerLead;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\DB;
@@ -27,14 +28,18 @@ class ApiController extends Controller
     public function createUser(Request $request)
     {
         $data = $request->all();
-        $data['api_token'] = hash('sha256', Str::random(60));
-
-        $user = User::create($data);
-        if ($user) {
-            return response('Account has successfully updated!');
+        DB::beginTransaction();
+        try {
+            User::create([
+                'email' => $data['email'], 'password' => $data['password'], 'name' => $data['name'], 'last_name' => $data['last_name'],
+                'status' => $data['status'], 'deleted' => '1', 'date' => Carbon::now(), 'city_id' => $data['city_id'], 'company_id' => $data['company_id']
+            ]);
+            DB::commit();
+            return response('Account has successfully created!');
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return response("Ошибка сервера: $exception", 500);
         }
-
-        return response('Account has successfully updated!');
     }
 
     public function updateUser(Request $request)

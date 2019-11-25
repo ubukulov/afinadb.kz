@@ -221,7 +221,7 @@
                     })
             },
             completeLead(lead_id){
-                if (confirm("Вы точно хотите закрывать запрос?")) {
+                if (confirm("Вы точно хотите закрыть запрос?")) {
                     axios.post('/manager/change/lead/status', {
                         lead_id: lead_id,
                         process: 'complete'

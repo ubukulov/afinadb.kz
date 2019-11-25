@@ -3555,7 +3555,7 @@ __webpack_require__.r(__webpack_exports__);
     completeLead: function completeLead(lead_id) {
       var _this2 = this;
 
-      if (confirm("Вы точно хотите закрывать запрос?")) {
+      if (confirm("Вы точно хотите закрыть запрос?")) {
         axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/manager/change/lead/status', {
           lead_id: lead_id,
           process: 'complete'

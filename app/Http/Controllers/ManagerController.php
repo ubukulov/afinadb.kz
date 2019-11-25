@@ -94,11 +94,19 @@ class ManagerController extends BaseController
     public function setLeadForMe($lead_id)
     {
         if (!ManagerLead::exists($lead_id)) {
-            ManagerLead::create([
-                'lead_id' => $lead_id, 'manager_id' => \Auth::user()->id, 'tm' => Carbon::now(),
-                'type' => '1', 'ss' => '0'
-            ]);
-            return response('Запрос успешно закреплен!', 200);
+            DB::beginTransaction();
+            try {
+                ManagerLead::create([
+                    'lead_id' => $lead_id, 'manager_id' => \Auth::user()->id, 'tm' => Carbon::now(),
+                    'type' => '1', 'ss' => '0'
+                ]);
+                DB::update("UPDATE leads SET ss='0' WHERE id='$lead_id'");
+                DB::commit();
+                return response('Запрос успешно закреплен!', 200);
+            } catch (\Exception $exception) {
+                DB::rollBack();
+                return response("Ошибка сервера: $exception", 500);
+            }
         }
 
         return response('Запрос уже закреплен под другим менеджером', 409);

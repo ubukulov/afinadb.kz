@@ -77,16 +77,16 @@
         <div class="content_title">Хорошие звонки</div>
         <div class="block_content" style="display: none;">
             <div class="bc_title">Пример №1</div>
-            <div class="b_download_btn"><audio src="/audio/w-1.wav" controls=""></audio></div>
+            <div class="b_download_btn"><audio src="{{ asset('audio/w-1.wav') }}" controls=""></audio></div>
         </div>
         <div class="block_content">
             <div class="bc_title">Пример №1</div>
-            <div class="b_download_btn"><audio src="/audio/w-2.wav" controls=""></audio></div>
+            <div class="b_download_btn"><audio src="{{ asset('audio/w-2.wav') }}" controls=""></audio></div>
         </div>
         <div class="content_title">Плохой звонок</div>
         <div class="block_content">
             <div class="bc_title">Пример №1</div>
-            <div class="b_download_btn"><audio src="/audio/w-3.wav" controls=""></audio></div>
+            <div class="b_download_btn"><audio src="{{ asset('audio/w-3.wav') }}" controls=""></audio></div>
         </div>
     </div>
     <div class="content_title">Поиск тура</div>
