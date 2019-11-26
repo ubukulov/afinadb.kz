@@ -42321,7 +42321,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
       _c("h5", { staticClass: "modal-title text-center" }, [
-        _vm._v("Список аудио файлы")
+        _vm._v("Список аудиозаписей")
       ]),
       _vm._v(" "),
       _c(
@@ -42350,7 +42350,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("br"),
       _vm._v(
-        "\n                                    Аудио запись не найдено!\n                                "
+        "\n                                    Аудиозапись не найдено!\n                                "
       )
     ])
   }
@@ -43618,7 +43618,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
       _c("h5", { staticClass: "modal-title text-center" }, [
-        _vm._v("Список аудио файлы")
+        _vm._v("Список аудиозаписей")
       ]),
       _vm._v(" "),
       _c(
@@ -43647,7 +43647,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("br"),
       _vm._v(
-        "\n                                    Аудио запись не найдено!\n                                "
+        "\n                                    Аудиозапись не найдено!\n                                "
       )
     ])
   }

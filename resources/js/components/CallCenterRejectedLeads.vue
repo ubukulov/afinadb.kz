@@ -179,7 +179,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title text-center">Список аудио файлы</h5>
+                        <h5 class="modal-title text-center">Список аудиозаписей</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -199,7 +199,7 @@
                                 <div v-else="audio_talking.length == 0" class="col-md-12 text-center" style="padding: 40px;">
                                     <p style="font-size: 20px;">
                                         <i style="font-size: 40px;" class="fas fa-exclamation-triangle"></i> <br>
-                                        Аудио запись не найдено!
+                                        Аудиозапись не найдено!
                                     </p>
                                 </div>
                             </div>

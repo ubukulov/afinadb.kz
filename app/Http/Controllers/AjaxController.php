@@ -32,15 +32,15 @@ class AjaxController extends BaseController
     public function leadsForCredit(Request $request)
     {
         $data = $request->all();
-        $first_name = $data['name'];
-        $phone = $data['phone'];
+        $first_name = $data['leads_for_credit']['name'];
+        $phone = $data['leads_for_credit']['phone'];
         $phone_for_bank = substr(preg_replace("/[^0-9]/", '', $phone), 1);
-        $iin = $data['iin'];
-        $total = $data['sum'];
-        $sum = preg_replace("/[^0-9]/", '', $data['sum']);
-        $txt = $data['txt'];
-        $url = $data['url'];
-        $comment = $data['comment'];
+        $iin = $data['leads_for_credit']['iin'];
+        $total = $data['leads_for_credit']['sum'];
+        $sum = preg_replace("/[^0-9]/", '', $total);
+        $txt = $data['leads_for_credit']['txt'];
+        $url = $data['leads_for_credit']['url'];
+        $comment = $data['leads_for_credit']['comment'];
 
         DB::beginTransaction();
         try {
