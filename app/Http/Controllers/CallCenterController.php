@@ -122,9 +122,10 @@ class CallCenterController extends BaseController
             'required' => 'Поля обязательно к заполнению'
         ]);
         $data = $request->all();
+        $type = $data['type'];
         Lead::create([
             'url' => '/', 'comment' => $data['comment'], 'phone' => $data['phone'], 'email' => $data['email'],
-            'name' => $data['first_name'], 'type' => $data['type'], 'ss' => '1', 'city_id' => $data['city_id']
+            'name' => $data['first_name'], 'type' => "$type", 'ss' => '1', 'city_id' => $data['city_id']
         ]);
         return response('Запрос успешно создан');
     }
