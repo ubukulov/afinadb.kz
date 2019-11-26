@@ -41186,11 +41186,7 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control",
-                        attrs: {
-                          id: "phone_number",
-                          type: "text",
-                          placeholder: "Телефон"
-                        },
+                        attrs: { type: "text", placeholder: "Телефон" },
                         domProps: { value: _vm.phone },
                         on: {
                           input: function($event) {

@@ -174,7 +174,7 @@
                                     <span v-if="errors.email" class="error alert-danger">{{ errors.email[0] }}</span>
                                 </div>
                                 <div class="form-group">
-                                    <input v-model="phone" id="phone_number" type="text" class="form-control" placeholder="Телефон">
+                                    <input v-model="phone" type="text" class="form-control" placeholder="Телефон">
                                     <span v-if="errors.phone" class="error alert-danger">{{ errors.phone[0] }}</span>
                                 </div>
                                 <div class="form-group">
