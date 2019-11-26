@@ -117,7 +117,6 @@ class CallCenterController extends BaseController
         $this->validate($request, [
            'first_name' => 'required',
             'email' => 'required',
-            'phone' => 'required',
             'comment' => 'required'
         ], [
             'required' => 'Поля обязательно к заполнению'
