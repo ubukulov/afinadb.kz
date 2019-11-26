@@ -20,6 +20,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         'triphacker',
-        'ajax'
+        'ajax',
+        'leads-for-credit'
     ];
 }
