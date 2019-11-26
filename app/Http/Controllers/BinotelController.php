@@ -70,12 +70,6 @@ class BinotelController extends BaseController
     public function getAudioTalkingWithCustomers(Request $request)
     {
         $phone = $request->input('phone');
-        $arr = [
-            '+7 771 800 0093',
-            '+77027606701',
-            '87477928926',
-            '7 701 284 -22-71'
-        ];
         $phone = preg_replace("/[^+0-9]/", '', $phone);
         if (strlen($phone) ==  12) {
             $phone = '8'.substr($phone, 2);

@@ -40,6 +40,9 @@
                         @case('FRANCHISE_DIRECTOR')
                             @include('pattern.director_menu')
                         @break
+                        @case('IT')
+                            @include('pattern.it_menu')
+                        @break
 
                         @default
                             @include('pattern.left_menu')

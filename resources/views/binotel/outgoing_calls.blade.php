@@ -3,6 +3,7 @@
     <div class="content_title">Исходящие звонки</div>
     <table class="table table-striped">
         <thead>
+        <th>Дата</th>
         <th>вн.номер</th>
         <th>Номер клиента</th>
         <th>Сотрудник</th>
@@ -13,6 +14,7 @@
         @foreach($all_calls_per_day as $item)
             @if($item['callType'] == 1)
                 <tr>
+                    <td>{{ date("d.m.Y H:i", $item['startTime']) }}</td>
                     <td>{{ $item['internalNumber'] }}</td>
                     <td>{{ $item['externalNumber'] }}</td>
                     <td>{{ $item['employeeName'] }}</td>
