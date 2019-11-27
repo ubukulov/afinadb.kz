@@ -150,10 +150,11 @@ class CallCenterController extends BaseController
             $worksheet = $reader->getActiveSheet();
             $numberLastRow = $worksheet->getHighestDataRow();
             for($i=2; $i <= $numberLastRow; $i++) {
+                $type = $this->parseType($worksheet->getCell('L'.$i)->getValue());
                 Lead::create([
                     'url' => '/', 'tm' => Carbon::now(), 'comment' => "Комментарий: ".$worksheet->getCell('H'.$i)->getValue(), 'phone' => $worksheet->getCell('N'.$i)->getValue(),
-                    'name' => $worksheet->getCell('M'.$i)->getValue(), 'type' => $this->parseType($worksheet->getCell('L'.$i)->getValue()),
-                    'ss' => '1', 'company' => $company_id, 'city_id' => $city_id, 'email' => ''
+                    'name' => $worksheet->getCell('M'.$i)->getValue(), 'type' => "$type",
+                    'ss' => '1', 'company' => $company_id, 'city_id' => $city_id
                 ]);
             }
             return response('Лиды успешно импортированы');
