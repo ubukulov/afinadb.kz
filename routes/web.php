@@ -40,6 +40,7 @@ Route::group(['middleware' => ['web', 'auth']], function(){
     # Статистика
     Route::get('/stats/leads', 'StatController@getStatsOfLeads')->name('stats.leads'); // статистика запросов
     Route::get('/stats/managers', 'StatController@getStatsOfManagers')->name('stats.managers'); // статистика менеджеров
+    Route::get('/stats/sources', 'StatController@getStatsOfSources')->name('stats.sources'); // Статистика по источникам
 });
 
 Route::group(['prefix' => 'manager'], function(){
