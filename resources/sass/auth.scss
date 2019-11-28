@@ -1,11 +1,15 @@
 .auth-form {
   width: 600px;
   margin: 50px auto;
-  background: #fff;
+  max-width: 100%;
 
   .auth-f {
     width: 70%;
     margin: 0 auto;
+
+    button {
+      width: 100%;
+    }
   }
   
   .auth-header {

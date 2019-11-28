@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
     <title>Добро пожаловать | Вход в Афину</title>
 </head>
 <body>
@@ -35,7 +35,7 @@
             </div>
 
             <div class="form-group">
-                <button class="btn btn-primary" type="submit">Войти в систему</button>
+                <button class="btn btn-primary" type="submit"><i class="fas fa-sign-in-alt"></i>&nbsp;Войти в систему</button>
             </div>
         </form>
     </div>

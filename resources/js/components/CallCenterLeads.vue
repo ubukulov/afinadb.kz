@@ -19,8 +19,8 @@
             </div>
             <div class="col-md-7 text-right">
                 <div class="btn-group" role="button">
-                    <button v-on:click="createLeadForm()" class="btn btn-primary _create">Создать запрос</button>
-                    <button v-on:click="openUploadFileForm()" class="btn btn-default _257_btn">Загрузить отчет</button>
+                    <button v-on:click="createLeadForm()" class="btn btn-primary _create"><i class="fas fa-edit"></i>&nbsp;Создать запрос</button>
+                    <button v-on:click="openUploadFileForm()" class="btn btn-default _257_btn"><i class="fas fa-upload"></i>&nbsp;Загрузить отчет</button>
                 </div>
             </div>
         </div>
@@ -182,7 +182,7 @@
                                     <span v-if="errors.comment" class="error alert-danger">{{ errors.comment[0] }}</span>
                                 </div>
                                 <div class="form-group">
-                                    <button v-on:click="createLead()" type="button" class="btn btn-primary">Создать запрос</button>
+                                    <button v-on:click="createLead()" type="button" class="btn btn-primary"><i class="fas fa-edit"></i>&nbsp;Создать запрос</button>
                                 </div>
                             </div>
                         </div>

@@ -10799,12 +10799,16 @@ a.text-dark:focus {
 .auth-form {
   width: 600px;
   margin: 50px auto;
-  background: #fff;
+  max-width: 100%;
 }
 
 .auth-form .auth-f {
   width: 70%;
   margin: 0 auto;
+}
+
+.auth-form .auth-f button {
+  width: 100%;
 }
 
 .auth-form .auth-header {

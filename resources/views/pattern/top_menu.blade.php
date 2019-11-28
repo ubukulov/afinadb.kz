@@ -11,7 +11,7 @@
     </button>
 
     <div class="user_info">
-        <p><i class="fas fa-user"></i>&nbsp;{{ Auth::user()->name." ".Auth::user()->last_name }}</p>
+        <p><i class="fas fa-user"></i>&nbsp;{{ Auth::user()->getFullName()." | ".Auth::user()->status }} </p>
         <p><i class="fas fa-map-marker-alt"></i>&nbsp; {{ Auth::user()->city->title }}</p>
         @if(Auth::user()->status == 'CEO')
         <p><i class="fas fa-building"></i>&nbsp;CEO</p>
@@ -33,7 +33,7 @@
             </li>--}}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Статистика
+                    <i class="fas fa-align-justify"></i>&nbsp;Статистика
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{ route('stats.leads') }}">Статистика запросов</a>
@@ -44,7 +44,7 @@
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Звонки
+                    <i class="fas fa-phone"></i>&nbsp;Звонки
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{ route('incoming.calls') }}">Входящие</a>
@@ -84,7 +84,7 @@
                 </div>
             </li>--}}
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('logout') }}">Выйти</a>
+                <a class="nav-link" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i>&nbsp;Выйти</a>
             </li>
         </ul>
     </div>

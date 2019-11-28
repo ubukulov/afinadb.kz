@@ -40896,7 +40896,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("Создать запрос")]
+            [_c("i", { staticClass: "fas fa-edit" }), _vm._v(" Создать запрос")]
           ),
           _vm._v(" "),
           _c(
@@ -40909,7 +40909,10 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("Загрузить отчет")]
+            [
+              _c("i", { staticClass: "fas fa-upload" }),
+              _vm._v(" Загрузить отчет")
+            ]
           )
         ])
       ])
@@ -41580,7 +41583,10 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._v("Создать запрос")]
+                        [
+                          _c("i", { staticClass: "fas fa-edit" }),
+                          _vm._v(" Создать запрос")
+                        ]
                       )
                     ])
                   ])
