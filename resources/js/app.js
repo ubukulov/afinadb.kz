@@ -30,6 +30,7 @@ Vue.component('manager-lead-free', require('./components/ManagerLeadFree.vue').d
 Vue.component('call-center-leads', require('./components/CallCenterLeads.vue').default);
 Vue.component('manager-my-leads', require('./components/ManagerMyLeads.vue').default);
 Vue.component('director-leads', require('./components/DirectorLeads.vue').default);
+Vue.component('director-my-leads', require('./components/DirectorMyLeads.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Http\Resources\LeadResource;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class Lead extends Model
 {
@@ -17,11 +18,22 @@ class Lead extends Model
     public static function getLeads($role = null)
     {
         if ($role == 'MANAGER') {
-            $result = Lead::orderBy('id', 'DESC')
-                ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn'))
-                ->where(['city_id' => \Auth::user()->city_id, 'ss' => '1'])
-                ->whereRaw('leads.tm >= DATE_SUB(CURRENT_DATE(), INTERVAL 15 DAY)')
-                ->paginate(10);
+            if (Auth::user()->company_id == 1 || Auth::user()->company_id == 2) {
+                $result = Lead::orderBy('leads.tm', 'DESC')
+                    ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn'))
+                    ->where(['city_id' => \Auth::user()->city_id, 'ss' => '1'])
+                    ->whereRaw('leads.tm >= DATE_SUB(CURRENT_DATE(), INTERVAL 15 DAY)')
+                    ->paginate(10);
+            } else {
+                // Для менеджеров франшизы закрыть источники: File Client и Звонок в офис
+                $result = Lead::orderBy('id', 'DESC')
+                    ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn'))
+                    ->where(['city_id' => \Auth::user()->city_id, 'ss' => '1'])
+                    ->where('leads.type', '!=', '10')
+                    ->where('leads.type', '!=', '8')
+                    ->whereRaw('leads.tm >= DATE_SUB(CURRENT_DATE(), INTERVAL 15 DAY)')
+                    ->paginate(10);
+            }
         } else {
             $result = Lead::orderBy('leads.id', 'DESC')
                 ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, manager_leads.type AS m_type, accounts.name as user_name, accounts.last_name'))
@@ -172,11 +184,22 @@ class Lead extends Model
     // Получить список лидов для директоров компании
     public static function getLeadsForDirectors()
     {
-        $leads = Lead::orderBy('id', 'DESC')
-            ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn'))
-            ->where(['city_id' => \Auth::user()->city_id, 'ss' => '1'])
-            ->whereRaw('leads.tm >= DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY)')
-            ->paginate(10);
+        if (Auth::user()->company_id == 1 || Auth::user()->company_id == 2) {
+            $leads = Lead::orderBy('leads.tm', 'DESC')
+                ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn'))
+                ->where(['city_id' => Auth::user()->city_id, 'ss' => '1'])
+                ->whereRaw('leads.tm >= DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY)')
+                ->paginate(10);
+        } else {
+            $leads = Lead::orderBy('leads.tm', 'DESC')
+                ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn'))
+                ->where(['city_id' => Auth::user()->city_id, 'ss' => '1'])
+                ->where('leads.type', '!=', '10')
+                ->where('leads.type', '!=', '8')
+                ->whereRaw('leads.tm >= DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY)')
+                ->paginate(10);
+        }
+
         return LeadResource::collection($leads);
     }
 }

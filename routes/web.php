@@ -72,7 +72,10 @@ Route::group(['prefix' => 'call_center'], function(){
 
 Route::group(['prefix' => 'director'], function(){
     Route::get('/leads', 'DirectorController@leads')->name('director.leads');
+    Route::get('/my_leads', 'DirectorController@myLeads')->name('director.myLeads');
+    Route::get('/my/leads', 'DirectorController@getMyLeads'); // получить список моих лидов
     Route::get('/leads/list', 'DirectorController@getLeads');
+    Route::post('/change/lead/status', 'DirectorController@changeLeadStatus'); // изменить статус лида
 });
 
 Route::post('/triphacker', 'IndexController@triphacker'); // принимает данные из поисковика TripHacker

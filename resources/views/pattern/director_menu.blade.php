@@ -2,6 +2,7 @@
     <ul>
         <li><a class="{{ \Request::is('/') ? 'active' : '' }}" href="{{ route('home') }}">Главная</a></li>
         <li><a class="{{ \Request::is('director/leads*') ? 'active' : '' }}" href="{{ route('director.leads') }}">Запросы</a></li>
+        <li><a class="{{ \Request::is('director/my_leads*') ? 'active' : '' }}" href="{{ route('director.myLeads') }}">Мои запросы</a></li>
         <li><a class="{{ \Request::is('call_center/rejected_leads*') ? 'active' : '' }}" href="{{ route('rejected.leads') }}">Отказанные запросы</a></li>
         <li><a class="{{ \Request::is('marketing*') ? 'active' : '' }}" href="{{ route('marketing') }}">Маркетинг</a></li>
         <li>

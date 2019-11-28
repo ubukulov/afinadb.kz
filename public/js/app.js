@@ -3106,6 +3106,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -3183,11 +3184,337 @@ __webpack_require__.r(__webpack_exports__);
       return object.find(function (x) {
         return x.id === id;
       }).title;
+    },
+    getLead: function getLead(id) {
+      var _this4 = this;
+
+      if (confirm('Вы хотите обработать этот запрос?')) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/manager/lead/' + id).then(function (res) {
+          console.log(res);
+          _this4.leads = _this4.getLeads();
+        })["catch"](function (err) {
+          console.log(err);
+        });
+      }
     }
   },
   created: function created() {
     this.leads = this.getLeads();
     this.managers = this.getManagers();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DirectorMyLeads.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DirectorMyLeads.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      leads: [],
+      processing_leads: [],
+      completing_leads: [],
+      canceling_leads: [],
+      modalTitle: '',
+      comment: '',
+      comments: [],
+      lead_id: 0,
+      audio_talking: []
+    };
+  },
+  methods: {
+    getMyLeads: function getMyLeads() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/director/my/leads').then(function (res) {
+        _this.leads = res.data.data;
+        _this.processing_leads = _this.leads.filter(function (x) {
+          return x.m_type === '1';
+        });
+        _this.completing_leads = _this.leads.filter(function (x) {
+          return x.m_type === '0';
+        });
+        _this.canceling_leads = _this.leads.filter(function (x) {
+          return x.m_type === '2';
+        });
+        console.log(res);
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    completeLead: function completeLead(lead_id) {
+      var _this2 = this;
+
+      if (confirm("Вы точно хотите закрыть запрос?")) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/director/change/lead/status', {
+          lead_id: lead_id,
+          process: 'complete'
+        }).then(function (res) {
+          _this2.getMyLeads();
+
+          console.log(res);
+        })["catch"](function (err) {
+          console.log(err);
+        });
+      }
+    },
+    cancelLead: function cancelLead() {
+      var _this3 = this;
+
+      if (this.comment.length != '') {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/director/change/lead/status', {
+          lead_id: this.lead_id,
+          process: 'cancel',
+          comment: this.comment
+        }).then(function (res) {
+          _this3.getMyLeads();
+
+          console.log(res);
+          $('#modal_lead').addClass('fade').modal('toggle');
+        })["catch"](function (err) {
+          console.log(err);
+        });
+      }
+    },
+    cancelLeadForm: function cancelLeadForm(lead_id) {
+      this.modalTitle = 'ПРИЧИНА ОТКАЗА ОТ ЗАПРОСА #' + lead_id;
+      this.lead_id = lead_id;
+      $('#modal_lead').removeClass('fade').modal('toggle');
+    },
+    closeForm: function closeForm() {
+      $('#modal_lead').addClass('fade').modal('toggle');
+      this.comment = '';
+    },
+    showComments: function showComments(lead_id) {
+      var _this4 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/call_center/lead/comments', {
+        lead_id: lead_id
+      }).then(function (res) {
+        _this4.comments = res.data;
+        console.log(res.data);
+        $('#modal_comment').removeClass('fade').modal('toggle');
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    showAudioTalkWithCustomers: function showAudioTalkWithCustomers(phone) {
+      var _this5 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/audio/talking-with-customers', {
+        phone: phone
+      }).then(function (res) {
+        _this5.audio_talking = res.data;
+        $('#modal_audio').removeClass('fade').modal('toggle');
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
+  },
+  created: function created() {
+    this.getMyLeads();
   }
 });
 
@@ -42482,19 +42809,50 @@ var render = function() {
         _vm._v(" "),
         _c(
           "tbody",
-          _vm._l(_vm.leads, function(lead) {
+          _vm._l(_vm.leads, function(lead, index) {
             return _c("tr", [
-              _c("td", [
-                _vm._v(
-                  _vm._s(lead.dt + " #" + lead.id + " (" + lead.dn + ") дней")
-                )
-              ]),
+              lead.dn == 0
+                ? _c("td", [
+                    _vm._v(_vm._s(lead.dt + " #" + lead.id + " (сегодня)"))
+                  ])
+                : lead.dn == 1
+                ? _c("td", [
+                    _vm._v(_vm._s(lead.dt + " #" + lead.id + " (вчера)"))
+                  ])
+                : _c("td", [
+                    _vm._v(
+                      _vm._s(
+                        lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"
+                      )
+                    )
+                  ]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(_vm.sourceList[lead.type]))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(lead.comment))]),
-              _vm._v(" "),
-              _c("td", [_vm._v("\n                Новые\n            ")])
+              index == 0
+                ? _c("td", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.getLead(lead.id)
+                          }
+                        }
+                      },
+                      [_vm._v("Выбрать запрос")]
+                    )
+                  ])
+                : _c("td", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary disabled",
+                        attrs: { type: "button" }
+                      },
+                      [_vm._v("Выбрать запрос")]
+                    )
+                  ])
             ])
           }),
           0
@@ -42606,11 +42964,763 @@ var staticRenderFns = [
     return _c("thead", { staticClass: "thead-light" }, [
       _c("th", { attrs: { width: "100" } }, [_vm._v("Дата")]),
       _vm._v(" "),
-      _c("th", { attrs: { width: "150" } }, [_vm._v("Источник")]),
+      _c("th", { attrs: { width: "200" } }, [_vm._v("Подтверждение")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DirectorMyLeads.vue?vue&type=template&id=7c53ce04&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DirectorMyLeads.vue?vue&type=template&id=7c53ce04& ***!
+  \******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "tab-content", attrs: { id: "myTabContent" } }, [
+      _c(
+        "div",
+        {
+          staticClass: "tab-pane fade show active",
+          attrs: { id: "home", role: "tabpanel", "aria-labelledby": "home-tab" }
+        },
+        [
+          _c(
+            "table",
+            { staticClass: "table leads_table table-bordered table-striped" },
+            [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.processing_leads, function(lead) {
+                  return _c("tr", { key: lead.id }, [
+                    _c("td", [
+                      _vm._v(
+                        _vm._s(
+                          lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"
+                        )
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(lead.name))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(lead.phone))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(lead.comment))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { title: "Выполнено" },
+                          on: {
+                            click: function($event) {
+                              return _vm.completeLead(lead.id)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "fas fa-check" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger",
+                          attrs: { title: "Отказаться от запроса" },
+                          on: {
+                            click: function($event) {
+                              return _vm.cancelLeadForm(lead.id)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "fas fa-times" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger",
+                          attrs: { title: "Прослушать разговоры с клиентами" },
+                          on: {
+                            click: function($event) {
+                              return _vm.showAudioTalkWithCustomers(lead.phone)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "fas fa-headphones" })]
+                      )
+                    ])
+                  ])
+                }),
+                0
+              )
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "tab-pane fade",
+          attrs: {
+            id: "profile",
+            role: "tabpanel",
+            "aria-labelledby": "profile-tab"
+          }
+        },
+        [
+          _c(
+            "table",
+            { staticClass: "table leads_table table-bordered table-striped" },
+            [
+              _vm._m(2),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.completing_leads, function(lead) {
+                  return _c("tr", { key: lead.id }, [
+                    _c("td", [
+                      _vm._v(
+                        _vm._s(
+                          lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"
+                        )
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(lead.name))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(lead.phone))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(lead.comment))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("div", { staticClass: "btn-group" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger",
+                            attrs: {
+                              title: "Прослушать разговоры с клиентами"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.showAudioTalkWithCustomers(
+                                  lead.phone
+                                )
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "fas fa-headphones" })]
+                        )
+                      ])
+                    ])
+                  ])
+                }),
+                0
+              )
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "tab-pane fade",
+          attrs: {
+            id: "contact",
+            role: "tabpanel",
+            "aria-labelledby": "contact-tab"
+          }
+        },
+        [
+          _c(
+            "table",
+            { staticClass: "table leads_table table-bordered table-striped" },
+            [
+              _vm._m(3),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.canceling_leads, function(lead) {
+                  return _c("tr", { key: lead.id }, [
+                    _c("td", [
+                      _vm._v(
+                        _vm._s(
+                          lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"
+                        )
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(lead.name))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(lead.phone))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(lead.comment))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("div", { staticClass: "btn-group" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-success",
+                            attrs: { title: "Комментарии" },
+                            on: {
+                              click: function($event) {
+                                return _vm.showComments(lead.id)
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "far fa-comments" })]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger",
+                            attrs: {
+                              title: "Прослушать разговоры с клиентами"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.showAudioTalkWithCustomers(
+                                  lead.phone
+                                )
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "fas fa-headphones" })]
+                        )
+                      ])
+                    ])
+                  ])
+                }),
+                0
+              )
+            ]
+          )
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "modal_lead",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalCenterTitle",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h5",
+                  {
+                    staticClass: "modal-title",
+                    attrs: { id: "exampleModalLongTitle" }
+                  },
+                  [_vm._v(_vm._s(_vm.modalTitle))]
+                ),
+                _vm._v(" "),
+                _vm._m(4)
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _vm._m(5),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "comment_id" } }),
+                      _vm._v(" "),
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.comment,
+                            expression: "comment"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { id: "comment_id", cols: "30", rows: "5" },
+                        domProps: { value: _vm.comment },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.comment = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c("div", { staticClass: "col-md-6 text-right" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      on: {
+                        click: function($event) {
+                          return _vm.closeForm()
+                        }
+                      }
+                    },
+                    [_vm._v("Отмена")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6 text-right" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      on: {
+                        click: function($event) {
+                          return _vm.cancelLead()
+                        }
+                      }
+                    },
+                    [_vm._v("Отказаться от запроса")]
+                  )
+                ])
+              ])
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "modal_comment",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalCenterTitle",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(6),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "modal-body",
+                  staticStyle: {
+                    background: "green url(/images/body_background.png)",
+                    padding: "0px"
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    { staticStyle: { background: "rgba(255,255,255,0.7)" } },
+                    [
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "col-md-12",
+                            staticStyle: { padding: "40px" }
+                          },
+                          _vm._l(_vm.comments, function(com, i) {
+                            return _c(
+                              "div",
+                              {
+                                staticStyle: {
+                                  background: "#fff",
+                                  padding: "10px",
+                                  width: "100%",
+                                  "margin-bottom": "10px",
+                                  "border-radius": "20px"
+                                }
+                              },
+                              [
+                                _c(
+                                  "span",
+                                  { staticStyle: { "font-weight": "bold" } },
+                                  [
+                                    _c("i", { staticClass: "fas fa-user" }),
+                                    _vm._v(" " + _vm._s(com.name))
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("br"),
+                                _vm._v(" "),
+                                _c("span", [_vm._v(_vm._s(com.comment))])
+                              ]
+                            )
+                          }),
+                          0
+                        )
+                      ])
+                    ]
+                  )
+                ]
+              )
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "modal_audio",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalCenterTitle",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(7),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "modal-body",
+                  staticStyle: {
+                    background: "green url(/images/body_background.png)",
+                    padding: "0px"
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    { staticStyle: { background: "rgba(255,255,255,0.7)" } },
+                    [
+                      _c("div", { staticClass: "row" }, [
+                        _vm.audio_talking.length > 0
+                          ? _c(
+                              "div",
+                              {
+                                staticClass: "col-md-12",
+                                staticStyle: { padding: "40px" }
+                              },
+                              _vm._l(_vm.audio_talking, function(audio, i) {
+                                return _c(
+                                  "div",
+                                  {
+                                    staticStyle: {
+                                      background: "#fff",
+                                      padding: "10px",
+                                      width: "100%",
+                                      "margin-bottom": "10px",
+                                      "border-radius": "20px"
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "span",
+                                      {
+                                        staticStyle: { "font-weight": "bold" }
+                                      },
+                                      [
+                                        _c(
+                                          "audio",
+                                          { attrs: { controls: "" } },
+                                          [
+                                            _c("source", {
+                                              attrs: {
+                                                src: audio,
+                                                type: "audio/mpeg"
+                                              }
+                                            })
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              }),
+                              0
+                            )
+                          : _c(
+                              "div",
+                              {
+                                staticClass: "col-md-12 text-center",
+                                staticStyle: { padding: "40px" }
+                              },
+                              [_vm._m(8)]
+                            )
+                      ])
+                    ]
+                  )
+                ]
+              )
+            ])
+          ]
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "ul",
+      { staticClass: "nav nav-tabs", attrs: { id: "myTab", role: "tablist" } },
+      [
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link active",
+              attrs: {
+                id: "home-tab",
+                "data-toggle": "tab",
+                href: "#home",
+                role: "tab",
+                "aria-controls": "home",
+                "aria-selected": "true"
+              }
+            },
+            [_vm._v("В процессе")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link",
+              attrs: {
+                id: "profile-tab",
+                "data-toggle": "tab",
+                href: "#profile",
+                role: "tab",
+                "aria-controls": "profile",
+                "aria-selected": "false"
+              }
+            },
+            [_vm._v("Обработанные")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link",
+              attrs: {
+                id: "contact-tab",
+                "data-toggle": "tab",
+                href: "#contact",
+                role: "tab",
+                "aria-controls": "contact",
+                "aria-selected": "false"
+              }
+            },
+            [_vm._v("Необработанные")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-light" }, [
+      _c("th", { attrs: { width: "150" } }, [_vm._v("Дата")]),
+      _vm._v(" "),
+      _c("th", { attrs: { width: "150" } }, [_vm._v("Имя")]),
+      _vm._v(" "),
+      _c("th", { attrs: { width: "150" } }, [_vm._v("Тел")]),
       _vm._v(" "),
       _c("th", { attrs: { width: "250" } }, [_vm._v("Комментарии")]),
       _vm._v(" "),
-      _c("th", { attrs: { width: "200" } }, [_vm._v("Статус")])
+      _c("th", [_vm._v("Действие")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-light" }, [
+      _c("th", { attrs: { width: "100" } }, [_vm._v("Дата")]),
+      _vm._v(" "),
+      _c("th", { attrs: { width: "150" } }, [_vm._v("Имя")]),
+      _vm._v(" "),
+      _c("th", { attrs: { width: "150" } }, [_vm._v("Тел")]),
+      _vm._v(" "),
+      _c("th", { attrs: { width: "250" } }, [_vm._v("Комментарии")]),
+      _vm._v(" "),
+      _c("th", { attrs: { width: "100" } }, [_vm._v("Действие")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-light" }, [
+      _c("th", { attrs: { width: "100" } }, [_vm._v("Дата")]),
+      _vm._v(" "),
+      _c("th", { attrs: { width: "150" } }, [_vm._v("Имя")]),
+      _vm._v(" "),
+      _c("th", { attrs: { width: "150" } }, [_vm._v("Тел")]),
+      _vm._v(" "),
+      _c("th", { attrs: { width: "250" } }, [_vm._v("Комментарии")]),
+      _vm._v(" "),
+      _c("th", { attrs: { width: "100" } }, [_vm._v("Действие")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("p", [
+        _vm._v(
+          "Этот запрос будет обработан Колл - Центром! В связи с этим просим Вас описать причину отказа в разделе комментарий."
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        {
+          staticClass: "modal-title text-center",
+          attrs: { id: "commentTitle" }
+        },
+        [_vm._v("Комментарии")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h5", { staticClass: "modal-title text-center" }, [
+        _vm._v("Список аудиозаписей")
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticStyle: { "font-size": "20px" } }, [
+      _c("i", {
+        staticClass: "fas fa-exclamation-triangle",
+        staticStyle: { "font-size": "40px" }
+      }),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(
+        "\n                                    Аудиозапись не найдено!\n                                "
+      )
     ])
   }
 ]
@@ -55832,6 +56942,7 @@ Vue.component('manager-lead-free', __webpack_require__(/*! ./components/ManagerL
 Vue.component('call-center-leads', __webpack_require__(/*! ./components/CallCenterLeads.vue */ "./resources/js/components/CallCenterLeads.vue")["default"]);
 Vue.component('manager-my-leads', __webpack_require__(/*! ./components/ManagerMyLeads.vue */ "./resources/js/components/ManagerMyLeads.vue")["default"]);
 Vue.component('director-leads', __webpack_require__(/*! ./components/DirectorLeads.vue */ "./resources/js/components/DirectorLeads.vue")["default"]);
+Vue.component('director-my-leads', __webpack_require__(/*! ./components/DirectorMyLeads.vue */ "./resources/js/components/DirectorMyLeads.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -56214,6 +57325,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DirectorLeads_vue_vue_type_template_id_34c762e0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DirectorLeads_vue_vue_type_template_id_34c762e0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/DirectorMyLeads.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/DirectorMyLeads.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _DirectorMyLeads_vue_vue_type_template_id_7c53ce04___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DirectorMyLeads.vue?vue&type=template&id=7c53ce04& */ "./resources/js/components/DirectorMyLeads.vue?vue&type=template&id=7c53ce04&");
+/* harmony import */ var _DirectorMyLeads_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DirectorMyLeads.vue?vue&type=script&lang=js& */ "./resources/js/components/DirectorMyLeads.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _DirectorMyLeads_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _DirectorMyLeads_vue_vue_type_template_id_7c53ce04___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _DirectorMyLeads_vue_vue_type_template_id_7c53ce04___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/DirectorMyLeads.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/DirectorMyLeads.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/DirectorMyLeads.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DirectorMyLeads_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./DirectorMyLeads.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DirectorMyLeads.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DirectorMyLeads_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/DirectorMyLeads.vue?vue&type=template&id=7c53ce04&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/DirectorMyLeads.vue?vue&type=template&id=7c53ce04& ***!
+  \************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DirectorMyLeads_vue_vue_type_template_id_7c53ce04___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./DirectorMyLeads.vue?vue&type=template&id=7c53ce04& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DirectorMyLeads.vue?vue&type=template&id=7c53ce04&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DirectorMyLeads_vue_vue_type_template_id_7c53ce04___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DirectorMyLeads_vue_vue_type_template_id_7c53ce04___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -20,17 +20,18 @@
         <table class="table leads_table table-bordered table-striped">
             <thead class="thead-light">
             <th width="100">Дата</th>
-            <th width="150">Источник</th>
-            <th width="250">Комментарии</th>
-            <th width="200">Статус</th>
+            <th width="200">Подтверждение</th>
             </thead>
             <tbody>
-            <tr v-for="lead in leads">
-                <td>{{ lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"  }}</td>
-                <td>{{ sourceList[lead.type] }}</td>
-                <td>{{ lead.comment }}</td>
-                <td>
-                    Новые
+            <tr v-for="(lead, index) in leads">
+                <td v-if="lead.dn == 0">{{ lead.dt + " #" + lead.id + " (сегодня)"  }}</td>
+                <td v-else-if="lead.dn == 1">{{ lead.dt + " #" + lead.id + " (вчера)" }}</td>
+                <td v-else="lead.dn > 1">{{ lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"  }}</td>
+                <td v-if="index == 0">
+                    <button type="button" v-on:click="getLead(lead.id)" class="btn btn-primary">Выбрать запрос</button>
+                </td>
+                <td v-else="index != 0">
+                    <button type="button" class="btn btn-primary disabled">Выбрать запрос</button>
                 </td>
             </tr>
             </tbody>
@@ -130,6 +131,18 @@
             },
             getObjectValue(object, id){
                 return object.find(x => x.id === id).title;
+            },
+            getLead(id){
+                if(confirm('Вы хотите обработать этот запрос?')){
+                    axios.post('/manager/lead/'+id)
+                        .then(res => {
+                            console.log(res);
+                            this.leads = this.getLeads();
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        })
+                }
             }
         },
         created(){
