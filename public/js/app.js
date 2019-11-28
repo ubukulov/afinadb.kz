@@ -40974,7 +40974,9 @@ var render = function() {
                                       ", " +
                                       manager.c_title +
                                       ", " +
-                                      manager.com_title
+                                      manager.com_title +
+                                      ", " +
+                                      manager.status
                                   ) +
                                   "\n                                    "
                               )

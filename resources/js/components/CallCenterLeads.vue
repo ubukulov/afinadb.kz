@@ -128,7 +128,7 @@
                                     <label for="manager_id">Выберите менеджера</label>
                                     <select id="manager_id" v-model="manager_id" class="form-control">
                                         <option v-for="manager in managers" v-bind:key="manager.id" v-bind:value="manager.id">
-                                            {{ manager.name + " " + manager.last_name + ", " + manager.c_title + ", " + manager.com_title }}
+                                            {{ manager.name + " " + manager.last_name + ", " + manager.c_title + ", " + manager.com_title + ", " + manager.status }}
                                         </option>
                                     </select>
                                 </div>
