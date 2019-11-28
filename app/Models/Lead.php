@@ -93,11 +93,11 @@ class Lead extends Model
 
     public static function getLeadsOfManager($manager)
     {
-        $result = Lead::orderBy('leads.id', 'ASC')
-            ->where(['manager_leads.manager_id' => $manager->id, 'leads.city_id' => $manager->city_id])
+        $result = Lead::orderBy('leads.id', 'DESC')
             ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, manager_leads.type AS m_type'))
+            ->where(['manager_leads.manager_id' => $manager->id, 'leads.city_id' => $manager->city_id])
             ->join('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
-            ->paginate(10);
+            ->get();
 
         return $result;
     }

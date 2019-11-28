@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Lead;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class ManagerController extends BaseController
 {
@@ -36,7 +37,7 @@ class ManagerController extends BaseController
     // получить список моих лидов
     public function getMyLeads()
     {
-        $leads = Lead::getLeadsOfManager(\Auth::user());
+        $leads = Lead::getLeadsOfManager(Auth::user());
         return LeadResource::collection($leads);
     }
 
