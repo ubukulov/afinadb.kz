@@ -19,23 +19,23 @@ class Lead extends Model
     {
         if ($role == 'MANAGER') {
             if (Auth::user()->company_id == 1 || Auth::user()->company_id == 2) {
-                $result = Lead::orderBy('leads.tm', 'DESC')
+                $result = Lead::orderBy('leads.id', 'ASC')
                     ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn'))
                     ->where(['city_id' => Auth::user()->city_id, 'ss' => '1'])
                     ->whereRaw('leads.tm >= DATE_SUB(CURRENT_DATE(), INTERVAL 15 DAY)')
                     ->paginate(10);
             } else {
                 // Для менеджеров франшизы закрыть источники: File Client и Звонок в офис
-                $result = Lead::orderBy('leads.tm', 'DESC')
+                $result = Lead::orderBy('leads.id', 'ASC')
                     ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn'))
-                    ->where(['city_id' => \Auth::user()->city_id, 'ss' => '1'])
+                    ->where(['city_id' => Auth::user()->city_id, 'ss' => '1'])
                     ->where('leads.type', '!=', '10')
                     ->where('leads.type', '!=', '8')
                     ->whereRaw('leads.tm >= DATE_SUB(CURRENT_DATE(), INTERVAL 15 DAY)')
                     ->paginate(10);
             }
         } else {
-            $result = Lead::orderBy('leads.tm', 'DESC')
+            $result = Lead::orderBy('leads.id', 'ASC')
                 ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, manager_leads.type AS m_type, accounts.name as user_name, accounts.last_name'))
                 ->leftJoin('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
                 ->leftJoin('accounts', 'accounts.id', '=', 'manager_leads.manager_id')
@@ -47,7 +47,8 @@ class Lead extends Model
 
     public static function getLeadsOfCity($city_id)
     {
-        $leads = Lead::where(['leads.city_id' => $city_id])->orderBy('leads.tm', 'DESC')
+        $leads = Lead::where(['leads.city_id' => $city_id])
+            ->orderBy('leads.id', 'ASC')
             ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, manager_leads.type AS m_type, accounts.name as user_name, accounts.last_name'))
             ->leftJoin('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
             ->leftJoin('accounts', 'accounts.id', '=', 'manager_leads.manager_id')
@@ -92,7 +93,7 @@ class Lead extends Model
 
     public static function getLeadsOfManager($manager)
     {
-        $result = Lead::orderBy('leads.tm', 'DESC')
+        $result = Lead::orderBy('leads.id', 'ASC')
             ->where(['manager_leads.manager_id' => $manager->id, 'leads.city_id' => $manager->city_id])
             ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, manager_leads.type AS m_type'))
             ->join('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
@@ -185,13 +186,13 @@ class Lead extends Model
     public static function getLeadsForDirectors()
     {
         if (Auth::user()->company_id == 1 || Auth::user()->company_id == 2) {
-            $leads = Lead::orderBy('leads.tm', 'DESC')
+            $leads = Lead::orderBy('leads.id', 'ASC')
                 ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn'))
                 ->where(['city_id' => Auth::user()->city_id, 'ss' => '1'])
                 ->whereRaw('leads.tm >= DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY)')
                 ->paginate(10);
         } else {
-            $leads = Lead::orderBy('leads.tm', 'DESC')
+            $leads = Lead::orderBy('leads.id', 'ASC')
                 ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn'))
                 ->where(['city_id' => Auth::user()->city_id, 'ss' => '1'])
                 ->where('leads.type', '!=', '10')
