@@ -54,7 +54,7 @@ class User extends Authenticatable
 
     public static function getAllManagers()
     {
-        $managers = User::where(['status' => 'MANAGER'])
+        $managers = User::whereIn('accounts.status', ['MANAGER', 'FRANCHISE_MANAGER', 'FRANCHISE_DIRECTOR'])
                 ->select('accounts.id', 'accounts.name', 'accounts.last_name', 'cities.title as c_title', 'companies.title as com_title')
                 ->join('cities', 'cities.id', '=', 'accounts.city_id')
                 ->join('companies', 'companies.id', '=', 'accounts.company_id')
