@@ -68,6 +68,7 @@ Route::group(['prefix' => 'call_center'], function(){
     Route::post('/create/lead', 'CallCenterController@createLead'); // создать лид
     Route::post('/lead/comments', 'CallCenterController@leadComments');
     Route::post('/lead/file', 'CallCenterController@loadLeadFromFile');
+    Route::get('/archive/leads', 'CallCenterController@getArchiveLeads')->name('archive.leads');
 });
 
 Route::group(['prefix' => 'director'], function(){

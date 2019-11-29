@@ -24,4 +24,5 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::get('/leads', 'ApiController@leads'); // все лиды
     Route::post('/leads/city', 'ApiController@getLeadsOfCity'); // получить список лидов по выбранному городу
     Route::get('/managers', 'ApiController@managers'); // список менеджеров
+    Route::get('/archive/leads', 'ApiController@getArchiveLeads');
 });

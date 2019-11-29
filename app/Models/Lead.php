@@ -221,4 +221,16 @@ class Lead extends Model
 
         return LeadResource::collection($leads);
     }
+
+    public static function getArchiveLeads()
+    {
+        $leads = Lead::orderBy('leads.id', 'DESC')
+                ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, accounts.name as user_name, accounts.last_name'))
+                ->join('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
+                ->join('rejected_leads', 'rejected_leads.lead_id', '=', 'leads.id')
+                ->join('accounts', 'accounts.id', '=', 'manager_leads.manager_id')
+                ->where(['manager_leads.ss' => '1', 'rejected_leads.ss' => '0', 'manager_leads.type' => '2'])
+                ->paginate(30);
+        return $leads;
+    }
 }

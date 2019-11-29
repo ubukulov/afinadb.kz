@@ -2205,6 +2205,217 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CallCenterArchiveLeads.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CallCenterArchiveLeads.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      leads: [],
+      pagination: {},
+      audio_talking: [],
+      comments: []
+    };
+  },
+  methods: {
+    getArchiveLeads: function getArchiveLeads() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/archive/leads').then(function (res) {
+        _this.leads = res.data.data;
+
+        _this.makePagination(res.data.links, res.data.meta);
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    getLeads: function getLeads(url) {
+      var _this2 = this;
+
+      url = url || "/api/leads";
+
+      if (typeof url === 'number') {
+        url = "/api/leads?page=" + url;
+      }
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(url).then(function (response) {
+        _this2.leads = response.data.data;
+
+        _this2.makePagination(response.data.links, response.data.meta);
+      })["catch"](function (e) {
+        console.log(e);
+      });
+    },
+    showComments: function showComments(lead_id) {
+      var _this3 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/call_center/lead/comments', {
+        lead_id: lead_id
+      }).then(function (res) {
+        _this3.comments = res.data;
+        console.log(res.data);
+        console.log('sss', _this3.comments);
+        $('#modal_comment').removeClass('fade').modal('toggle');
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    makePagination: function makePagination(links, meta) {
+      var pagination;
+      pagination = {
+        prev_page_url: links.prev,
+        next_page_url: links.next,
+        last_page_url: links.last,
+        first_page_url: links.first,
+        current_page: meta.current_page,
+        last_page: meta.last_page
+      };
+      this.pagination = pagination;
+      console.log(pagination);
+    },
+    showAudioTalkWithCustomers: function showAudioTalkWithCustomers(phone) {
+      var _this4 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/audio/talking-with-customers', {
+        phone: phone
+      }).then(function (res) {
+        _this4.audio_talking = res.data;
+        $('#modal_audio').removeClass('fade').modal('toggle');
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
+  },
+  created: function created() {
+    this.getArchiveLeads();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CallCenterLeads.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CallCenterLeads.vue?vue&type=script&lang=js& ***!
@@ -40812,6 +41023,480 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CallCenterArchiveLeads.vue?vue&type=template&id=716ffd13&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CallCenterArchiveLeads.vue?vue&type=template&id=716ffd13& ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("nav", { attrs: { "aria-label": "..." } }, [
+      _c(
+        "ul",
+        { staticClass: "pagination" },
+        [
+          _c(
+            "li",
+            {
+              staticClass: "page-item",
+              class: [{ disabled: !_vm.pagination.prev_page_url }]
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "page-link",
+                  attrs: { href: "#", tabindex: "-1" },
+                  on: {
+                    click: function($event) {
+                      return _vm.getLeads(_vm.pagination.prev_page_url)
+                    }
+                  }
+                },
+                [_vm._v("Предыдущая")]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _vm._l(_vm.pagination.last_page, function(page) {
+            return _c(
+              "li",
+              {
+                staticClass: "page-item",
+                class: [{ disabled: page == _vm.pagination.current_page }]
+              },
+              [
+                page <= 10
+                  ? _c(
+                      "a",
+                      {
+                        staticClass: "page-link",
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            return _vm.getLeads(page)
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(page) +
+                            "\n                    "
+                        ),
+                        page == _vm.pagination.current_page
+                          ? _c("span", { staticClass: "sr-only" }, [
+                              _vm._v("(current)")
+                            ])
+                          : _vm._e()
+                      ]
+                    )
+                  : _vm._e()
+              ]
+            )
+          }),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              staticClass: "page-item",
+              class: [{ disabled: !_vm.pagination.next_page_url }]
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "page-link",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      return _vm.getLeads(_vm.pagination.next_page_url)
+                    }
+                  }
+                },
+                [_vm._v("Следующая")]
+              )
+            ]
+          )
+        ],
+        2
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "table",
+      { staticClass: "table leads_table table-bordered table-striped" },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.leads, function(lead) {
+            return _c("tr", [
+              lead.dn == 0
+                ? _c("td", [
+                    _vm._v(_vm._s(lead.dt + " #" + lead.id + " (сегодня)"))
+                  ])
+                : lead.dn == 1
+                ? _c("td", [
+                    _vm._v(_vm._s(lead.dt + " #" + lead.id + " (вчера)"))
+                  ])
+                : _c("td", [
+                    _vm._v(
+                      _vm._s(
+                        lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"
+                      )
+                    )
+                  ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(lead.first_name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(lead.phone))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(lead.comment))]),
+              _vm._v(" "),
+              _c("td", [
+                _c("div", { staticClass: "status_btn" }, [
+                  _c("div", [
+                    _vm._v(_vm._s(lead.user_name + " " + lead.last_name))
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "_canceled" })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _c(
+                  "div",
+                  { staticClass: "btn-group", attrs: { role: "button" } },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        attrs: { title: "Комментарии" },
+                        on: {
+                          click: function($event) {
+                            return _vm.showComments(lead.id)
+                          }
+                        }
+                      },
+                      [_c("i", { staticClass: "far fa-comments" })]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        attrs: { title: "Прослушать разговоры с клиентами" },
+                        on: {
+                          click: function($event) {
+                            return _vm.showAudioTalkWithCustomers(lead.phone)
+                          }
+                        }
+                      },
+                      [_c("i", { staticClass: "fas fa-headphones" })]
+                    )
+                  ]
+                )
+              ])
+            ])
+          }),
+          0
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "modal_comment",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalCenterTitle",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "modal-body",
+                  staticStyle: {
+                    background: "green url(/images/body_background.png)",
+                    padding: "0px"
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    { staticStyle: { background: "rgba(255,255,255,0.7)" } },
+                    [
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "col-md-12",
+                            staticStyle: { padding: "40px" }
+                          },
+                          _vm._l(_vm.comments, function(com, i) {
+                            return _c(
+                              "div",
+                              {
+                                staticStyle: {
+                                  background: "#fff",
+                                  padding: "10px",
+                                  width: "100%",
+                                  "margin-bottom": "10px",
+                                  "border-radius": "20px"
+                                }
+                              },
+                              [
+                                _c(
+                                  "span",
+                                  { staticStyle: { "font-weight": "bold" } },
+                                  [
+                                    _c("i", { staticClass: "fas fa-user" }),
+                                    _vm._v(" " + _vm._s(com.name))
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("br"),
+                                _vm._v(" "),
+                                _c("span", [_vm._v(_vm._s(com.comment))])
+                              ]
+                            )
+                          }),
+                          0
+                        )
+                      ])
+                    ]
+                  )
+                ]
+              )
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "modal_audio",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalCenterTitle",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "modal-body",
+                  staticStyle: {
+                    background: "green url(/images/body_background.png)",
+                    padding: "0px"
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    { staticStyle: { background: "rgba(255,255,255,0.7)" } },
+                    [
+                      _c("div", { staticClass: "row" }, [
+                        _vm.audio_talking.length > 0
+                          ? _c(
+                              "div",
+                              {
+                                staticClass: "col-md-12",
+                                staticStyle: { padding: "40px" }
+                              },
+                              _vm._l(_vm.audio_talking, function(audio, i) {
+                                return _c(
+                                  "div",
+                                  {
+                                    staticStyle: {
+                                      background: "#fff",
+                                      padding: "10px",
+                                      width: "100%",
+                                      "margin-bottom": "10px",
+                                      "border-radius": "20px"
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "span",
+                                      {
+                                        staticStyle: { "font-weight": "bold" }
+                                      },
+                                      [
+                                        _c(
+                                          "audio",
+                                          { attrs: { controls: "" } },
+                                          [
+                                            _c("source", {
+                                              attrs: {
+                                                src: audio,
+                                                type: "audio/mpeg"
+                                              }
+                                            })
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              }),
+                              0
+                            )
+                          : _c(
+                              "div",
+                              {
+                                staticClass: "col-md-12 text-center",
+                                staticStyle: { padding: "40px" }
+                              },
+                              [_vm._m(3)]
+                            )
+                      ])
+                    ]
+                  )
+                ]
+              )
+            ])
+          ]
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-light" }, [
+      _c("th", { attrs: { width: "150" } }, [_vm._v("Дата")]),
+      _vm._v(" "),
+      _c("th", { attrs: { width: "100" } }, [_vm._v("Имя")]),
+      _vm._v(" "),
+      _c("th", { attrs: { width: "150" } }, [_vm._v("Телефон")]),
+      _vm._v(" "),
+      _c("th", { attrs: { width: "350" } }, [_vm._v("Комментарии")]),
+      _vm._v(" "),
+      _c("th", { attrs: { width: "200" } }, [_vm._v("Менеджер")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Действие")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        {
+          staticClass: "modal-title text-center",
+          attrs: { id: "commentTitle" }
+        },
+        [_vm._v("Комментарии")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h5", { staticClass: "modal-title text-center" }, [
+        _vm._v("Список аудиозаписей")
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticStyle: { "font-size": "20px" } }, [
+      _c("i", {
+        staticClass: "fas fa-exclamation-triangle",
+        staticStyle: { "font-size": "40px" }
+      }),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(
+        "\n                                    Аудиозапись не найдено!\n                                "
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CallCenterLeads.vue?vue&type=template&id=7c01e32e&scoped=true&":
 /*!******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CallCenterLeads.vue?vue&type=template&id=7c01e32e&scoped=true& ***!
@@ -56949,6 +57634,7 @@ Vue.component('call-center-leads', __webpack_require__(/*! ./components/CallCent
 Vue.component('manager-my-leads', __webpack_require__(/*! ./components/ManagerMyLeads.vue */ "./resources/js/components/ManagerMyLeads.vue")["default"]);
 Vue.component('director-leads', __webpack_require__(/*! ./components/DirectorLeads.vue */ "./resources/js/components/DirectorLeads.vue")["default"]);
 Vue.component('director-my-leads', __webpack_require__(/*! ./components/DirectorMyLeads.vue */ "./resources/js/components/DirectorMyLeads.vue")["default"]);
+Vue.component('call-center-archive-leads', __webpack_require__(/*! ./components/CallCenterArchiveLeads.vue */ "./resources/js/components/CallCenterArchiveLeads.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -57088,6 +57774,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Account_vue_vue_type_template_id_0b1dd512_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Account_vue_vue_type_template_id_0b1dd512_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/CallCenterArchiveLeads.vue":
+/*!************************************************************!*\
+  !*** ./resources/js/components/CallCenterArchiveLeads.vue ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CallCenterArchiveLeads_vue_vue_type_template_id_716ffd13___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CallCenterArchiveLeads.vue?vue&type=template&id=716ffd13& */ "./resources/js/components/CallCenterArchiveLeads.vue?vue&type=template&id=716ffd13&");
+/* harmony import */ var _CallCenterArchiveLeads_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CallCenterArchiveLeads.vue?vue&type=script&lang=js& */ "./resources/js/components/CallCenterArchiveLeads.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CallCenterArchiveLeads_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CallCenterArchiveLeads_vue_vue_type_template_id_716ffd13___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CallCenterArchiveLeads_vue_vue_type_template_id_716ffd13___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/CallCenterArchiveLeads.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/CallCenterArchiveLeads.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/CallCenterArchiveLeads.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CallCenterArchiveLeads_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./CallCenterArchiveLeads.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CallCenterArchiveLeads.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CallCenterArchiveLeads_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/CallCenterArchiveLeads.vue?vue&type=template&id=716ffd13&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/CallCenterArchiveLeads.vue?vue&type=template&id=716ffd13& ***!
+  \*******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CallCenterArchiveLeads_vue_vue_type_template_id_716ffd13___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./CallCenterArchiveLeads.vue?vue&type=template&id=716ffd13& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CallCenterArchiveLeads.vue?vue&type=template&id=716ffd13&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CallCenterArchiveLeads_vue_vue_type_template_id_716ffd13___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CallCenterArchiveLeads_vue_vue_type_template_id_716ffd13___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

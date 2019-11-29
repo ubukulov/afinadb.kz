@@ -170,4 +170,10 @@ class CallCenterController extends BaseController
             return 3; // whatsapp
         } else return 0;
     }
+
+    public function getArchiveLeads()
+    {
+        $this->seo()->setTitle('Архивные запросы');
+        return view('callcenter.archive_leads');
+    }
 }

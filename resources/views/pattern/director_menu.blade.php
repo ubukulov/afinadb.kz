@@ -15,6 +15,5 @@
                 <li><a href="{{ route('private') }}">&gt;&nbsp;Закрытая часть</a></li>
             </ul>
         </li>
-        <li><a href="#">Архив и Статистика</a></li>
     </ul>
 </div>

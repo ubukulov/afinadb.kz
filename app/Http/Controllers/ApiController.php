@@ -81,6 +81,12 @@ class ApiController extends Controller
         return LeadResource::collection(Lead::getLeadsOfFree($user_id));
     }
 
+    // List of Archive Leads
+    public function getArchiveLeads()
+    {
+        return LeadResource::collection(Lead::getArchiveLeads());
+    }
+
     // List of Managers
     public function managers()
     {

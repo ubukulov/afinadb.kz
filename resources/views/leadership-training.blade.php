@@ -71,4 +71,12 @@
             </a>
         </div>
     </div>
+
+    <div class="block">
+        <div class="block_title">Вебинары</div>
+        <div class="block_content">
+            <div class="bc_title">Вебинар от 20.11.2019 Поиск и подбор персонала. Дмитрий Телюк</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this)" data-video="https://www.youtube.com/embed/mShxpFOvS7Y">Смотреть</div>
+        </div>
+    </div>
 @stop
