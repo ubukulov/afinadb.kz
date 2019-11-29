@@ -3112,6 +3112,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -3251,6 +3252,21 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         console.log(err);
       });
+    },
+    setLeadNew: function setLeadNew(lead_id) {
+      var _this9 = this;
+
+      if (confirm("Вы хотите вернуть в раздел запросы?")) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/call_center/set/lead/new', {
+          lead_id: lead_id
+        }).then(function (res) {
+          console.log(res);
+
+          _this9.getRejectedLeads();
+        })["catch"](function (err) {
+          console.log(err);
+        });
+      }
     }
   },
   created: function created() {
@@ -42723,6 +42739,24 @@ var render = function() {
                               }
                             },
                             [_c("i", { staticClass: "fas fa-headphones" })]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-success",
+                              attrs: { title: "Сделать запрос новыми" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.setLeadNew(lead.id)
+                                }
+                              }
+                            },
+                            [
+                              _c("i", {
+                                staticClass: "fas fa-external-link-square-alt"
+                              })
+                            ]
                           )
                         ]
                       )

@@ -43,6 +43,7 @@
                                 <button title="Вернуть обратно менеджеру" v-on:click="returnLeadForm(lead.id)" class="btn btn-primary"><i class="fas fa-undo"></i></button>
                                 <button title="Комментарии" v-on:click="showComments(lead.id)" class="btn btn-success"><i class="far fa-comments"></i></button>
                                 <button title="Прослушать разговоры с клиентами" v-on:click="showAudioTalkWithCustomers(lead.phone)" class="btn btn-danger"><i class="fas fa-headphones"></i></button>
+                                <button title="Сделать запрос новыми" v-on:click="setLeadNew(lead.id)" class="btn btn-success"><i class="fas fa-external-link-square-alt"></i></button>
                             </div>
                         </td>
                     </tr>
@@ -342,6 +343,20 @@
                     .catch(err => {
                         console.log(err);
                     })
+            },
+            setLeadNew(lead_id) {
+                if (confirm("Вы хотите вернуть в раздел запросы?")) {
+                    axios.post('/call_center/set/lead/new', {
+                        lead_id: lead_id
+                    })
+                        .then(res => {
+                            console.log(res);
+                            this.getRejectedLeads();
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        })
+                }
             }
         },
         created(){
