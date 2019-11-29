@@ -58,6 +58,8 @@ class User extends Authenticatable
                 ->select('accounts.id', 'accounts.name', 'accounts.last_name', 'cities.title as c_title', 'companies.title as com_title', 'accounts.status')
                 ->join('cities', 'cities.id', '=', 'accounts.city_id')
                 ->join('companies', 'companies.id', '=', 'accounts.company_id')
+                ->orderBy('accounts.status', 'ASC')
+                ->orderBy('accounts.name', 'ASC')
                 ->get();
         return $managers;
     }
