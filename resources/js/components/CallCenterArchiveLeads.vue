@@ -189,7 +189,7 @@
                     })
             },
             setLeadNew(lead_id) {
-                if (confirm("Вы хотите сделать запросы новыми?")) {
+                if (confirm("Вы хотите вернуть в раздел запросы?")) {
                     axios.post('/call_center/set/lead/new', {
                         lead_id: lead_id
                     })

@@ -2412,7 +2412,7 @@ __webpack_require__.r(__webpack_exports__);
     setLeadNew: function setLeadNew(lead_id) {
       var _this5 = this;
 
-      if (confirm("Вы хотите сделать запросы новыми?")) {
+      if (confirm("Вы хотите вернуть в раздел запросы?")) {
         axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/call_center/set/lead/new', {
           lead_id: lead_id
         }).then(function (res) {
