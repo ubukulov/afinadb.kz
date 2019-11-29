@@ -176,4 +176,20 @@ class CallCenterController extends BaseController
         $this->seo()->setTitle('Архивные запросы');
         return view('callcenter.archive_leads');
     }
+
+    public function setLeadNew(Request $request)
+    {
+        $lead_id = $request->input('lead_id');
+        DB::beginTransaction();
+        try {
+            DB::update("UPDATE leads SET ss='1' WHERE id='$lead_id'");
+            DB::delete("DELETE FROM manager_leads WHERE lead_id='$lead_id'");
+            DB::delete("DELETE FROM rejected_leads WHERE lead_id='$lead_id'");
+            DB::commit();
+            return response("Запрос успешно стало новым.", 200);
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return response("Ошибка сервера: $exception", 500);
+        }
+    }
 }

@@ -31,7 +31,7 @@
                 <td v-if="lead.dn == 0">{{ lead.dt + " #" + lead.id + " (сегодня)"  }}</td>
                 <td v-else-if="lead.dn == 1">{{ lead.dt + " #" + lead.id + " (вчера)" }}</td>
                 <td v-else="lead.dn > 1">{{ lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"  }}</td>
-                <td>{{ lead.first_name }}</td>
+                <td>{{ lead.name }}</td>
                 <td>{{ lead.phone }}</td>
                 <td>{{ lead.comment }}</td>
                 <td>
@@ -44,6 +44,7 @@
                     <div class="btn-group" role="button">
                         <button title="Комментарии" v-on:click="showComments(lead.id)" class="btn btn-success"><i class="far fa-comments"></i></button>
                         <button title="Прослушать разговоры с клиентами" v-on:click="showAudioTalkWithCustomers(lead.phone)" class="btn btn-danger"><i class="fas fa-headphones"></i></button>
+                        <button title="Сделать запрос новыми" v-on:click="setLeadNew(lead.id)" class="btn btn-success"><i class="fas fa-external-link-square-alt"></i></button>
                     </div>
                 </td>
             </tr>
@@ -186,6 +187,20 @@
                     .catch(err => {
                         console.log(err);
                     })
+            },
+            setLeadNew(lead_id) {
+                if (confirm("Вы хотите сделать запросы новыми?")) {
+                    axios.post('/call_center/set/lead/new', {
+                        lead_id: lead_id
+                    })
+                        .then(res => {
+                            console.log(res);
+                            this.getArchiveLeads();
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        })
+                }
             }
         },
         created() {
