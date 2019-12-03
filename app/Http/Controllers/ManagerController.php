@@ -62,7 +62,7 @@ class ManagerController extends BaseController
                     $manager_lead->type = '2';
                     $manager_lead->save();
                     if (!RejectedLead::exists($lead_id)) {
-                        $comments = [['comment' => $comment, 'name' => $user->getFullName()]];
+                        $comments = [['comment' => $comment, 'name' => $user->getFullName(), 'seconds' => strtotime(Carbon::now())]];
                         RejectedLead::create([
                             'lead_id' => $lead_id, 'manager_id' => $manager_id, 'ss' => '1', 'tm' => Carbon::now(),
                             'comment' => json_encode($comments, JSON_UNESCAPED_UNICODE)
@@ -73,7 +73,7 @@ class ManagerController extends BaseController
                         $rejected_lead = RejectedLead::where(['lead_id' => $lead_id])->first();
                         if ($rejected_lead->ss == '2') {
                             $comm = json_decode($rejected_lead->comment, true);
-                            $comm[] = ['comment' => $comment, 'name' => $user->getFullName()];
+                            $comm[] = ['comment' => $comment, 'name' => $user->getFullName(), 'seconds' => strtotime(Carbon::now())];
                             $rejected_lead->comment = json_encode($comm, JSON_UNESCAPED_UNICODE);
                             $rejected_lead->ss = '1';
                             $rejected_lead->save();

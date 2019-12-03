@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -32,7 +33,7 @@ class RejectedLead extends Model
                 if ($rejected_lead->ss == '1') {
                     $comm = json_decode($rejected_lead->comment, true);
                     $comm[] = [
-                        'comment' => $data['comment'], 'name' => $user->getFullName()
+                        'comment' => $data['comment'], 'name' => $user->getFullName(), 'seconds' => strtotime(Carbon::now())
                     ];
                     DB::beginTransaction();
                     try {
