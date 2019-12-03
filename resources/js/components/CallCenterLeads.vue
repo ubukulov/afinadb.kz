@@ -423,6 +423,8 @@
                     return 'maldiv';
                 } else if (index == 72) {
                     return 'Whatsapp';
+                } else if (index == 74) {
+                    return 'education';
                 } else {
                     return this.class_list[index];
                 }
@@ -475,5 +477,8 @@
     }
     .Whatsapp {
         background: #afffaf;
+    }
+    .education {
+        background: #C950AD; color: #fff;
     }
 </style>
