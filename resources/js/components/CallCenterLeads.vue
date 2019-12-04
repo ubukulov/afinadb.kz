@@ -68,20 +68,17 @@
                 </td>
                 <td>
                     <div v-if="lead.m_type == '0'" class="status_btn">
-                        <div v-if="leads.city_id == 1">{{ lead.user_name + " " + lead.last_name }}</div>
-                        <div v-else="leads.city_id != 1">{{ lead.user_name + " " + lead.last_name + " (" + lead.com_title + ")" }}</div>
+                        <div v-bind:title="lead.com_title">{{ lead.user_name + " " + lead.last_name }}</div>
                         <div class="_completed"></div>
                     </div>
 
                     <div v-if="lead.m_type == '2'" class="status_btn">
-                        <div v-if="leads.city_id == 1">{{ lead.user_name + " " + lead.last_name }}</div>
-                        <div v-else="leads.city_id != 1">{{ lead.user_name + " " + lead.last_name + " (" + lead.com_title + ")" }}</div>
+                        <div v-bind:title="lead.com_title">{{ lead.user_name + " " + lead.last_name }}</div>
                         <div class="_canceled"></div>
                     </div>
 
                     <div v-if="lead.m_type == '1'" class="status_btn">
-                        <div v-if="leads.city_id == 1">{{ lead.user_name + " " + lead.last_name }}</div>
-                        <div v-else="leads.city_id != 1">{{ lead.user_name + " " + lead.last_name + " (" + lead.com_title + ")" }}</div>
+                        <div v-bind:title="lead.com_title">{{ lead.user_name + " " + lead.last_name }}</div>
                         <div class="_processed"></div>
                     </div>
 
