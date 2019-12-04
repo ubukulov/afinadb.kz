@@ -48,7 +48,7 @@ class Lead extends Model
                 ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, manager_leads.type AS m_type, accounts.name as user_name, accounts.last_name, companies.title as com_title'))
                 ->leftJoin('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
                 ->leftJoin('accounts', 'accounts.id', '=', 'manager_leads.manager_id')
-                ->join('companies', 'companies.id', '=', 'accounts.company_id')
+                ->leftJoin('companies', 'companies.id', '=', 'accounts.company_id')
                 ->paginate(30);
         }
 
