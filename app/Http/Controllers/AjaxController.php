@@ -17,10 +17,13 @@ class AjaxController extends BaseController
             $data['leads']['city_id'] = 1;
         }
         $email = (isset($data['leads']['email'])) ? $data['leads']['email'] : '';
+        $url = (isset($data['leads']['url'])) ? $data['leads']['url'] : '/';
+        $company = (isset($data['leads']['company'])) ? $data['leads']['company'] : 0;
+        $comment = (isset($data['leads']['comment'])) ? $data['leads']['comment'] : '';
         $lead = Lead::create([
-            'url' => $data['leads']['url'], 'tm' => Carbon::now(), 'phone' => $data['leads']['phone'], 'email' => $email,
-            'name' => $data['leads']['name'], 'type' => $data['leads']['type'], 'ss' => '1', 'company' => $data['leads']['company'], 'city_id' => $data['leads']['city_id'],
-            'comment' => $data['leads']['comment']
+            'url' => $url, 'tm' => Carbon::now(), 'phone' => $data['leads']['phone'], 'email' => $email,
+            'name' => $data['leads']['name'], 'type' => $data['leads']['type'], 'ss' => '1', 'company' => $company, 'city_id' => $data['leads']['city_id'],
+            'comment' => $comment
         ]);
         if ($lead) {
             return response('Lead successfully created', 200);
