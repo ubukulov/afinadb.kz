@@ -23,6 +23,7 @@ class Lead extends Model
                     $result = Lead::orderBy('leads.id', 'ASC')
                         ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn'))
                         ->where(['city_id' => Auth::user()->city_id, 'ss' => '1'])
+                        ->where('company', '<>', '2')
                         ->whereRaw('leads.tm >= DATE_SUB(CURRENT_DATE(), INTERVAL 15 DAY)')
                         ->paginate(10);
                 } else {
@@ -32,6 +33,7 @@ class Lead extends Model
                         ->where(['city_id' => Auth::user()->city_id, 'ss' => '1'])
                         ->where('leads.type', '!=', '10') // не брать лиды из источника File Client
                         ->where('leads.type', '!=', '8') // не брать лиды из источника Звонок в офис
+                        ->where('company', '<>', '2')
                         ->whereRaw('leads.tm >= DATE_SUB(CURRENT_DATE(), INTERVAL 15 DAY)')
                         ->paginate(10);
                 }
@@ -40,6 +42,7 @@ class Lead extends Model
                     ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn'))
                     ->where(['city_id' => Auth::user()->city_id, 'ss' => '1'])
                     ->where('leads.type', '!=', '10') // не брать лиды из источника File Client
+                    ->where('company', '<>', '2')
                     ->whereRaw('leads.tm >= DATE_SUB(CURRENT_DATE(), INTERVAL 15 DAY)')
                     ->paginate(10);
             }
@@ -49,8 +52,20 @@ class Lead extends Model
                 ->leftJoin('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
                 ->leftJoin('accounts', 'accounts.id', '=', 'manager_leads.manager_id')
                 ->leftJoin('companies', 'companies.id', '=', 'accounts.company_id')
+                ->where('leads.company', '<>', '2')
                 ->paginate(30);
         }
+
+        return $result;
+    }
+
+    public static function getLeadsForVisas()
+    {
+        $result = Lead::orderBy('leads.id', 'ASC')
+            ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn'))
+            ->where(['city_id' => Auth::user()->city_id, 'ss' => '1', 'company' => '2'])
+            ->whereRaw('leads.tm >= DATE_SUB(CURRENT_DATE(), INTERVAL 15 DAY)')
+            ->paginate(10);
 
         return $result;
     }
@@ -104,11 +119,20 @@ class Lead extends Model
 
     public static function getLeadsOfManager($manager)
     {
-        $result = Lead::orderBy('leads.id', 'DESC')
-            ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, manager_leads.type AS m_type'))
-            ->where(['manager_leads.manager_id' => $manager->id, 'leads.city_id' => $manager->city_id])
-            ->join('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
-            ->get();
+        if ($manager->company_id == 21) {
+            $result = Lead::orderBy('leads.id', 'DESC')
+                ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, manager_leads.type AS m_type'))
+                ->where(['manager_leads.manager_id' => $manager->id, 'leads.city_id' => $manager->city_id, 'leads.company' => '2'])
+                ->join('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
+                ->get();
+        } else {
+            $result = Lead::orderBy('leads.id', 'DESC')
+                ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, manager_leads.type AS m_type'))
+                ->where(['manager_leads.manager_id' => $manager->id, 'leads.city_id' => $manager->city_id])
+                ->where('leads.company', '<>', '2')
+                ->join('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
+                ->get();
+        }
 
         return $result;
     }

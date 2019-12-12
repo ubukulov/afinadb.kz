@@ -23,7 +23,11 @@ class ManagerController extends BaseController
     // список новых лидов
     public function getFreeLeads()
     {
-        $leads = Lead::getLeads('MANAGER');
+        if (Auth::user()->company_id == 21) {
+            $leads = Lead::getLeadsForVisas();
+        } else {
+            $leads = Lead::getLeads('MANAGER');
+        }
         return LeadResource::collection($leads);
     }
 
