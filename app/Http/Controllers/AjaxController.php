@@ -42,7 +42,7 @@ class AjaxController extends BaseController
         $total = $data['leads_for_credit']['sum'];
         $sum = preg_replace("/[^0-9]/", '', $total);
         $txt = $data['leads_for_credit']['txt'];
-        $url = $data['leads_for_credit']['url'];
+        $url = (!empty($data['leads_for_credit']['url'])) ? $data['leads_for_credit']['url'] : '/';
         $type = $data['leads_for_credit']['type'];
         $company = $data['leads_for_credit']['company'];
         $comment = $data['leads_for_credit']['comment'];
