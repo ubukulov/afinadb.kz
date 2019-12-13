@@ -44,12 +44,13 @@ class AjaxController extends BaseController
         $txt = $data['leads_for_credit']['txt'];
         $url = $data['leads_for_credit']['url'];
         $type = $data['leads_for_credit']['type'];
+        $company = $data['leads_for_credit']['company'];
         $comment = $data['leads_for_credit']['comment'];
 
         DB::beginTransaction();
         try {
             $last_insert_id = Lead::create([
-                'url' => $url, 'tm' => Carbon::now(), 'comment' => $comment, 'phone' => $phone, 'name' => $first_name, 'type' => $type, 'ss' => '1'
+                'url' => $url, 'tm' => Carbon::now(), 'comment' => $comment, 'phone' => $phone, 'name' => $first_name, 'type' => $type, 'ss' => '1', 'company' => $company
             ])->id;
 
             $client = new \SoapClient("https://www.afinadb.kz/eshop.wsdl");
