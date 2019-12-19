@@ -97,7 +97,8 @@ class BaseController extends Controller
             75 => 'usa-visa.kz',
             76 => 'visa-china.kz',
             77 => 'visa-germany.kz',
-            78 => 'visa-canada.kz'
+            78 => 'visa-canada.kz',
+            79 => 'visas.kz'
         ];
     protected $cities;
     protected $companies;
