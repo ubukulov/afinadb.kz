@@ -148,41 +148,82 @@ class Lead extends Model
     // Получить список отказанных запросов
     public static function getRejectedLeads()
     {
-        $leads = Lead::where(['rejected_leads.ss' => '1'])
-            ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, rejected_leads.comment as comm, accounts.name as first_name, accounts.last_name'))
-            ->join('rejected_leads', 'rejected_leads.lead_id', '=', 'leads.id')
-            ->join('accounts', 'accounts.id', '=', 'rejected_leads.manager_id')
-            ->orderBy('rejected_leads.id', 'DESC')
-            ->limit(20)
-            ->get();
+        $user = Auth::user();
+        if ($user->status == 'CALL_CENTER') {
+            $leads = Lead::where(['rejected_leads.ss' => '1'])
+                ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, rejected_leads.comment as comm, accounts.name as first_name, accounts.last_name'))
+                ->join('rejected_leads', 'rejected_leads.lead_id', '=', 'leads.id')
+                ->join('accounts', 'accounts.id', '=', 'rejected_leads.manager_id')
+                ->orderBy('rejected_leads.id', 'DESC')
+                ->limit(20)
+                ->get();
+        } else {
+            $leads = Lead::where(['rejected_leads.ss' => '1'])
+                ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, rejected_leads.comment as comm, accounts.name as first_name, accounts.last_name'))
+                ->join('rejected_leads', 'rejected_leads.lead_id', '=', 'leads.id')
+                ->join('accounts', 'accounts.id', '=', 'rejected_leads.manager_id')
+                ->where('leads.city_id', '=', $user->city_id)
+                ->orderBy('rejected_leads.id', 'DESC')
+                ->limit(20)
+                ->get();
+        }
+
         return LeadResource::collection($leads);
     }
 
     // Получить список обработанных запросов
     public static function getCompletedLeads()
     {
-        $leads = ManagerLead::where(['manager_leads.ss' => '0', 'manager_leads.type' => '0'])
-            ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, rejected_leads.comment as comm, accounts.name as first_name, accounts.last_name'))
-            ->join('leads', 'leads.id', '=', 'manager_leads.lead_id')
-            ->leftJoin('rejected_leads', 'rejected_leads.lead_id', '=', 'leads.id')
-            ->join('accounts', 'accounts.id', '=', 'manager_leads.manager_id')
-            ->orderBy('manager_leads.id', 'DESC')
-            ->limit(20)
-            ->get();
+        $user = Auth::user();
+        if ($user->status == 'CALL_CENTER') {
+            $leads = ManagerLead::where(['manager_leads.ss' => '0', 'manager_leads.type' => '0'])
+                ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, rejected_leads.comment as comm, accounts.name as first_name, accounts.last_name'))
+                ->join('leads', 'leads.id', '=', 'manager_leads.lead_id')
+                ->leftJoin('rejected_leads', 'rejected_leads.lead_id', '=', 'leads.id')
+                ->join('accounts', 'accounts.id', '=', 'manager_leads.manager_id')
+                ->orderBy('manager_leads.id', 'DESC')
+                ->limit(20)
+                ->get();
+        } else {
+            $leads = ManagerLead::where(['manager_leads.ss' => '0', 'manager_leads.type' => '0'])
+                ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, rejected_leads.comment as comm, accounts.name as first_name, accounts.last_name'))
+                ->join('leads', 'leads.id', '=', 'manager_leads.lead_id')
+                ->leftJoin('rejected_leads', 'rejected_leads.lead_id', '=', 'leads.id')
+                ->join('accounts', 'accounts.id', '=', 'manager_leads.manager_id')
+                ->where('leads.city_id', '=', $user->city_id)
+                ->orderBy('manager_leads.id', 'DESC')
+                ->limit(20)
+                ->get();
+        }
+
         return LeadResource::collection($leads);
     }
 
     // Получить список запросов которые в процессе
     public static function getProcessingLeads()
     {
-        $leads = ManagerLead::where(['manager_leads.ss' => '0', 'manager_leads.type' => '1'])
-            ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, rejected_leads.comment as comm, accounts.name as first_name, accounts.last_name'))
-            ->join('leads', 'leads.id', '=', 'manager_leads.lead_id')
-            ->leftJoin('rejected_leads', 'rejected_leads.lead_id', '=', 'leads.id')
-            ->join('accounts', 'accounts.id', '=', 'manager_leads.manager_id')
-            ->orderBy('manager_leads.id', 'DESC')
-            ->limit(20)
-            ->get();
+        $user = Auth::user();
+        if ($user->status == 'CALL_CENTER') {
+            $leads = ManagerLead::where(['manager_leads.ss' => '0', 'manager_leads.type' => '1'])
+                ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, rejected_leads.comment as comm, accounts.name as first_name, accounts.last_name'))
+                ->join('leads', 'leads.id', '=', 'manager_leads.lead_id')
+                ->leftJoin('rejected_leads', 'rejected_leads.lead_id', '=', 'leads.id')
+                ->join('accounts', 'accounts.id', '=', 'manager_leads.manager_id')
+                ->orderBy('manager_leads.id', 'DESC')
+                ->limit(20)
+                ->get();
+        } else {
+            $leads = ManagerLead::where(['manager_leads.ss' => '0', 'manager_leads.type' => '1'])
+                ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, rejected_leads.comment as comm, accounts.name as first_name, accounts.last_name'))
+                ->join('leads', 'leads.id', '=', 'manager_leads.lead_id')
+                ->leftJoin('rejected_leads', 'rejected_leads.lead_id', '=', 'leads.id')
+                ->join('accounts', 'accounts.id', '=', 'manager_leads.manager_id')
+                ->where('leads.city_id', '=', $user->city_id)
+                ->orderBy('manager_leads.id', 'DESC')
+                ->limit(20)
+                ->get();
+        }
+
         return LeadResource::collection($leads);
     }
 

@@ -3654,6 +3654,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -43771,13 +43777,28 @@ var render = function() {
                 "tbody",
                 _vm._l(_vm.processing_leads, function(lead) {
                   return _c("tr", { key: lead.id }, [
-                    _c("td", [
-                      _vm._v(
-                        _vm._s(
-                          lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"
-                        )
-                      )
-                    ]),
+                    lead.dn == 0
+                      ? _c("td", [
+                          _vm._v(
+                            _vm._s(lead.dt + " #" + lead.id + " (сегодня)")
+                          )
+                        ])
+                      : lead.dn == 1
+                      ? _c("td", [
+                          _vm._v(_vm._s(lead.dt + " #" + lead.id + " (вчера)"))
+                        ])
+                      : _c("td", [
+                          _vm._v(
+                            _vm._s(
+                              lead.dt +
+                                " #" +
+                                lead.id +
+                                " (" +
+                                lead.dn +
+                                ") дней"
+                            )
+                          )
+                        ]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(lead.name))]),
                     _vm._v(" "),
@@ -43858,13 +43879,28 @@ var render = function() {
                 "tbody",
                 _vm._l(_vm.completing_leads, function(lead) {
                   return _c("tr", { key: lead.id }, [
-                    _c("td", [
-                      _vm._v(
-                        _vm._s(
-                          lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"
-                        )
-                      )
-                    ]),
+                    lead.dn == 0
+                      ? _c("td", [
+                          _vm._v(
+                            _vm._s(lead.dt + " #" + lead.id + " (сегодня)")
+                          )
+                        ])
+                      : lead.dn == 1
+                      ? _c("td", [
+                          _vm._v(_vm._s(lead.dt + " #" + lead.id + " (вчера)"))
+                        ])
+                      : _c("td", [
+                          _vm._v(
+                            _vm._s(
+                              lead.dt +
+                                " #" +
+                                lead.id +
+                                " (" +
+                                lead.dn +
+                                ") дней"
+                            )
+                          )
+                        ]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(lead.name))]),
                     _vm._v(" "),
@@ -43923,13 +43959,28 @@ var render = function() {
                 "tbody",
                 _vm._l(_vm.canceling_leads, function(lead) {
                   return _c("tr", { key: lead.id }, [
-                    _c("td", [
-                      _vm._v(
-                        _vm._s(
-                          lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"
-                        )
-                      )
-                    ]),
+                    lead.dn == 0
+                      ? _c("td", [
+                          _vm._v(
+                            _vm._s(lead.dt + " #" + lead.id + " (сегодня)")
+                          )
+                        ])
+                      : lead.dn == 1
+                      ? _c("td", [
+                          _vm._v(_vm._s(lead.dt + " #" + lead.id + " (вчера)"))
+                        ])
+                      : _c("td", [
+                          _vm._v(
+                            _vm._s(
+                              lead.dt +
+                                " #" +
+                                lead.id +
+                                " (" +
+                                lead.dn +
+                                ") дней"
+                            )
+                          )
+                        ]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(lead.name))]),
                     _vm._v(" "),
