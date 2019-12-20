@@ -3352,6 +3352,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -43594,6 +43598,12 @@ var render = function() {
                     )
                   ]),
               _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  "\n                " + _vm._s(lead.c_title) + "\n            "
+                )
+              ]),
+              _vm._v(" "),
               index == 0
                 ? _c("td", [
                     _c(
@@ -43730,6 +43740,8 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "thead-light" }, [
       _c("th", { attrs: { width: "100" } }, [_vm._v("Дата")]),
+      _vm._v(" "),
+      _c("th", { attrs: { width: "100" } }, [_vm._v("Город")]),
       _vm._v(" "),
       _c("th", { attrs: { width: "200" } }, [_vm._v("Подтверждение")])
     ])

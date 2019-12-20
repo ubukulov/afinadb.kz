@@ -313,7 +313,8 @@ class Lead extends Model
                     ->paginate(10);
             } elseif ($user->company_id == 21){
                 $leads = Lead::orderBy('leads.id', 'ASC')
-                    ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn'))
+                    ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, cities.title as c_title'))
+                    ->join('cities', 'cities.id', '=', 'leads.city_id')
                     ->where(['ss' => '1'])
                     ->where('leads.company', '=', '2')
                     ->whereRaw('leads.tm >= DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY)')
