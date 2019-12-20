@@ -78,6 +78,7 @@ class Lead extends Model
             ->leftJoin('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
             ->leftJoin('accounts', 'accounts.id', '=', 'manager_leads.manager_id')
             ->leftJoin('companies', 'companies.id', '=', 'accounts.company_id')
+            ->where('leads.company', '<>', '2')
             ->paginate(30);
         return LeadResource::collection($leads);
     }
