@@ -340,6 +340,7 @@ class Lead extends Model
                     ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn'))
                     ->where(['city_id' => $user->city_id, 'ss' => '1'])
                     ->where('leads.type', '!=', '10') // не брать источник File Client
+                    ->where('leads.company', '<>', '2')
                     ->whereRaw('leads.tm >= DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY)')
                     ->paginate(10);
             }
