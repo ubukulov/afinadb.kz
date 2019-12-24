@@ -2331,6 +2331,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -41340,6 +41341,24 @@ var render = function() {
                                   "span",
                                   { staticStyle: { "font-weight": "bold" } },
                                   [
+                                    _c("i", { staticClass: "fas fa-clock" }),
+                                    _vm._v(
+                                      " " +
+                                        _vm._s(
+                                          _vm.$moment
+                                            .unix(com.seconds)
+                                            .format("DD.MM.YYYY, HH:mm:ss")
+                                        )
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("br"),
+                                _vm._v(" "),
+                                _c(
+                                  "span",
+                                  { staticStyle: { "font-weight": "bold" } },
+                                  [
                                     _c("i", { staticClass: "fas fa-user" }),
                                     _vm._v(" " + _vm._s(com.name))
                                   ]
@@ -43131,9 +43150,8 @@ var render = function() {
                                     _vm._v(
                                       " " +
                                         _vm._s(
-                                          _vm
-                                            .$moment()
-                                            .get(com.seconds)
+                                          _vm.$moment
+                                            .unix(com.seconds)
                                             .format("DD.MM.YYYY, HH:mm:ss")
                                         )
                                     )
