@@ -164,6 +164,7 @@
                             <div class="row">
                                 <div class="col-md-12" style="padding: 40px;">
                                     <div v-for="(com, i) in comments" style="background: #fff;padding: 10px;width: 100%;margin-bottom: 10px;border-radius: 20px;">
+                                        <span style="font-weight: bold;"><i class="fas fa-clock"></i>&nbsp;{{ $moment().get(com.seconds).format("DD.MM.YYYY, HH:mm:ss") }}</span> <br>
                                         <span style="font-weight: bold;"><i class="fas fa-user"></i>&nbsp;{{ com.name }}</span> <br>
                                         <span>{{ com.comment }}</span>
                                     </div>
