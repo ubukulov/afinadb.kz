@@ -178,6 +178,7 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
+        App\Providers\BinotelServiceProvider::class,
     ],
 
     /*
@@ -232,6 +233,7 @@ return [
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Flash' => Laracasts\Flash\Flash::class,
+        'Binotel' => App\Facades\Binotel::class,
     ],
 
 ];

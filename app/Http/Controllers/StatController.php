@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\ManagerLead;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Binotel;
+use Auth;
 
 class StatController extends BaseController
 {
@@ -23,13 +26,28 @@ class StatController extends BaseController
     public function getStatsOfSources()
     {
         $this->seo()->setTitle('Статистика по источникам');
-
         $sources = $this->source_list;
+        $incomingCallsCount = 0;
+        $where = '';
 
-        $today = DB::select('SELECT count(*) as cnt, `type` FROM `leads` WHERE `tm` >= CURDATE() GROUP BY `type`');
-        $yesterday = DB::select('SELECT count(*) as cnt, `type` FROM `leads` WHERE `tm` >= (CURDATE()-1) AND `tm` < CURDATE() GROUP BY `type`');
-        $week = DB::select('SELECT count(*) as cnt, `type` FROM `leads` WHERE `tm` >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY) GROUP BY `type`');
-        $month = DB::select('SELECT count(*) as cnt, `type` FROM `leads` WHERE `tm` >= DATE_SUB(CURRENT_DATE, INTERVAL 30 DAY) GROUP BY `type`');
+        if (Auth::user()->type == 2) {
+            // все источники касающихся для ПЦВП
+            $all_binotel_calls = Binotel::getCalls();
+            $visas_internal_numbers = [
+                501, 502, 503, 504, 505, 506, 507, 508, 510, 511, 512, 513, 514, 515
+            ];
+            foreach($all_binotel_calls as $call){
+                if ($call['callType'] == 0 && in_array((int) $call['internalNumber'], $visas_internal_numbers)) {
+                    $incomingCallsCount++;
+                }
+            }
+            $where .= " AND company='2'";
+        }
+
+        $today = DB::select("SELECT count(*) as cnt, `type` FROM `leads` WHERE `tm` >= CURDATE() $where GROUP BY `type`");
+        $yesterday = DB::select("SELECT count(*) as cnt, `type` FROM `leads` WHERE `tm` >= (CURDATE()-1) AND `tm` < CURDATE() $where GROUP BY `type`");
+        $week = DB::select("SELECT count(*) as cnt, `type` FROM `leads` WHERE `tm` >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY) $where GROUP BY `type`");
+        $month = DB::select("SELECT count(*) as cnt, `type` FROM `leads` WHERE `tm` >= DATE_SUB(CURRENT_DATE, INTERVAL 30 DAY) $where GROUP BY `type`");
 
         $arrs = [];
 

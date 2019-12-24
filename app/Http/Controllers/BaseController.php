@@ -121,6 +121,8 @@ class BaseController extends Controller
         'CALLING' => 'Идет звонок'
     ];
 
+    protected $user;
+
     public function __construct()
     {
         $this->agent = new Agent();
@@ -138,6 +140,8 @@ class BaseController extends Controller
             Cache::put('companies', $this->companies, 2592000); // сохранем в кэше за месяц
             View::share('companies', $this->companies);
         }
+
+        $this->user = (Auth::check()) ? Auth::user() : null;
 
         View::share('agent', $this->agent);
         View::share('source_list', $this->source_list);
