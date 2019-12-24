@@ -34,6 +34,7 @@ class ManagerLead extends Model
 
     public static function getStatsOfManagers()
     {
+        $where = (Auth::user()->type == '2') ? " AND accounts.type='2'" : "";
         $manager_leads = DB::select("SELECT 
         CONCAT(accounts.name, ' ', accounts.last_name) AS fio,
         companies.title AS com_title,
@@ -46,7 +47,7 @@ class ManagerLead extends Model
         INNER JOIN leads ON leads.id=manager_leads.lead_id
         INNER JOIN companies ON companies.id=accounts.company_id
         INNER JOIN cities ON cities.id=accounts.city_id
-        WHERE manager_leads.tm >= CURDATE()
+        WHERE manager_leads.tm >= CURDATE() $where
         GROUP BY manager_leads.manager_id, accounts.name, accounts.last_name, companies.title, cities.title");
         return $manager_leads;
     }
