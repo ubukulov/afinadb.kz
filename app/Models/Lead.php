@@ -41,7 +41,7 @@ class Lead extends Model
                 $result = Lead::orderBy('leads.id', 'ASC')
                     ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn'))
                     ->where(['city_id' => Auth::user()->city_id, 'ss' => '1'])
-                    ->where('leads.type', '!=', '10') // не брать лиды из источника File Client
+//                    ->where('leads.type', '!=', '10') // не брать лиды из источника File Client
                     ->where('company', '<>', '2')
                     ->whereRaw('leads.tm >= DATE_SUB(CURRENT_DATE(), INTERVAL 15 DAY)')
                     ->paginate(10);
