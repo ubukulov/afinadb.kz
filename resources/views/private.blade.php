@@ -27,5 +27,29 @@
             <div class="bc_title">Ведение файла Отзывы клиентов</div>
             <div class="b_download_btn" onclick="return showVideoYoutube(this)" data-video="https://www.youtube.com/embed/Ll5dMSf7taM">Смотреть</div>
         </div>
+        <div class="block_content">
+            <div class="bc_title">Анализ звонков. Ошибки</div>
+            <a href="/sources/Анализ звонков.Ошибки..xlsx" target="_blank"><div class="b_download_btn">Скачать</div></a>
+        </div>
+        <div class="block_content">
+            <div class="bc_title">Летучка</div>
+            <a href="/sources/Летучка.xlsx" target="_blank"><div class="b_download_btn">Скачать</div></a>
+        </div>
+        <div class="block_content">
+            <div class="bc_title">Чек-лист анализа звонков менеджеров СЕТЬ</div>
+            <a href="/sources/Чек-лист анализа звонков менеджеров СЕТЬ.xlsx" target="_blank"><div class="b_download_btn">Скачать</div></a>
+        </div>
+        <div class="block_content">
+            <div class="bc_title">Правила и стандарты работы офиса</div>
+            <a href="/sources/Правила и стандарты работы офиса.docx" target="_blank"><div class="b_download_btn">Скачать</div></a>
+        </div>
+        <div class="block_content">
+            <div class="bc_title">Турист в офисе</div>
+            <a href="/sources/Турист в офисе.docx" target="_blank"><div class="b_download_btn">Скачать</div></a>
+        </div>
+        <div class="block_content">
+            <div class="bc_title">Вопросы бинотел</div>
+            <a href="/sources/вопросы бинотел.docx" target="_blank"><div class="b_download_btn">Скачать</div></a>
+        </div>
     </div>
 @stop
