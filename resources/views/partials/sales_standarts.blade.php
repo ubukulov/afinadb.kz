@@ -5,7 +5,11 @@
         <a href="/sources/files/Стандарты_работы.pdf" target="_blank"><div class="b_download_btn">Скачать</div></a>
     </div>
     <div class="block_content">
-        <div class="bc_title">Анкета выявление потребности</div>
+        <div class="bc_title">Анкета выявление потребности (каз)</div>
         <a href="/sources/files/Опросник_на_казахском_языке.docx" target="_blank"><div class="b_download_btn">Скачать</div></a>
+    </div>
+    <div class="block_content">
+        <div class="bc_title">Анкета выявление потребности (рус)</div>
+        <a href="/sources/files/Анкета.docx" target="_blank"><div class="b_download_btn">Скачать</div></a>
     </div>
 </div>
