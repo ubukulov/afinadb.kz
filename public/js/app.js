@@ -41827,9 +41827,16 @@ var render = function() {
               _c("td", [
                 lead.m_type == "0"
                   ? _c("div", { staticClass: "status_btn" }, [
-                      _c("div", { attrs: { title: lead.com_title } }, [
-                        _vm._v(_vm._s(lead.user_name + " " + lead.last_name))
-                      ]),
+                      _c(
+                        "div",
+                        {
+                          style: [
+                            lead.is_called == 1 ? { background: "red" } : ""
+                          ],
+                          attrs: { title: lead.com_title }
+                        },
+                        [_vm._v(_vm._s(lead.user_name + " " + lead.last_name))]
+                      ),
                       _vm._v(" "),
                       _c("div", { staticClass: "_completed" })
                     ])
@@ -41837,9 +41844,16 @@ var render = function() {
                 _vm._v(" "),
                 lead.m_type == "2"
                   ? _c("div", { staticClass: "status_btn" }, [
-                      _c("div", { attrs: { title: lead.com_title } }, [
-                        _vm._v(_vm._s(lead.user_name + " " + lead.last_name))
-                      ]),
+                      _c(
+                        "div",
+                        {
+                          style: [
+                            lead.is_called == 1 ? { background: "red" } : ""
+                          ],
+                          attrs: { title: lead.com_title }
+                        },
+                        [_vm._v(_vm._s(lead.user_name + " " + lead.last_name))]
+                      ),
                       _vm._v(" "),
                       _c("div", { staticClass: "_canceled" })
                     ])
@@ -41847,9 +41861,16 @@ var render = function() {
                 _vm._v(" "),
                 lead.m_type == "1"
                   ? _c("div", { staticClass: "status_btn" }, [
-                      _c("div", { attrs: { title: lead.com_title } }, [
-                        _vm._v(_vm._s(lead.user_name + " " + lead.last_name))
-                      ]),
+                      _c(
+                        "div",
+                        {
+                          style: [
+                            lead.is_called == 1 ? { background: "red" } : ""
+                          ],
+                          attrs: { title: lead.com_title }
+                        },
+                        [_vm._v(_vm._s(lead.user_name + " " + lead.last_name))]
+                      ),
                       _vm._v(" "),
                       _c("div", { staticClass: "_processed" })
                     ])
