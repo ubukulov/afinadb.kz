@@ -90,6 +90,9 @@
                 <td v-if="lead.company == '1'" class="_257_btn">
                     257.kz
                 </td>
+                <td v-if="lead.company == '2'" class="_pcvp">
+                    ТОО "ПЦВП"
+                </td>
             </tr>
         </tbody>
         </table>
@@ -447,6 +450,10 @@
     }
     ._257_btn {
         background: #0099AB;
+        color: #fff;
+    }
+    ._pcvp {
+        background: #323544;
         color: #fff;
     }
     .Website, .chemodan {background: yellow;}
