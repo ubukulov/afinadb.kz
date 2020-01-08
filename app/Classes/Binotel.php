@@ -100,4 +100,28 @@ class Binotel
             'stopTime' => $stopTime
         ]);
     }
+
+    public function isCalling($phone)
+    {
+        $phone = preg_replace("/[^+0-9]/", '', $phone);
+        if (strlen($phone) ==  12) {
+            $phone = '8'.substr($phone, 2);
+        }
+
+        if (strlen($phone) == 11 && $phone[0] == 8) {
+            $audio_talks = $this->getHistoryByNumber($phone);
+            $audios = [];
+            foreach($audio_talks as $audio_talk) {
+                if ($audio_talk['billsec'] != 0) {
+                    $audios[] = $this->getRecordByCallId($audio_talk['callID']);
+                }
+            }
+
+            if (count($audios) > 0) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
