@@ -10,7 +10,7 @@ use Auth;
 class Lead extends Model
 {
     protected $fillable = [
-        'id', 'url', 'tm', 'comment', 'phone', 'email', 'name', 'type', 'ss', 'manager', 'status', 'company', 'city_id', 'is_called'
+        'id', 'url', 'tm', 'comment', 'phone', 'email', 'name', 'type', 'ss', 'manager', 'status', 'company', 'city_id', 'is_called', 'type_app'
     ];
 
     public $timestamps = false;

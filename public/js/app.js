@@ -2696,6 +2696,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2718,6 +2725,7 @@ __webpack_require__.r(__webpack_exports__);
       success: '',
       fbcity_id: 1,
       fbcompany_id: 0,
+      type_app: 0,
       class_list: ['Website', 'Instagram', 'Facebook', 'Whatsapp', 'chemodan', '257', 'turkish', 'alanya', 'Website', 'Website', 'Website', 'Website', 'Website', 'Website', 'mardan', 'egipt', 'emirat', 'turkish', 'alanya', 'egipt', 'emirat', 'tailand', 'tailand', 'hainan', 'hainan', 'goa', 'goa']
     };
   },
@@ -2818,7 +2826,8 @@ __webpack_require__.r(__webpack_exports__);
         'email': this.email,
         'phone': this.phone,
         'comment': this.comment,
-        'company': this.company_id
+        'company': this.company_id,
+        'type_app': this.type_app
       }).then(function (res) {
         $('#create_lead').addClass('fade').modal('toggle');
 
@@ -42295,6 +42304,50 @@ var render = function() {
                           )
                         }),
                         0
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.type_app,
+                              expression: "type_app"
+                            }
+                          ],
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.type_app = $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "0" } }, [
+                            _vm._v("-")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "1" } }, [
+                            _vm._v("Whats'App")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "2" } }, [
+                            _vm._v("JivoSite")
+                          ])
+                        ]
                       )
                     ]),
                     _vm._v(" "),

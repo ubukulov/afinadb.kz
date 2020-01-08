@@ -176,6 +176,13 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
+                                    <select v-model="type_app">
+                                        <option value="0">-</option>
+                                        <option value="1">Whats'App</option>
+                                        <option value="2">JivoSite</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <input v-model="first_name" type="text" class="form-control" placeholder="Имя">
                                     <span v-if="errors.first_name" class="error alert-danger">{{ errors.first_name[0] }}</span>
                                 </div>
@@ -273,6 +280,7 @@
                 success: '',
                 fbcity_id: 1,
                 fbcompany_id: 0,
+                type_app: 0,
                 class_list: ['Website','Instagram', 'Facebook','Whatsapp','chemodan','257','turkish','alanya','Website','Website','Website','Website','Website','Website','mardan', 'egipt', 'emirat', 'turkish', 'alanya', 'egipt', 'emirat', 'tailand', 'tailand', 'hainan', 'hainan', 'goa', 'goa']
             }
         },
@@ -366,7 +374,8 @@
                     'email': this.email,
                     'phone': this.phone,
                     'comment': this.comment,
-                    'company': this.company_id
+                    'company': this.company_id,
+                    'type_app': this.type_app
                 })
                     .then(res => {
                         $('#create_lead').addClass('fade').modal('toggle');
