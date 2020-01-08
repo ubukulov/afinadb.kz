@@ -159,6 +159,13 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
+                                    <select v-model="company_id" class="form-control">
+                                        <option value="0">Чемодан</option>
+                                        <option value="1">257</option>
+                                        <option value="2">ПЦВП</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <select v-model="selectCity_id" class="form-control">
                                         <option v-for="city in cities" v-bind:key="city.id" v-bind:value="city.id">{{ city.title }}</option>
                                     </select>
@@ -253,6 +260,7 @@
                 pagination: {},
                 modalTitle: 'ВЫБЕРИТЕ МЕНЕДЖЕРА ДЛЯ ЗАПРОСА',
                 manager_id: 0,
+                company_id: 0,
                 city_id: 0,
                 selectCity_id: 1,
                 type: 0,
@@ -357,7 +365,8 @@
                     'type': this.type,
                     'email': this.email,
                     'phone': this.phone,
-                    'comment': this.comment
+                    'comment': this.comment,
+                    'company': this.company_id
                 })
                     .then(res => {
                         $('#create_lead').addClass('fade').modal('toggle');

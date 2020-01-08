@@ -125,7 +125,7 @@ class CallCenterController extends BaseController
         $type = $data['type'];
         Lead::create([
             'url' => '/', 'comment' => $data['comment'], 'phone' => $data['phone'], 'email' => $data['email'],
-            'name' => $data['first_name'], 'type' => "$type", 'ss' => '1', 'city_id' => $data['city_id']
+            'name' => $data['first_name'], 'type' => "$type", 'ss' => '1', 'city_id' => $data['city_id'], 'company' => $data['company']
         ]);
         return response('Запрос успешно создан');
     }
