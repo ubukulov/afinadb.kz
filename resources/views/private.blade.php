@@ -51,5 +51,17 @@
             <div class="bc_title">Вопросы бинотел</div>
             <a href="/sources/вопросы бинотел.docx" target="_blank"><div class="b_download_btn">Скачать</div></a>
         </div>
+        <div class="block_content">
+            <div class="bc_title">Договор Трудовой</div>
+            <a href="/sources/Договор Трудовой.docx" target="_blank"><div class="b_download_btn">Скачать</div></a>
+        </div>
+        <div class="block_content">
+            <div class="bc_title">Допик на инфошник</div>
+            <a href="/sources/допик на инфошник.docx" target="_blank"><div class="b_download_btn">Скачать</div></a>
+        </div>
+        <div class="block_content">
+            <div class="bc_title">Шаблон доверенность</div>
+            <a href="/sources/Шаблон доверенность.docx" target="_blank"><div class="b_download_btn">Скачать</div></a>
+        </div>
     </div>
 @stop
