@@ -42319,6 +42319,7 @@ var render = function() {
                               expression: "type_app"
                             }
                           ],
+                          staticClass: "form-control",
                           on: {
                             change: function($event) {
                               var $$selectedVal = Array.prototype.filter

@@ -176,7 +176,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <select v-model="type_app">
+                                    <select v-model="type_app" class="form-control">
                                         <option value="0">-</option>
                                         <option value="1">Whats'App</option>
                                         <option value="2">JivoSite</option>
