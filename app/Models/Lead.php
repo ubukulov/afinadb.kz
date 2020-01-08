@@ -47,13 +47,24 @@ class Lead extends Model
                     ->paginate(10);
             }
         } else {
-            $result = Lead::orderBy('leads.id', 'DESC')
-                ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, manager_leads.type AS m_type, accounts.name as user_name, accounts.last_name, companies.title as com_title'))
-                ->leftJoin('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
-                ->leftJoin('accounts', 'accounts.id', '=', 'manager_leads.manager_id')
-                ->leftJoin('companies', 'companies.id', '=', 'accounts.company_id')
-                ->where('leads.company', '<>', '2')
-                ->paginate(30);
+            $user = Auth::user();
+            if ($user->company_id == 21) {
+                $result = Lead::orderBy('leads.id', 'DESC')
+                    ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, manager_leads.type AS m_type, accounts.name as user_name, accounts.last_name, companies.title as com_title'))
+                    ->leftJoin('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
+                    ->leftJoin('accounts', 'accounts.id', '=', 'manager_leads.manager_id')
+                    ->leftJoin('companies', 'companies.id', '=', 'accounts.company_id')
+                    ->where('leads.company', '=', '2')
+                    ->paginate(30);
+            } else {
+                $result = Lead::orderBy('leads.id', 'DESC')
+                    ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, manager_leads.type AS m_type, accounts.name as user_name, accounts.last_name, companies.title as com_title'))
+                    ->leftJoin('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
+                    ->leftJoin('accounts', 'accounts.id', '=', 'manager_leads.manager_id')
+                    ->leftJoin('companies', 'companies.id', '=', 'accounts.company_id')
+                    ->where('leads.company', '<>', '2')
+                    ->paginate(30);
+            }
         }
 
         return $result;
@@ -72,14 +83,25 @@ class Lead extends Model
 
     public static function getLeadsOfCity($city_id)
     {
-        $leads = Lead::where(['leads.city_id' => $city_id])
-            ->orderBy('leads.id', 'DESC')
-            ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, manager_leads.type AS m_type, accounts.name as user_name, accounts.last_name, companies.title as com_title'))
-            ->leftJoin('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
-            ->leftJoin('accounts', 'accounts.id', '=', 'manager_leads.manager_id')
-            ->leftJoin('companies', 'companies.id', '=', 'accounts.company_id')
-            ->where('leads.company', '<>', '2')
-            ->paginate(30);
+        if (Auth::user()->company_id == 21) {
+            $leads = Lead::where(['leads.city_id' => $city_id])
+                ->orderBy('leads.id', 'DESC')
+                ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, manager_leads.type AS m_type, accounts.name as user_name, accounts.last_name, companies.title as com_title'))
+                ->leftJoin('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
+                ->leftJoin('accounts', 'accounts.id', '=', 'manager_leads.manager_id')
+                ->leftJoin('companies', 'companies.id', '=', 'accounts.company_id')
+                ->where('leads.company', '=', '2')
+                ->paginate(30);
+        } else {
+            $leads = Lead::where(['leads.city_id' => $city_id])
+                ->orderBy('leads.id', 'DESC')
+                ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, manager_leads.type AS m_type, accounts.name as user_name, accounts.last_name, companies.title as com_title'))
+                ->leftJoin('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
+                ->leftJoin('accounts', 'accounts.id', '=', 'manager_leads.manager_id')
+                ->leftJoin('companies', 'companies.id', '=', 'accounts.company_id')
+                ->where('leads.company', '<>', '2')
+                ->paginate(30);
+        }
         return LeadResource::collection($leads);
     }
 
@@ -352,13 +374,25 @@ class Lead extends Model
 
     public static function getArchiveLeads()
     {
-        $leads = Lead::orderBy('leads.id', 'DESC')
+        if (Auth::user()->company_id == 21) {
+            $leads = Lead::orderBy('leads.id', 'DESC')
+                ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, accounts.name as user_name, accounts.last_name'))
+                ->join('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
+                ->join('rejected_leads', 'rejected_leads.lead_id', '=', 'leads.id')
+                ->join('accounts', 'accounts.id', '=', 'manager_leads.manager_id')
+                ->where(['manager_leads.ss' => '1', 'rejected_leads.ss' => '0', 'manager_leads.type' => '2', 'leads.company' => '2'])
+                ->paginate(30);
+        } else {
+            $leads = Lead::orderBy('leads.id', 'DESC')
                 ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, accounts.name as user_name, accounts.last_name'))
                 ->join('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
                 ->join('rejected_leads', 'rejected_leads.lead_id', '=', 'leads.id')
                 ->join('accounts', 'accounts.id', '=', 'manager_leads.manager_id')
                 ->where(['manager_leads.ss' => '1', 'rejected_leads.ss' => '0', 'manager_leads.type' => '2'])
+                ->where('leads.company', '<>', '2')
                 ->paginate(30);
+        }
+
         return $leads;
     }
 }
