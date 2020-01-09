@@ -2703,6 +2703,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -41829,13 +41835,35 @@ var render = function() {
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(lead.phone))]),
               _vm._v(" "),
-              _c("td", { class: _vm.setClassName(lead.type) }, [
-                _vm._v(
-                  "\n                " +
-                    _vm._s(_vm.sourceList[lead.type]) +
-                    "\n            "
-                )
-              ]),
+              lead.type_app == 1
+                ? _c("td", { class: _vm.setClassName(lead.type) }, [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.sourceList[lead.type]) +
+                        " - Whats'App\n            "
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              lead.type_app == 2
+                ? _c("td", { class: _vm.setClassName(lead.type) }, [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.sourceList[lead.type]) +
+                        " - JivoSite\n            "
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              lead.type_app == 0
+                ? _c("td", { class: _vm.setClassName(lead.type) }, [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.sourceList[lead.type]) +
+                        "\n            "
+                    )
+                  ])
+                : _vm._e(),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(_vm.cities[lead.city_id - 1].title))]),
               _vm._v(" "),

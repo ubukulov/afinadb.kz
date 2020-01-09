@@ -59,7 +59,13 @@
                 <td v-else="lead.dn > 1">{{ lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"  }}</td>
                 <td>{{ lead.name }}</td>
                 <td>{{ lead.phone }}</td>
-                <td v-bind:class="setClassName(lead.type)">
+                <td v-if="lead.type_app == 1" v-bind:class="setClassName(lead.type)">
+                    {{ sourceList[lead.type] }} - Whats'App
+                </td>
+                <td v-if="lead.type_app == 2" v-bind:class="setClassName(lead.type)">
+                    {{ sourceList[lead.type] }} - JivoSite
+                </td>
+                <td v-if="lead.type_app == 0" v-bind:class="setClassName(lead.type)">
                     {{ sourceList[lead.type] }}
                 </td>
                 <td>{{ cities[lead.city_id - 1].title }}</td>
