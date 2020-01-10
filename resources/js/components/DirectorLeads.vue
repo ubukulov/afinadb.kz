@@ -21,6 +21,7 @@
             <thead class="thead-light">
             <th width="100">Дата</th>
             <th width="100">Город</th>
+            <th width="100">Источник</th>
             <th width="200">Подтверждение</th>
             </thead>
             <tbody>
@@ -30,6 +31,15 @@
                 <td v-else="lead.dn > 1">{{ lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"  }}</td>
                 <td>
                     {{ lead.c_title }}
+                </td>
+                <td v-if="lead.type_app == 1" v-bind:class="setClassName(lead.type)">
+                    {{ sourceList[lead.type] }} - Whats'App
+                </td>
+                <td v-if="lead.type_app == 2" v-bind:class="setClassName(lead.type)">
+                    {{ sourceList[lead.type] }} - JivoSite
+                </td>
+                <td v-if="lead.type_app == 0" v-bind:class="setClassName(lead.type)">
+                    {{ sourceList[lead.type] }}
                 </td>
                 <td v-if="index == 0">
                     <button type="button" v-on:click="getLead(lead.id)" class="btn btn-primary">Выбрать запрос</button>
