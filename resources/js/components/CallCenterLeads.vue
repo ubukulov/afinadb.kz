@@ -74,17 +74,17 @@
                 </td>
                 <td>
                     <div v-if="lead.m_type == '0'" class="status_btn">
-                        <div v-bind:title="lead.com_title" v-bind:style="[lead.is_called == 1 ? {'background': 'red'} : '']">{{ lead.user_name + " " + lead.last_name }}</div>
+                        <div v-bind:title="lead.com_title" v-bind:style="[lead.is_called == 2 ? {'background': 'red'} : '']">{{ lead.user_name + " " + lead.last_name }}</div>
                         <div class="_completed"></div>
                     </div>
 
                     <div v-if="lead.m_type == '2'" class="status_btn">
-                        <div v-bind:title="lead.com_title" v-bind:style="[lead.is_called == 1 ? {'background': 'red'} : '']">{{ lead.user_name + " " + lead.last_name }}</div>
+                        <div v-bind:title="lead.com_title" v-bind:style="[lead.is_called == 2 ? {'background': 'red'} : '']">{{ lead.user_name + " " + lead.last_name }}</div>
                         <div class="_canceled"></div>
                     </div>
 
                     <div v-if="lead.m_type == '1'" class="status_btn">
-                        <div v-bind:title="lead.com_title" v-bind:style="[lead.is_called == 1 ? {'background': 'red'} : '']">{{ lead.user_name + " " + lead.last_name }}</div>
+                        <div v-bind:title="lead.com_title" v-bind:style="[lead.is_called == 2 ? {'background': 'red'} : '']">{{ lead.user_name + " " + lead.last_name }}</div>
                         <div class="_processed"></div>
                     </div>
 

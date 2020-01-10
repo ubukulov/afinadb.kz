@@ -41880,7 +41880,7 @@ var render = function() {
                         "div",
                         {
                           style: [
-                            lead.is_called == 1 ? { background: "red" } : ""
+                            lead.is_called == 2 ? { background: "red" } : ""
                           ],
                           attrs: { title: lead.com_title }
                         },
@@ -41897,7 +41897,7 @@ var render = function() {
                         "div",
                         {
                           style: [
-                            lead.is_called == 1 ? { background: "red" } : ""
+                            lead.is_called == 2 ? { background: "red" } : ""
                           ],
                           attrs: { title: lead.com_title }
                         },
@@ -41914,7 +41914,7 @@ var render = function() {
                         "div",
                         {
                           style: [
-                            lead.is_called == 1 ? { background: "red" } : ""
+                            lead.is_called == 2 ? { background: "red" } : ""
                           ],
                           attrs: { title: lead.com_title }
                         },

@@ -47,11 +47,13 @@ class LeadBinotel extends Command
             ->get();
         if ($leads) {
             foreach($leads as $lead){
+                $one_lead = Lead::findOrFail($lead->id);
                 if (Binotel::isCalling($lead->phone)) {
-                    $one_lead = Lead::findOrFail($lead->id);
-                    $one_lead->is_called = 1;
-                    $one_lead->save();
+                    $one_lead->is_called = 1; // успел позвонить в течение 15мин
+                } else {
+                    $one_lead->is_called = 2; // не успел звонить в течение 15мин
                 }
+                $one_lead->save();
             }
         }
         $this->info('Процесс завершен');
