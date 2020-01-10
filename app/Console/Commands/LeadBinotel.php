@@ -41,14 +41,16 @@ class LeadBinotel extends Command
     public function handle()
     {
         $leads = Lead::where(['is_called' => 0])
+            ->select('leads.*')
             ->join('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
             ->where('manager_leads.tm', '>=', DB::raw('DATE_SUB(NOW() , INTERVAL 15 MINUTE)'))
             ->get();
         if ($leads) {
             foreach($leads as $lead){
                 if (Binotel::isCalling($lead->phone)) {
-                    $lead->is_called = 1;
-                    $lead->save();
+                    $one_lead = Lead::findOrFail($lead->id);
+                    $one_lead->is_called = 1;
+                    $one_lead->save();
                 }
             }
         }
