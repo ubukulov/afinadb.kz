@@ -4138,6 +4138,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -45161,6 +45162,20 @@ var render = function() {
                           }
                         },
                         [_c("i", { staticClass: "fas fa-times" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success",
+                          attrs: { title: "Комментарии" },
+                          on: {
+                            click: function($event) {
+                              return _vm.showComments(lead.id)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "far fa-comments" })]
                       ),
                       _vm._v(" "),
                       _c(

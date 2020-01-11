@@ -31,6 +31,7 @@
                             <td>
                                 <button title="Выполнено" v-on:click="completeLead(lead.id)" class="btn btn-primary"><i class="fas fa-check"></i></button>
                                 <button title="Отказаться от запроса" v-on:click="cancelLeadForm(lead.id)" class="btn btn-danger"><i class="fas fa-times"></i></button>
+                                <button title="Комментарии" v-on:click="showComments(lead.id)" class="btn btn-success"><i class="far fa-comments"></i></button>
                                 <button title="Прослушать разговоры с клиентами" v-on:click="showAudioTalkWithCustomers(lead.phone)" class="btn btn-danger"><i class="fas fa-headphones"></i></button>
                             </td>
                         </tr>
