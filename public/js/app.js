@@ -3385,16 +3385,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -43819,36 +43809,6 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              lead.type_app == 1
-                ? _c("td", { class: _vm.setClassName(lead.type) }, [
-                    _vm._v(
-                      "\n                " +
-                        _vm._s(_vm.sourceList[lead.type]) +
-                        " - Whats'App\n            "
-                    )
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              lead.type_app == 2
-                ? _c("td", { class: _vm.setClassName(lead.type) }, [
-                    _vm._v(
-                      "\n                " +
-                        _vm._s(_vm.sourceList[lead.type]) +
-                        " - JivoSite\n            "
-                    )
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              lead.type_app == 0
-                ? _c("td", { class: _vm.setClassName(lead.type) }, [
-                    _vm._v(
-                      "\n                " +
-                        _vm._s(_vm.sourceList[lead.type]) +
-                        "\n            "
-                    )
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
               index == 0
                 ? _c("td", [
                     _c(
@@ -43987,8 +43947,6 @@ var staticRenderFns = [
       _c("th", { attrs: { width: "100" } }, [_vm._v("Дата")]),
       _vm._v(" "),
       _c("th", { attrs: { width: "100" } }, [_vm._v("Город")]),
-      _vm._v(" "),
-      _c("th", { attrs: { width: "100" } }, [_vm._v("Источник")]),
       _vm._v(" "),
       _c("th", { attrs: { width: "200" } }, [_vm._v("Подтверждение")])
     ])
