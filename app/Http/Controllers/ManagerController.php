@@ -98,7 +98,10 @@ class ManagerController extends BaseController
     // Закрепить лид за мной
     public function setLeadForMe($lead_id)
     {
-        if (!ManagerLead::exists($lead_id)) {
+        if (ManagerLead::exists($lead_id)) {
+            DB::update("UPDATE leads SET ss='0' WHERE id='$lead_id'");
+            return response('Запрос закреплен за другим. Попробуйте взять другую');
+        } else {
             DB::beginTransaction();
             try {
                 ManagerLead::create([
