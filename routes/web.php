@@ -43,7 +43,7 @@ Route::group(['middleware' => ['web', 'auth']], function(){
     Route::get('/stats/sources', 'StatController@getStatsOfSources')->name('stats.sources'); // Статистика по источникам
 });
 
-Route::group(['prefix' => 'manager'], function(){
+Route::group(['prefix' => 'manager', 'middleware' => ['web', 'auth']], function(){
     Route::get('leads', 'ManagerController@leads')->name('manager.leads'); // список лидов
     Route::get('my_leads', 'ManagerController@myLeads')->name('myLeads'); // список лидов менеджера
     Route::post('/lead/{lead_id}', 'ManagerController@setLeadForMe'); // закрепить лид за менеджером
@@ -53,7 +53,7 @@ Route::group(['prefix' => 'manager'], function(){
     Route::get('/pending/leads', 'ManagerController@pendingLeads')->name('pending.leads'); // список отложенных запросов
 });
 
-Route::group(['prefix' => 'call_center'], function(){
+Route::group(['prefix' => 'call_center', 'middleware' => ['web', 'auth']], function(){
     Route::get('/leads', 'CallCenterController@leads')->name('call_center.leads');
     Route::post('/manager/set/lead', 'CallCenterController@setLeadForManager');
     Route::post('/user/ban', 'CallCenterController@banUser');
@@ -72,7 +72,7 @@ Route::group(['prefix' => 'call_center'], function(){
     Route::post('/set/lead/new', 'CallCenterController@setLeadNew');
 });
 
-Route::group(['prefix' => 'director'], function(){
+Route::group(['prefix' => 'director', 'middleware' => ['web', 'auth']], function(){
     Route::get('/leads', 'DirectorController@leads')->name('director.leads');
     Route::get('/my_leads', 'DirectorController@myLeads')->name('director.myLeads');
     Route::get('/my/leads', 'DirectorController@getMyLeads'); // получить список моих лидов
