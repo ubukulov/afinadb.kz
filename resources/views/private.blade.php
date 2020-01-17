@@ -63,5 +63,9 @@
             <div class="bc_title">Шаблон доверенность</div>
             <a href="/sources/Шаблон доверенность.docx" target="_blank"><div class="b_download_btn">Скачать</div></a>
         </div>
+        <div class="block_content">
+            <div class="bc_title">Договор на корпоративное обслуживание чистый</div>
+            <a href="/sources/files/Договор_на_корпоративное_обслуживание_чистый.doc" target="_blank"><div class="b_download_btn">Скачать</div></a>
+        </div>
     </div>
 @stop
