@@ -67,5 +67,17 @@
             <div class="bc_title">Договор на корпоративное обслуживание чистый</div>
             <a href="/sources/files/Договор_на_корпоративное_обслуживание_чистый.doc" target="_blank"><div class="b_download_btn">Скачать</div></a>
         </div>
+        <div class="block_content">
+            <div class="bc_title">Памятка ДЛЯ ПАРТНЕРА Евразийский</div>
+            <a href="/sources/files/Памятка_ДЛЯ_ПАРТНЕРА_Евразийский.docx" target="_blank"><div class="b_download_btn">Скачать</div></a>
+        </div>
+        <div class="block_content">
+            <div class="bc_title">Рассрочка от Банк Хоум Кредит для Алматы</div>
+            <a href="/sources/files/Рассрочка_от_Банк_Хоум_Кредит_для_Алматы.docx" target="_blank"><div class="b_download_btn">Скачать</div></a>
+        </div>
+        <div class="block_content">
+            <div class="bc_title">Рассрочка от Каспи памятка</div>
+            <a href="/sources/files/Рассрочка_от_Каспи_памятка.docx" target="_blank"><div class="b_download_btn">Скачать</div></a>
+        </div>
     </div>
 @stop
