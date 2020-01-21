@@ -65,4 +65,10 @@ class EducationController extends BaseController
         $this->seo()->setTitle('Все вебинары');
         return view('webinars');
     }
+
+    public function trainingFromTo()
+    {
+        $this->seo()->setTitle('Обучение от ТО');
+        return view('training_from_to');
+    }
 }

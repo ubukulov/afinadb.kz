@@ -30,6 +30,7 @@ Route::group(['middleware' => ['web', 'auth']], function(){
     Route::get('/leadership-training', 'EducationController@leadershipTraining')->name('leadership-training');
     Route::get('/private', 'EducationController@privat')->name('private');
     Route::get('/all-webinars', 'EducationController@webinars')->name('all-webinars');
+    Route::get('/training-from-to', 'EducationController@trainingFromTo')->name('training-from-to');
 
     # Звонки
     Route::get('/incoming/calls', 'BinotelController@incomingCalls')->name('incoming.calls'); // входящие звонки
