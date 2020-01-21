@@ -17,7 +17,7 @@ function timeCount($a) {
 
 function blockAllEducation($request_uri){
     $arr = [
-        'education', 'internship-training', 'manager-training', 'leadership-training', 'private'
+        'education', 'internship-training', 'manager-training', 'leadership-training', 'private', 'training-from-to'
     ];
     if (in_array($request_uri, $arr)) {
         return true;
