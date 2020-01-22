@@ -43,6 +43,9 @@
                         @case('IT')
                             @include('pattern.it_menu')
                         @break
+                        @case('TRAINEE')
+                            @include('pattern.training_menu')
+                        @break
 
                         @default
                             @include('pattern.left_menu')
