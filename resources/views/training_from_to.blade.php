@@ -20,4 +20,12 @@
             <a href="/sources/files/Программа рейсов Турция2020.docx" target="_blank"><div class="b_download_btn">Скачать</div></a>
         </div>
     </div>
+
+    <div class="block">
+        <div class="block_title">Компас</div>
+        <div class="block_content">
+            <div class="bc_title">Шри-Ланка</div>
+            <div class="b_download_btn" onclick="return viewWebinar(this);" data-url="https://www.youtube.com/watch?v=AvpSpOcKng4&feature=youtu.be">Смотреть</div>
+        </div>
+    </div>
 @stop
