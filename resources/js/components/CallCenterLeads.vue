@@ -21,6 +21,7 @@
                 <div class="btn-group" role="button">
                     <button v-on:click="createLeadForm()" class="btn btn-primary _create"><i class="fas fa-edit"></i>&nbsp;Создать запрос</button>
                     <button v-on:click="openUploadFileForm()" class="btn btn-default _257_btn"><i class="fas fa-upload"></i>&nbsp;Загрузить отчет</button>
+                    <button v-on:click="openReportForm()" class="btn btn-success"><i class="fas fa-receipt"></i>&nbsp;Создать отчет</button>
                 </div>
             </div>
         </div>
@@ -277,6 +278,53 @@
                 </div>
             </div>
         </div>
+
+        <!-- Report Form -->
+        <div class="modal fade" id="report_form" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Отчеты</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <select class="form-control" v-model="report_type">
+                                        <option value="1">Запросы по группам</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <VueCtkDateTimePicker
+                                            v-model="range_date"
+                                            label="Выберите дату и время"
+                                            :custom-shortcuts="custom_shortcuts"
+                                            :no-value-to-custom-elem="true" range="true"/>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <button @click="generateReport()" class="btn btn-primary"><i class="fas fa-arrow-circle-right"></i>&nbsp;Генерировать отчет</button>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <a href="#" class="form-control" style="display: none;" id="report_download">Скачать</a>
+                                </div>
+                            </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -285,16 +333,17 @@
 //    import Datepicker from 'vuejs-datepicker';
 //    import * as lang from "vuejs-datepicker/src/locale";
 //    import datetime from 'vuejs-datetimepicker';
-//
-//    import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
-//    import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css';
 
-//    import {Datetime} from 'vue-datetime';
+    import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
+    import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css';
     import { Datetime } from 'vue-datetime';
     import 'vue-datetime/dist/vue-datetime.css'
 
     Vue.component('datetime', Datetime);
     export default {
+        components: {
+            VueCtkDateTimePicker
+        },
         data(){
             return {
                 leads: [],
@@ -316,6 +365,16 @@
                 fbcity_id: 1,
                 fbcompany_id: 0,
                 type_app: 0,
+                range_date: {},
+                custom_shortcuts: [
+                    { key: 'thisWeek', label: 'Эта неделя', value: 'isoWeek' },
+                    { key: 'lastWeek', label: 'Прошлая неделя', value: '-isoWeek' },
+                    { key: 'last7Days', label: 'Последние 7 дней', value: 7 },
+                    { key: 'last30Days', label: 'Последние 30 дней', value: 30 },
+                    { key: 'thisMonth', label: 'Этот месяц', value: 'month' },
+                    { key: 'lastMonth', label: 'Прошлый месяц', value: '-month' }
+                ],
+                report_type: 1,
 //                language: "ru",
 //                languages: lang,
                 selected_date: '',
@@ -488,6 +547,25 @@
                 } else {
                     return this.class_list[index];
                 }
+            },
+            openReportForm(){
+                $('#report_form').removeClass('fade').modal('toggle');
+            },
+            generateReport(){
+                axios.post('/call_center/create/report', {
+                    'report_type': this.report_type,
+                    'range_date': this.range_date,
+                })
+                    .then(res => {
+                        //$('#report_form').addClass('fade').modal('toggle');
+                        console.log(res.data);
+                        $('#report_download').attr('href', res.data).css({'display': 'block'});
+                    })
+                    .catch(err => {
+                        if (err.response.status === 422) {
+                            this.errors = err.response.data.errors;
+                        }
+                    })
             }
         },
         created(){

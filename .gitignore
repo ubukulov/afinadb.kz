@@ -15,3 +15,4 @@ yarn-error.log
 /public/audio
 /public/.htaccess
 /public/temp_img
+/public/reports

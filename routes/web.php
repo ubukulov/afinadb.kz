@@ -67,6 +67,7 @@ Route::group(['prefix' => 'call_center', 'middleware' => ['web', 'auth']], funct
     Route::post('/lead/remove', 'CallCenterController@removeLead'); // удалить лид
     Route::post('/lead/return', 'CallCenterController@returnLead'); // возвращать лид обратно к менеджеру
     Route::post('/create/lead', 'CallCenterController@createLead'); // создать лид
+    Route::post('/create/report', 'ReportController@createReport'); // создать отчет
     Route::post('/lead/comments', 'CallCenterController@leadComments');
     Route::post('/lead/file', 'CallCenterController@loadLeadFromFile');
     Route::get('/archive/leads', 'CallCenterController@getArchiveLeads')->name('archive.leads');
