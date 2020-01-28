@@ -123,10 +123,12 @@ class CallCenterController extends BaseController
         ]);
         $data = $request->all();
         $type = $data['type'];
+        $company = $data['company'];
+        $tm = (empty($data['selected_date'])) ? Carbon::now() : date("Y-m-d H:i:s", strtotime($data['selected_date']));
         Lead::create([
             'url' => '/', 'comment' => $data['comment'], 'phone' => $data['phone'], 'email' => $data['email'],
-            'name' => $data['first_name'], 'type' => "$type", 'ss' => '1', 'city_id' => $data['city_id'], 'company' => $data['company'],
-            'type_app' => $data['type_app']
+            'name' => $data['first_name'], 'type' => "$type", 'ss' => '1', 'city_id' => $data['city_id'], 'company' => "$company",
+            'type_app' => $data['type_app'], 'tm' => $tm
         ]);
         return response('Запрос успешно создан');
     }

@@ -163,7 +163,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <select v-model="company_id" class="form-control">
                                         <option value="0">Чемодан</option>
@@ -171,16 +171,32 @@
                                         <option value="2">ПЦВП</option>
                                     </select>
                                 </div>
-                                <div class="form-group">
-                                    <select v-model="selectCity_id" class="form-control">
-                                        <option v-for="city in cities" v-bind:key="city.id" v-bind:value="city.id">{{ city.title }}</option>
-                                    </select>
-                                </div>
+
                                 <div class="form-group">
                                     <select v-model="type" class="form-control">
                                         <option v-for="(source, index) in sourceList" v-bind:key="index" v-bind:value="index">{{ source }}</option>
                                     </select>
                                 </div>
+
+                                <div class="form-group">
+                                    <input v-model="first_name" type="text" class="form-control" placeholder="Имя">
+                                    <span v-if="errors.first_name" class="error alert-danger">{{ errors.first_name[0] }}</span>
+                                </div>
+
+                                <div class="form-group">
+                                    <input v-model="phone" type="text" class="form-control" placeholder="Телефон">
+                                    <span v-if="errors.phone" class="error alert-danger">{{ errors.phone[0] }}</span>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <select v-model="selectCity_id" class="form-control">
+                                        <option v-for="city in cities" v-bind:key="city.id" v-bind:value="city.id">{{ city.title }}</option>
+                                    </select>
+                                </div>
+
                                 <div class="form-group">
                                     <select v-model="type_app" class="form-control">
                                         <option value="0">-</option>
@@ -188,18 +204,19 @@
                                         <option value="2">JivoSite</option>
                                     </select>
                                 </div>
-                                <div class="form-group">
-                                    <input v-model="first_name" type="text" class="form-control" placeholder="Имя">
-                                    <span v-if="errors.first_name" class="error alert-danger">{{ errors.first_name[0] }}</span>
-                                </div>
+
                                 <div class="form-group">
                                     <input v-model="email" type="email" class="form-control" placeholder="Email">
                                     <span v-if="errors.email" class="error alert-danger">{{ errors.email[0] }}</span>
                                 </div>
+
                                 <div class="form-group">
-                                    <input v-model="phone" type="text" class="form-control" placeholder="Телефон">
-                                    <span v-if="errors.phone" class="error alert-danger">{{ errors.phone[0] }}</span>
+                                    <datetime input-class="form-control" type="datetime" v-model="selected_date" format="dd.MM.yyyy HH:mm:ss" value-zone="Asia/Almaty" :phrases="{ok: 'ОК', cancel: 'Отмена'}" placeholder="Укажите дату"></datetime>
                                 </div>
+                            </div>
+
+                            <div class="col-md-12">
+
                                 <div class="form-group">
                                     <textarea v-model="comment" cols="30" rows="3" class="form-control" placeholder="Комментарий"></textarea>
                                     <span v-if="errors.comment" class="error alert-danger">{{ errors.comment[0] }}</span>
@@ -265,6 +282,18 @@
 
 <script>
     import axios from 'axios';
+//    import Datepicker from 'vuejs-datepicker';
+//    import * as lang from "vuejs-datepicker/src/locale";
+//    import datetime from 'vuejs-datetimepicker';
+//
+//    import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
+//    import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css';
+
+//    import {Datetime} from 'vue-datetime';
+    import { Datetime } from 'vue-datetime';
+    import 'vue-datetime/dist/vue-datetime.css'
+
+    Vue.component('datetime', Datetime);
     export default {
         data(){
             return {
@@ -287,6 +316,9 @@
                 fbcity_id: 1,
                 fbcompany_id: 0,
                 type_app: 0,
+//                language: "ru",
+//                languages: lang,
+                selected_date: '',
                 class_list: ['Website','Instagram', 'Facebook','Whatsapp','chemodan','257','turkish','alanya','Website','Website','Website','Website','Website','Website','mardan', 'egipt', 'emirat', 'turkish', 'alanya', 'egipt', 'emirat', 'tailand', 'tailand', 'hainan', 'hainan', 'goa', 'goa']
             }
         },
@@ -381,7 +413,8 @@
                     'phone': this.phone,
                     'comment': this.comment,
                     'company': this.company_id,
-                    'type_app': this.type_app
+                    'type_app': this.type_app,
+                    'selected_date': this.selected_date,
                 })
                     .then(res => {
                         $('#create_lead').addClass('fade').modal('toggle');
