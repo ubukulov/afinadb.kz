@@ -28,4 +28,12 @@
             <div class="b_download_btn" onclick="return viewWebinar(this);" data-url="https://www.youtube.com/watch?v=AvpSpOcKng4&feature=youtu.be">Смотреть</div>
         </div>
     </div>
+
+    <div class="block">
+        <div class="block_title">Казюнион</div>
+        <div class="block_content">
+            <div class="bc_title">Занзибар презентация - Сания нов</div>
+            <a href="/sources/files/Занзибар презентация - Сания нов.pptx" target="_blank"><div class="b_download_btn">Скачать</div></a>
+        </div>
+    </div>
 @stop
