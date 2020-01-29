@@ -19,12 +19,13 @@ class ReportController extends BaseController
 
         $count_days = [];
         if (empty($data['range_date']['end'])) {
+            // указано дата, а не диапозон
             $start = substr($data['range_date']['start'],0,10);
             $end = null;
             $count_days[] = (int) date('d', strtotime($start));
-            // указано дата, а не диапозон
             $leads = Lead::where('city_id', '=', $city_id)->where(DB::raw('date_format(leads.tm, "%Y-%m-%d")'), '=', $start)->get();
         } else {
+            // диапозон
             $start = substr($data['range_date']['start'],0,10);
             $end   = substr($data['range_date']['end'],0,10);
             $sec_start = strtotime($start);
@@ -32,7 +33,6 @@ class ReportController extends BaseController
                 $count_days[] = (int) date('d', $sec_start);
                 $sec_start += 86400;
             }
-            // диапозон
             $leads = Lead::where('city_id', '=', $city_id)->whereBetween(DB::raw('date_format(leads.tm, "%Y-%m-%d")'), [$start, $end])->get();
         }
 
@@ -40,6 +40,13 @@ class ReportController extends BaseController
         foreach($leads as $lead){
             $type = (int) $lead->type;
             $source = $this->source_list[$type];
+
+            if ($lead->type_app == 1) {
+                $source = $source." - Whats'App";
+            } elseif ($lead->type_app == 2) {
+                $source = $source." - JivoSite";
+            }
+
             $day_month = (int) date('d', strtotime($lead->tm));
             if (array_key_exists($source, $records)) {
                 if (array_key_exists($day_month, $records[$source])) {
@@ -51,8 +58,6 @@ class ReportController extends BaseController
                 $records[$source][$day_month] = 1;
             }
         }
-
-//        dd($records);
 
         $style_array = [
             'font'  => array(
