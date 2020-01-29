@@ -299,6 +299,12 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <select v-model="selectCity_id" class="form-control">
+                                        <option v-for="city in cities" v-bind:key="city.id" v-bind:value="city.id">{{ city.title }}</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
                                     <VueCtkDateTimePicker
                                             v-model="range_date"
                                             label="Выберите дату и время"
@@ -555,6 +561,7 @@
                 axios.post('/call_center/create/report', {
                     'report_type': this.report_type,
                     'range_date': this.range_date,
+                    'city_id': this.selectCity_id
                 })
                     .then(res => {
                         //$('#report_form').addClass('fade').modal('toggle');

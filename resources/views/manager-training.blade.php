@@ -82,5 +82,9 @@
             <div class="bc_title">CRM система</div>
             <div class="b_download_btn" onclick="return showVideoYoutube(this)" data-video="https://www.youtube.com/embed/Epj8W-aP5lA">Смотреть</div>
         </div>
+        <div class="block_content">
+            <div class="bc_title">Система ТО</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this)" data-video="https://www.youtube.com/embed/RWCxcYx62Sc">Смотреть</div>
+        </div>
     </div>
 @stop
