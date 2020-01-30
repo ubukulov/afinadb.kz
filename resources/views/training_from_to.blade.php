@@ -37,7 +37,7 @@
         </div>
 		<div class="block_content">
             <div class="bc_title">Казюнион Занзибар, Танзания</div>
-            <div class="b_download_btn" onclick="return showVideoYoutube(this);" data-url="https://www.youtube.com/embed/12Sjbdqpnj0">Смотреть</div>
+            <div class="b_download_btn" onclick="return viewWebinar(this);" data-url="https://www.youtube.com/watch?v=12Sjbdqpnj0&feature=youtu.be">Смотреть</div>
         </div>
     </div>
 
