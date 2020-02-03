@@ -105,7 +105,7 @@ class ManagerController extends BaseController
             DB::beginTransaction();
             try {
                 ManagerLead::create([
-                    'lead_id' => $lead_id, 'manager_id' => \Auth::user()->id, 'tm' => Carbon::now(),
+                    'lead_id' => $lead_id, 'manager_id' => Auth::user()->id, 'tm' => Carbon::now(),
                     'type' => '1', 'ss' => '0'
                 ]);
                 DB::update("UPDATE leads SET ss='0' WHERE id='$lead_id'");
