@@ -395,4 +395,22 @@ class Lead extends Model
 
         return $leads;
     }
+
+    public function getComments()
+    {
+        return $this->hasOne('App\Models\RejectedLead', 'lead_id');
+    }
+
+    public function getStatus()
+    {
+        if ($this->isCompleted()) {
+            return 'обработано';
+        } elseif ($this->isCanceled()) {
+            return 'возврат';
+        } elseif ($this->isProcessed()) {
+            return 'в процессе';
+        } else {
+            return 'новый';
+        }
+    }
 }

@@ -295,10 +295,18 @@
                                 <div class="form-group">
                                     <select class="form-control" v-model="report_type">
                                         <option value="1">Запросы по группам</option>
+                                        <option value="2">Запросы франшизов</option>
                                     </select>
                                 </div>
 
-                                <div class="form-group">
+                                <div v-if="report_type == 2" class="form-group">
+                                    <select v-model="franchise_id" class="form-control">
+                                        <option value="0">Выберите компанию</option>
+                                        <option v-for="com in companies" v-bind:key="com.id" v-bind:value="com.id">{{ com.title }}</option>
+                                    </select>
+                                </div>
+
+                                <div v-if="report_type == 1" class="form-group">
                                     <select v-model="selectCity_id" class="form-control">
                                         <option v-for="city in cities" v-bind:key="city.id" v-bind:value="city.id">{{ city.title }}</option>
                                     </select>
@@ -315,7 +323,7 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <button @click="generateReport()" class="btn btn-primary"><i class="fas fa-arrow-circle-right"></i>&nbsp;Генерировать отчет</button>
+                                    <button @click="generateReport()" class="btn btn-primary"><i class="fas fa-arrow-circle-right"></i>&nbsp;Cгенерировать отчет</button>
                                 </div>
                             </div>
 
@@ -330,7 +338,6 @@
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 </template>
 
@@ -381,6 +388,7 @@
                     { key: 'lastMonth', label: 'Прошлый месяц', value: '-month' }
                 ],
                 report_type: 1,
+                franchise_id: 0,
 //                language: "ru",
 //                languages: lang,
                 selected_date: '',
@@ -558,15 +566,20 @@
                 $('#report_form').removeClass('fade').modal('toggle');
             },
             generateReport(){
+                $('#report_download').attr('href', '#').css({'display': 'none'});
+
                 axios.post('/call_center/create/report', {
                     'report_type': this.report_type,
                     'range_date': this.range_date,
-                    'city_id': this.selectCity_id
+                    'city_id': this.selectCity_id,
+                    'franchise_id': this.franchise_id
                 })
                     .then(res => {
                         //$('#report_form').addClass('fade').modal('toggle');
-                        console.log(res.data);
-                        $('#report_download').attr('href', res.data).css({'display': 'block'});
+                        //console.log(res.data);
+                        setTimeout(function(){
+                            $('#report_download').attr('href', res.data).css({'display': 'block'});
+                        }, 5000);
                     })
                     .catch(err => {
                         if (err.response.status === 422) {
