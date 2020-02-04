@@ -38,7 +38,7 @@ class BaseController extends Controller
             16 => 'emirat.kz',
             17 => 'chekhiya.kz',
             18 => 'ispaniya.kz',
-            19 => 'egipt.kz - Nur-Sultan',
+            19 => 'WantResult',
             20 => 'emirat.kz - Nur-Sultan',
             21 => 'tailand.kz',
             22 => 'tailand.kz - Nur-Sultan',
