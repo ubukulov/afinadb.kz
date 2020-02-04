@@ -90,5 +90,9 @@
             <div class="bc_title">Недвижимость на Кипре</div>
             <div class="b_download_btn" onclick="return showVideoYoutube(this)" data-video="https://www.youtube.com/embed/z6hF5u-3EiU">Смотреть</div>
         </div>
+        <div class="block_content">
+            <div class="bc_title">Недвижимость на Кипре 2</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this)" data-video="https://www.youtube.com/embed/DaFks_4RjCI">Смотреть</div>
+        </div>
     </div>
 @stop
