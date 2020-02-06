@@ -290,4 +290,15 @@
                 <a href="/sources/Пример оформления фасада 3.jpg" target="_blank"><div class="b_download_btn">Скачать</div></a>
             </div>
         </div>
+        <div class="block">
+            <div class="block_title">Сертификаты</div>
+            <div class="block_content">
+                <div class="bc_title">КТА Чемодан</div>
+                <a href="/sources/КТА Чемодан.pdf" target="_blank"><div class="b_download_btn">Скачать</div></a>
+            </div>
+            <div class="block_content">
+                <div class="bc_title">КТА 257</div>
+                <a href="/sources/КТА 257.pdf" target="_blank"><div class="b_download_btn">Скачать</div></a>
+            </div>
+        </div>
 @stop
