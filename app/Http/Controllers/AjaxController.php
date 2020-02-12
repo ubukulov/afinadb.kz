@@ -138,8 +138,8 @@ class AjaxController extends BaseController
     {
         $client = new \SoapClient('https://smsc.kz/sys/soap.php?wsdl');
         $ret = $client->send_sms([
-            'login' => 'chemodan_257',
-            'psw' => 'chmdir@#',
+            'login' => env('SMSC_LOGIN'),
+            'psw' => env('SMSC_PASSW'),
             'phones' => $phone,
             'mes' => 'Ваш запрос принят, в ближайшее время с Вами свяжется специалист',
             'sender' => 'CHEMODAN.KZ',
