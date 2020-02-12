@@ -27,3 +27,48 @@ function viewWebinar(a){
     b = $(a).attr('data-url');
     window.open(b, '_blank');
 }
+
+function cloneQuestion(){
+    var q_ite = $('#q_ite');
+    var i = parseInt(q_ite.val()) + 1;
+    q_ite.val(i);
+    var html = '<div class="col-md-4 question_block" data-id="'+i+'">' +
+        '<div class="form-group">' +
+        '<label id="q_t">' + '#'+i+'</label>' +
+    '<input type="text" name="question['+i+']" required placeholder="Название вопроса" class="form-control">' +
+        '</div>' +
+        '<div class="row">' +
+        '<div class="col-sm-12">' +
+        '<div class="form-group row">' +
+        '<label class="col-sm-1 col-form-label">A</label>' +
+        '<div class="col-sm-11">' +
+        '<input type="text" name="answer['+i+'][]" class="form-control" required>' +
+    '</div>' +
+    '</div>' +
+
+    '<div class="form-group row">' +
+        '<label class="col-sm-1 col-form-label">B</label>' +
+        '<div class="col-sm-11">' +
+        '<input type="text" name="answer['+i+'][]" class="form-control" required>' +
+    '</div>' +
+    '</div>' +
+
+    '<div class="form-group row">' +
+        '<label class="col-sm-1 col-form-label">C</label>' +
+        '<div class="col-sm-11">' +
+        '<input type="text" name="answer['+i+'][]" class="form-control" required>' +
+    '</div>' +
+    '</div>' +
+
+    '<div class="form-group row">' +
+        '<label class="col-sm-1 col-form-label">D</label>' +
+        '<div class="col-sm-11">' +
+        '<input type="text" name="answer['+i+'][]" class="form-control" required>' +
+    '</div>' +
+    '</div>' +
+    '</div>' +
+    '</div>' +
+    '</div>';
+
+    $('.question_block:last').after(html);
+}

@@ -20,12 +20,14 @@ class AjaxController extends BaseController
         $url = (isset($data['leads']['url'])) ? $data['leads']['url'] : '/';
         $company = (isset($data['leads']['company'])) ? $data['leads']['company'] : '0';
         $comment = (isset($data['leads']['comment'])) ? $data['leads']['comment'] : '';
+        $phone = $data['leads']['phone'];
         $lead = Lead::create([
-            'url' => $url, 'tm' => Carbon::now(), 'phone' => $data['leads']['phone'], 'email' => $email,
+            'url' => $url, 'tm' => Carbon::now(), 'phone' => $phone, 'email' => $email,
             'name' => $data['leads']['name'], 'type' => $data['leads']['type'], 'ss' => '1', 'company' => $company, 'city_id' => $data['leads']['city_id'],
             'comment' => $comment
         ]);
         if ($lead) {
+            $this->sendSmsToClient($phone);
             return response('Lead successfully created', 200);
         }
 
@@ -130,5 +132,17 @@ class AjaxController extends BaseController
     public function dateDiff ($d1) {
         // Return the number of days between the two dates:
         return round(abs(strtotime($d1)-strtotime("today"))/86400);
+    }
+
+    public function sendSmsToClient($phone)
+    {
+        $client = new \SoapClient('https://smsc.kz/sys/soap.php?wsdl');
+        $ret = $client->send_sms([
+            'login' => 'chemodan_257',
+            'psw' => 'chmdir@#',
+            'phones' => $phone,
+            'mes' => 'Ваш запрос принят, в ближайшее время с Вами свяжется специалист',
+            'sender' => 'CHEMODAN.KZ',
+        ]);
     }
 }

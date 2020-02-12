@@ -9,6 +9,7 @@
 {{--                <li><a class="{{ \Request::is('manager-training*') ? 'active' : '' }}" href="{{ route('manager-training') }}">&gt;&nbsp;Обучение для менеджера</a></li>--}}
 {{--                <li><a class="{{ \Request::is('training-from-to*') ? 'active' : '' }}" href="{{ route('training-from-to') }}">&gt;&nbsp;Обучение от ТО</a></li>--}}
 {{--                <li><a class="{{ \Request::is('private*') ? 'active' : '' }}" href="{{ route('private') }}">&gt;&nbsp;Закрытая часть</a></li>--}}
+                <li><a class="{{ \Request::is('testing') ? 'active' : '' }}" href="{{ route('testing') }}">&gt;&nbsp;Тест</a></li>
             </ul>
         </li>
     </ul>

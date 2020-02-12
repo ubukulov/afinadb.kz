@@ -32,6 +32,14 @@ Route::group(['middleware' => ['web', 'auth']], function(){
     Route::get('/all-webinars', 'EducationController@webinars')->name('all-webinars');
     Route::get('/training-from-to', 'EducationController@trainingFromTo')->name('training-from-to');
 
+    # Тестирование
+    Route::get('/testing', 'TestController@index')->name('testing');
+    Route::get('/testing/create', 'TestController@create')->name('test.create');
+    Route::post('/testing/store', 'TestController@store')->name('test.store');
+    Route::get('/testing/{id}/start', 'TestController@start')->name('test.start');
+    Route::post('/testing/{id}/end', 'TestController@end')->name('test.end');
+    Route::get('/testing/{id}/statistics', 'TestController@statistics')->name('test.statistics');
+
     # Звонки
     Route::get('/incoming/calls', 'BinotelController@incomingCalls')->name('incoming.calls'); // входящие звонки
     Route::get('/outgoing/calls', 'BinotelController@outgoingCalls')->name('outgoing.calls'); // исходящие звонки
