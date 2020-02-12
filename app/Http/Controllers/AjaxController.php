@@ -27,7 +27,9 @@ class AjaxController extends BaseController
             'comment' => $comment
         ]);
         if ($lead) {
-            $this->sendSmsToClient($phone);
+            if ($company != 2) {
+                $this->sendSmsToClient($phone);
+            }
             return response('Lead successfully created', 200);
         }
 
