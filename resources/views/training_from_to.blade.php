@@ -72,4 +72,12 @@
             <a href="/sources/files/Условия страхования МСТ.pdf" target="_blank"><div class="b_download_btn">Скачать</div></a>
         </div>
     </div>
+
+    <div class="block">
+        <div class="block_title">Тикетс/ctn</div>
+        <div class="block_content">
+            <div class="bc_title">Тикетс/ctn</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this)" data-video="https://www.youtube.com/embed/rlIcLeHZf8s">Смотреть</div>
+        </div>
+    </div>
 @stop
