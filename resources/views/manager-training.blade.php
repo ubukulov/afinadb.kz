@@ -98,5 +98,9 @@
             <div class="bc_title">Стандарты продаж</div>
             <div class="b_download_btn" onclick="return showVideoYoutube(this)" data-video="https://www.youtube.com/embed/V2np8AocVrE">Смотреть</div>
         </div>
+        <div class="block_content">
+            <div class="bc_title">Апартаменты. Таиланд, ОАЭ</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this)" data-video="https://www.youtube.com/embed/_atYcWVSggc">Смотреть</div>
+        </div>
     </div>
 @stop
