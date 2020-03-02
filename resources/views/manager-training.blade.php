@@ -102,5 +102,9 @@
             <div class="bc_title">Апартаменты. Таиланд, ОАЭ</div>
             <div class="b_download_btn" onclick="return showVideoYoutube(this)" data-video="https://www.youtube.com/embed/_atYcWVSggc">Смотреть</div>
         </div>
+        <div class="block_content">
+            <div class="bc_title">Недвижимость. Ориентир по сайту</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this)" data-video="https://www.youtube.com/embed/GpnSdU_ZIdo">Смотреть</div>
+        </div>
     </div>
 @stop
