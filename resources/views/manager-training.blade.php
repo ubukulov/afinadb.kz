@@ -106,5 +106,9 @@
             <div class="bc_title">Недвижимость. Ориентир по сайту</div>
             <div class="b_download_btn" onclick="return showVideoYoutube(this)" data-video="https://www.youtube.com/embed/GpnSdU_ZIdo">Смотреть</div>
         </div>
+        <div class="block_content">
+            <div class="bc_title">Работа с возражениями</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this)" data-video="https://www.youtube.com/embed/Jbzmyk9AkJc">Смотреть</div>
+        </div>
     </div>
 @stop
