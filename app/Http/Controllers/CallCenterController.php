@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Cache;
 use Excel;
+use App\Models\BlockedUser;
 
 class CallCenterController extends BaseController
 {
@@ -193,6 +194,26 @@ class CallCenterController extends BaseController
         } catch (\Exception $exception) {
             DB::rollBack();
             return response("Ошибка сервера: $exception", 500);
+        }
+    }
+    # Список заблокированных пользователей
+    public function blockedUsers()
+    {
+        $this->seo()->setTitle('Список заблокированных пользователей');
+        return view('callcenter.blocked_users');
+    }
+
+    # Заблокировать пользователя по номер телефону
+    public function lockUser(Request $request)
+    {
+        $phone = $request->input('phone');
+        if (BlockedUser::exists($phone)) {
+            return response('Такой пользователь уже добавлен');
+        } else {
+            BlockedUser::create([
+                'phone' => $phone, 'blocked' => 1
+            ]);
+            return response('Пользователь добавлен.');
         }
     }
 }

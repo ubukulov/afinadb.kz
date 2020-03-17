@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use App\Http\Resources\BlockedUsers;
+use App\Models\BlockedUser;
 
 class ApiController extends Controller
 {
@@ -129,5 +131,11 @@ class ApiController extends Controller
         }
 
         return response("Ошибка сервера: Не найден пользовател", 404);
+    }
+
+    # Получить список заблокированных пользователей
+    public function getBlockedUsers()
+    {
+        return BlockedUsers::collection(BlockedUser::all());
     }
 }

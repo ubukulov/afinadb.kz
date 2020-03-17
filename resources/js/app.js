@@ -34,6 +34,7 @@ Vue.component('manager-my-leads', require('./components/ManagerMyLeads.vue').def
 Vue.component('director-leads', require('./components/DirectorLeads.vue').default);
 Vue.component('director-my-leads', require('./components/DirectorMyLeads.vue').default);
 Vue.component('call-center-archive-leads', require('./components/CallCenterArchiveLeads.vue').default);
+Vue.component('blocked-users', require('./components/BlockedUser.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

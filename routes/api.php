@@ -25,4 +25,7 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::post('/leads/city', 'ApiController@getLeadsOfCity'); // получить список лидов по выбранному городу
     Route::get('/managers', 'ApiController@managers'); // список менеджеров
     Route::get('/archive/leads', 'ApiController@getArchiveLeads');
+
+    # Заблокированные пользователи
+    Route::get('/blocked-users', 'ApiController@getBlockedUsers');
 });

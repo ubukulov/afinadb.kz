@@ -80,6 +80,9 @@ Route::group(['prefix' => 'call_center', 'middleware' => ['web', 'auth']], funct
     Route::post('/lead/file', 'CallCenterController@loadLeadFromFile');
     Route::get('/archive/leads', 'CallCenterController@getArchiveLeads')->name('archive.leads');
     Route::post('/set/lead/new', 'CallCenterController@setLeadNew');
+    # Заблокированные пользователи
+    Route::get('/blocked-users', 'CallCenterController@blockedUsers')->name('blocked.users');
+    Route::post('/blocked-users', 'CallCenterController@lockUser');
 });
 
 Route::group(['prefix' => 'director', 'middleware' => ['web', 'auth']], function(){
