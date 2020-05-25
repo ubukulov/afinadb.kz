@@ -80,4 +80,36 @@
             <a href="/sources/files/Рассрочка_от_Каспи_памятка.docx" target="_blank"><div class="b_download_btn">Скачать</div></a>
         </div>
     </div>
+
+    <div class="block">
+        <div class="block_title">Бухгалтерия</div>
+        <div class="block_content">
+            <div class="bc_title">МРП для исчисления ИПН с 1 апреля 2020 года </div>
+            <a href="/sources/files/bux/МРП для исчисления ИПН с 1 апреля 2020 года .docx" target="_blank"><div class="b_download_btn">Скачать</div></a>
+        </div>
+        <div class="block_content">
+            <div class="bc_title">Презентация - оплата и возвраты</div>
+            <a href="/sources/files/bux/Презентация - оплата и возвраты.pptx" target="_blank"><div class="b_download_btn">Скачать</div></a>
+        </div>
+        <div class="block_content">
+            <div class="bc_title">Презентация режим налогообложения</div>
+            <a href="/sources/files/bux/Презентация режим налогообложения.pptx" target="_blank"><div class="b_download_btn">Скачать</div></a>
+        </div>
+        <div class="block_content">
+            <div class="bc_title">Ставки налогов и социальных платежей в 2020 году.</div>
+            <a href="/sources/files/bux/Ставки налогов и социальных платежей в 2020 году..docx" target="_blank"><div class="b_download_btn">Скачать</div></a>
+        </div>
+        <div class="block_content">
+            <div class="bc_title">Ставки налогов и социальных платежей в 2020 году.</div>
+            <a href="/sources/files/bux/ТОО общеустановленный режим налогообложения особенности ведения.docx" target="_blank"><div class="b_download_btn">Скачать</div></a>
+        </div>
+        <div class="block_content">
+            <div class="bc_title">Презентация Режим налогообложения</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this)" data-video="https://www.youtube.com/embed/Q03f6E0P18A">Смотреть</div>
+        </div>
+        <div class="block_content">
+            <div class="bc_title">Презентация оплаты и возвраты</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this)" data-video="https://www.youtube.com/embed/sWFXqBOHJY0">Смотреть</div>
+        </div>
+    </div>
 @stop
