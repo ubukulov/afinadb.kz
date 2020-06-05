@@ -5,7 +5,7 @@
         <div class="block_title">ITours</div>
         <div class="block_content">
             <div class="bc_title">Египет и Турция</div>
-            <div class="b_download_btn" onclick="return showVideoYoutube(this);" data-video="https://www.youtube.com/watch?v=MGJEvgJrt74&feature=youtu.be">Смотреть</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this);" data-video="https://www.youtube.com/embed/MGJEvgJrt74">Смотреть</div>
         </div>
 		<div class="block_content">
             <div class="bc_title">NEW Concept Presentation_B2B_31.10</div>
@@ -25,7 +25,7 @@
         <div class="block_title">Компас</div>
         <div class="block_content">
             <div class="bc_title">Шри-Ланка</div>
-            <div class="b_download_btn" onclick="return showVideoYoutube(this);" data-video="https://www.youtube.com/watch?v=AvpSpOcKng4&feature=youtu.be">Смотреть</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this);" data-video="https://www.youtube.com/embed/AvpSpOcKng4">Смотреть</div>
         </div>
     </div>
 
@@ -37,7 +37,7 @@
         </div>
 		<div class="block_content">
             <div class="bc_title">Казюнион Занзибар, Танзания</div>
-            <div class="b_download_btn" onclick="return showVideoYoutube(this);" data-video="https://www.youtube.com/watch?v=12Sjbdqpnj0&feature=youtu.be">Смотреть</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this);" data-video="https://www.youtube.com/embed/12Sjbdqpnj0">Смотреть</div>
         </div>
     </div>
 
@@ -73,7 +73,7 @@
         </div>
 		<div class="block_content" style="background: bisque;padding: 10px;">
             <div class="bc_title">Новые продукты страхования от СК Nomad Insurance</div>
-            <div class="b_download_btn" onclick="return showVideoYoutube(this);" data-video="https://www.youtube.com/watch?v=_pQ8HUCMFIM&feature=youtu.be">Смотреть</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this);" data-video="https://www.youtube.com/embed/_pQ8HUCMFIM">Смотреть</div>
         </div>
     </div>
 	
@@ -81,7 +81,7 @@
         <div class="block_title">Pegas Kazakhstan & Anex Tour Kazakhstan</div>
 		<div class="block_content">
             <div class="bc_title">Турция 2020 - новые правила и перспективы летнего сезона для казахстанских туристов</div>
-            <div class="b_download_btn" onclick="return showVideoYoutube(this);" data-video="https://www.youtube.com/watch?v=gCScv9LTPcg&feature=youtu.be">Смотреть</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this);" data-video="https://www.youtube.com/embed/gCScv9LTPcg">Смотреть</div>
         </div>
 	</div>	
 
