@@ -71,7 +71,19 @@
             <div class="bc_title">Условия страхования МСТ</div>
             <a href="/sources/files/Условия страхования МСТ.pdf" target="_blank"><div class="b_download_btn">Скачать</div></a>
         </div>
+		<div class="block_content">
+            <div class="bc_title">Новые продукты страхования от СК Nomad Insurance</div>
+            <div class="b_download_btn" onclick="return viewWebinar(this);" data-url="https://www.youtube.com/watch?v=_pQ8HUCMFIM&feature=youtu.be">Смотреть</div>
+        </div>
     </div>
+	
+	<div class="block">
+        <div class="block_title">Страховая Компания "Номад"</div>
+		<div class="block_content">
+            <div class="bc_title">Турция 2020 - новые правила и перспективы летнего сезона для казахстанских туристов</div>
+            <div class="b_download_btn" onclick="return viewWebinar(this);" data-url="https://www.youtube.com/watch?v=gCScv9LTPcg&feature=youtu.be">Смотреть</div>
+        </div>
+	</div>	
 
     <div class="block">
         <div class="block_title">Тикетс/ctn</div>
