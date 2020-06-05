@@ -78,7 +78,7 @@
     </div>
 	
 	<div class="block">
-        <div class="block_title">Страховая Компания "Номад"</div>
+        <div class="block_title">Pegas Kazakhstan & Anex Tour Kazakhstan</div>
 		<div class="block_content">
             <div class="bc_title">Турция 2020 - новые правила и перспективы летнего сезона для казахстанских туристов</div>
             <div class="b_download_btn" onclick="return viewWebinar(this);" data-url="https://www.youtube.com/watch?v=gCScv9LTPcg&feature=youtu.be">Смотреть</div>
