@@ -47,6 +47,10 @@
             <div class="bc_title">Турист в офисе</div>
             <a href="/sources/Турист в офисе.docx" target="_blank"><div class="b_download_btn">Скачать</div></a>
         </div>
+		<div class="block_content">
+            <div class="bc_title">Как работать с клиентами из другого города</div>
+            <a href="/sources/Как работать с клиентами из другого города.pdf" target="_blank"><div class="b_download_btn">Скачать</div></a>
+        </div>
         <div class="block_content">
             <div class="bc_title">Вопросы бинотел</div>
             <a href="/sources/вопросы бинотел.docx" target="_blank"><div class="b_download_btn">Скачать</div></a>
