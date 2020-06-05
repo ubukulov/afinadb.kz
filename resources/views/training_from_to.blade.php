@@ -77,7 +77,7 @@
         </div>
     </div>
 	
-	<div class="block">
+	<div class="block" style="background: bisque;">
         <div class="block_title">Pegas Kazakhstan & Anex Tour Kazakhstan</div>
 		<div class="block_content">
             <div class="bc_title">Турция 2020 - новые правила и перспективы летнего сезона для казахстанских туристов</div>
