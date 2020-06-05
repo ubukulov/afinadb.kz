@@ -71,7 +71,7 @@
             <div class="bc_title">Условия страхования МСТ</div>
             <a href="/sources/files/Условия страхования МСТ.pdf" target="_blank"><div class="b_download_btn">Скачать</div></a>
         </div>
-		<div class="block_content">
+		<div class="block_content" style="background: bisque;padding: 10px;">
             <div class="bc_title">Новые продукты страхования от СК Nomad Insurance</div>
             <div class="b_download_btn" onclick="return showVideoYoutube(this);" data-url="https://www.youtube.com/watch?v=_pQ8HUCMFIM&feature=youtu.be">Смотреть</div>
         </div>
