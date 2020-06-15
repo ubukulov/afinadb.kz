@@ -24,6 +24,37 @@
     <div class="block">
         <div class="block_title">Компас</div>
         <div class="block_content">
+            <div class="bc_title">День 1 | ОАЭ. 1 эфир</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this);" data-video="https://www.youtube.com/embed/iYQprRdYSgk">Смотреть</div>
+        </div>
+        <div class="block_content">
+            <div class="bc_title">День 1 | ОАЭ. 2 эфир</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this);" data-video="https://www.youtube.com/embed/2iZE43-edHs">Смотреть</div>
+        </div>
+
+        <div class="block_content">
+            <div class="bc_title">День 2 | Египет и Турция. 1 эфир</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this);" data-video="https://www.youtube.com/embed/h7pxabmdxY0">Смотреть</div>
+        </div>
+        <div class="block_content">
+            <div class="bc_title">День 2 | Египет и Турция. 2 эфир</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this);" data-video="https://www.youtube.com/embed/UNzoI6X_F-A">Смотреть</div>
+        </div>
+
+        <div class="block_content">
+            <div class="bc_title">День 3 | Европа. 1 эфир</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this);" data-video="https://www.youtube.com/embed/1QZQSVkiBpw">Смотреть</div>
+        </div>
+        <div class="block_content">
+            <div class="bc_title">День 3 | Европа. 2 эфир</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this);" data-video="https://www.youtube.com/embed/_XTsy_9QOtI">Смотреть</div>
+        </div>
+        <div class="block_content">
+            <div class="bc_title">День 4 | Экзотика | Страховые компании</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this);" data-video="https://www.youtube.com/embed/E4C5mvZJQ-E">Смотреть</div>
+        </div>
+
+        <div class="block_content">
             <div class="bc_title">Шри-Ланка</div>
             <div class="b_download_btn" onclick="return showVideoYoutube(this);" data-video="https://www.youtube.com/embed/AvpSpOcKng4">Смотреть</div>
         </div>
@@ -76,14 +107,14 @@
             <div class="b_download_btn" onclick="return showVideoYoutube(this);" data-video="https://www.youtube.com/embed/_pQ8HUCMFIM">Смотреть</div>
         </div>
     </div>
-	
+
 	<div class="block" style="background: bisque;">
         <div class="block_title">Pegas Kazakhstan & Anex Tour Kazakhstan</div>
 		<div class="block_content">
             <div class="bc_title">Турция 2020 - новые правила и перспективы летнего сезона для казахстанских туристов</div>
             <div class="b_download_btn" onclick="return showVideoYoutube(this);" data-video="https://www.youtube.com/embed/gCScv9LTPcg">Смотреть</div>
         </div>
-	</div>	
+	</div>
 
     <div class="block">
         <div class="block_title">Тикетс/ctn</div>
