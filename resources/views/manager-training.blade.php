@@ -110,5 +110,9 @@
             <div class="bc_title">Работа с возражениями</div>
             <div class="b_download_btn" onclick="return showVideoYoutube(this)" data-video="https://www.youtube.com/embed/Jbzmyk9AkJc">Смотреть</div>
         </div>
+        <div class="block_content">
+            <div class="bc_title">Как работать с клиентами с другого города</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this)" data-video="https://www.youtube.com/embed/Cp7VG5hiB4g">Смотреть</div>
+        </div>
     </div>
 @stop

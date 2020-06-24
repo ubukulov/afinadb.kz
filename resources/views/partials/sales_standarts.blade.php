@@ -12,4 +12,9 @@
         <div class="bc_title">Анкета выявление потребности (рус)</div>
         <a href="/sources/files/Анкета.docx" target="_blank"><div class="b_download_btn">Скачать</div></a>
     </div>
+    <div class="block_content">
+        <div class="bc_title">Как работать с клиентами с другого города</div>
+        <a href="/sources/files/Как работать с клиентами из другого города.pdf" target="_blank"><div class="b_download_btn">Скачать</div></a>
+    </div>
+
 </div>
