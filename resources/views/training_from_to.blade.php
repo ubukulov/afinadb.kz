@@ -123,4 +123,12 @@
             <div class="b_download_btn" onclick="return showVideoYoutube(this)" data-video="https://www.youtube.com/embed/rlIcLeHZf8s">Смотреть</div>
         </div>
     </div>
+
+    <div class="block">
+        <div class="block_title">АО СК «Sinoasia B&R» (Архимедес)</div>
+        <div class="block_content">
+            <div class="bc_title">Новые продукты страхования от АО СК «Sinoasia B&R» Архимедес</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this)" data-video="https://www.youtube.com/embed/tjxc7FTaWGM">Смотреть</div>
+        </div>
+    </div>
 @stop
