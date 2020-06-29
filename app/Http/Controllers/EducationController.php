@@ -71,4 +71,10 @@ class EducationController extends BaseController
         $this->seo()->setTitle('Обучение от ТО');
         return view('training_from_to');
     }
+
+    public function literatureForSelfDevelopment()
+    {
+        $this->seo()->setTitle('Литература для самостоятельного развития');
+        return view('literature_for_self_development');
+    }
 }

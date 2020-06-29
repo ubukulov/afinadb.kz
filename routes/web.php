@@ -31,6 +31,7 @@ Route::group(['middleware' => ['web', 'auth']], function(){
     Route::get('/private', 'EducationController@privat')->name('private');
     Route::get('/all-webinars', 'EducationController@webinars')->name('all-webinars');
     Route::get('/training-from-to', 'EducationController@trainingFromTo')->name('training-from-to');
+    Route::get('/literature-for-self-development', 'EducationController@literatureForSelfDevelopment')->name('literature-for-self-development');
 
     # Тестирование
     Route::get('/testing', 'TestController@index')->name('testing');
