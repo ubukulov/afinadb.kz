@@ -19,5 +19,9 @@
             <div class="bc_title">Продай или продадут тебе Грант Кардон</div>
             <div class="b_download_btn" onclick="return showVideoYoutube(this);" data-video="https://www.youtube.com/embed/HcKncnkJRjM">Слушать</div>
         </div>
+        <div class="block_content">
+            <div class="bc_title">Брайан Трейси. Психология продаж. Искусство заключения сделок</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this);" data-video="https://www.youtube.com/embed/mm92bNSKF8U">Слушать</div>
+        </div>
     </div>
 @stop
