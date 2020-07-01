@@ -14,7 +14,7 @@
                 @if(Auth::user()->id == 134 || Auth::user()->id == 34)
                 <li><a class="{{ \Request::is('private*') ? 'active' : '' }}" href="{{ route('private') }}">&gt;&nbsp;Закрытая часть</a></li>
                 @endif
-                <li><a href="{{ route('private') }}">&gt;&nbsp;Литература для самостоятельного развития</a></li>
+                <li><a href="{{ route('literature-for-self-development') }}">&gt;&nbsp;Литература для самостоятельного развития</a></li>
             </ul>
         </li>
         <li><a class="{{ \Request::is('all-webinars*') ? 'active' : '' }}" href="{{ route('all-webinars') }}">Все вебинары</a></li>

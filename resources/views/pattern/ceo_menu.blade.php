@@ -13,7 +13,7 @@
                 <li><a href="{{ route('leadership-training') }}">&gt;&nbsp;Обучение для руководителей</a></li>
                 <li><a class="{{ \Request::is('training-from-to*') ? 'active' : '' }}" href="{{ route('training-from-to') }}">&gt;&nbsp;Обучение от ТО</a></li>
                 <li><a href="{{ route('private') }}">&gt;&nbsp;Закрытая часть</a></li>
-                <li><a href="{{ route('private') }}">&gt;&nbsp;Литература для самостоятельного развития</a></li>
+                <li><a href="{{ route('literature-for-self-development') }}">&gt;&nbsp;Литература для самостоятельного развития</a></li>
             </ul>
         </li>
         <li><a class="{{ \Request::is('marketing*') ? 'active' : '' }}" href="{{ route('marketing') }}">Маркетинг</a></li>
