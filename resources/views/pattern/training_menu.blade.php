@@ -10,6 +10,7 @@
 {{--                <li><a class="{{ \Request::is('training-from-to*') ? 'active' : '' }}" href="{{ route('training-from-to') }}">&gt;&nbsp;Обучение от ТО</a></li>--}}
 {{--                <li><a class="{{ \Request::is('private*') ? 'active' : '' }}" href="{{ route('private') }}">&gt;&nbsp;Закрытая часть</a></li>--}}
                 <li><a class="{{ \Request::is('testing') ? 'active' : '' }}" href="{{ route('testing') }}">&gt;&nbsp;Тест</a></li>
+                <li><a href="{{ route('private') }}">&gt;&nbsp;Литература для самостоятельного развития</a></li>
             </ul>
         </li>
     </ul>
