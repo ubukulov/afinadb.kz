@@ -70,6 +70,11 @@
             <div class="bc_title">День 5: Как доводить каждую сделку до результата</div>
             <div class="b_download_btn" onclick="return showVideoYoutube(this)" data-video="https://www.youtube.com/embed/Mbta-LdnyE0">Смотреть</div>
         </div>
+		
+		<div class="block_content">
+            <div class="bc_title">Как перестать консультировать и начать продавать туры массово</div>
+            <div class="b_download_btn" onclick="return showVideoYoutube(this)" data-video="https://www.youtube.com/embed/RLx_Z0YGu4Y">Смотреть</div>
+        </div>
     </div>
     <div class="block">
         <div class="block_title">Изучение СРМ системы U-ON travel</div>
