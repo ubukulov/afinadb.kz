@@ -5,7 +5,7 @@
         <div class="block_title">Книги</div>
         <div class="block_content">
             <div class="bc_title">Соколов Александр - "DAMNEDAМ или как продавать без скидок"</div>
-            <a href="/sources/books/А.Соколов, DAMNEDAM или как продавать без скидок в туризме.pdf" target="_blank"><div class="b_download_btn">Скачать</div></a>
+            <a href="/sources/books/А_Соколов_DAMNEDAM_или_как_продавать_без_скидок_в_туризме.pdf" target="_blank"><div class="b_download_btn">Скачать</div></a>
         </div>
 		<div class="block_content">
             <div class="bc_title">Максим Батырев - "45 татуировок продавана"</div>

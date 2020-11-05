@@ -51,6 +51,10 @@ Route::group(['middleware' => ['web', 'auth']], function(){
     Route::get('/stats/leads', 'StatController@getStatsOfLeads')->name('stats.leads'); // статистика запросов
     Route::get('/stats/managers', 'StatController@getStatsOfManagers')->name('stats.managers'); // статистика менеджеров
     Route::get('/stats/sources', 'StatController@getStatsOfSources')->name('stats.sources'); // Статистика по источникам
+
+    # Массовая рассылка
+    Route::get('/bulk-mailing', 'IndexController@bulkMailing')->name('bulk.mailing');
+    Route::post('/bulk-mailing/send', 'IndexController@bulkMailingSend')->name('bulk.mailing.send');
 });
 
 Route::group(['prefix' => 'manager', 'middleware' => ['web', 'auth']], function(){

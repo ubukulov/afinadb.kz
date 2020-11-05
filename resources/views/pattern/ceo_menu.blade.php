@@ -19,5 +19,6 @@
         <li><a class="{{ \Request::is('marketing*') ? 'active' : '' }}" href="{{ route('marketing') }}">Маркетинг</a></li>
         <li><a class="{{ \Request::is('chemodan*') ? 'active' : '' }}" href="{{ route('chemodan') }}">Презентации от Тур Операторов</a></li>
         <li><a class="{{ \Request::is('abk*') ? 'active' : '' }}" href="{{ route('abk') }}">Обзор отелей (АВК)</a></li>
+        <li><a class="{{ \Request::is('bulk*') ? 'active' : '' }}" href="{{ route('bulk.mailing') }}">Массовая рассылка</a></li>
     </ul>
 </div>
