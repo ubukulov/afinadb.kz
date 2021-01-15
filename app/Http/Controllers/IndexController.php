@@ -78,8 +78,8 @@ class IndexController extends BaseController
     public function bulkMailing()
     {
         $client = new \GuzzleHttp\Client();
-        $apiTokenInstance = "4fd9d8c66efb9d865cc850d88fa67a9d7313e2500b10163bb4";
-        $idInstance = 7774;
+        $apiTokenInstance = "44971ee235c8bbfdbdefeb909203004e22182c7cda4eb03a30";
+        $idInstance = 9535;
         $api_get_contacts = "https://api.green-api.com/waInstance$idInstance/GetContacts/$apiTokenInstance";
         if (Cache::has('contacts')) {
             $contacts = Cache::get('contacts');
@@ -102,8 +102,8 @@ class IndexController extends BaseController
     {
         $chatId = $request->input('contact_id');
         $message = $request->input('message');
-        $apiTokenInstance = "4fd9d8c66efb9d865cc850d88fa67a9d7313e2500b10163bb4";
-        $idInstance = 7774;
+        $apiTokenInstance = "44971ee235c8bbfdbdefeb909203004e22182c7cda4eb03a30";
+        $idInstance = 9535;
         $api_send_message = "https://api.green-api.com/waInstance$idInstance/sendMessage/$apiTokenInstance";
 
         if ($chatId == 0) {
