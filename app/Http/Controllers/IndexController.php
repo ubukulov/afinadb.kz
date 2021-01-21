@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Auth;
 use Cache;
+use Artisan;
 
 class IndexController extends BaseController
 {
@@ -107,8 +108,10 @@ class IndexController extends BaseController
         $api_send_message = "https://api.green-api.com/waInstance$idInstance/sendMessage/$apiTokenInstance";
 
         if ($chatId == 0) {
-            $contacts = Cache::get('contacts');
-
+            Artisan::call('whatsapp:run', [
+                'msg' => $message
+            ]);
+            return redirect()->route('bulk.mailing');
         } else {
             $data = [
                 'chatId' => $chatId,
@@ -116,27 +119,34 @@ class IndexController extends BaseController
             ];
             $data = json_encode($data);
 
-            $curl = curl_init();
-            curl_setopt_array(
-                $curl,
-                [
-                    CURLOPT_URL => $api_send_message,
-                    CURLOPT_RETURNTRANSFER => true,
-                    CURLOPT_ENCODING => "",
-                    CURLOPT_MAXREDIRS => 10,
-                    CURLOPT_TIMEOUT => 0,
-                    CURLOPT_FOLLOWLOCATION => true,
-//                CURLOPT_HTTP_VERSION => CURLOPT_HTTP_VERSION_1_1,
-                    CURLOPT_CUSTOMREQUEST => 'POST',
-                    CURLOPT_POSTFIELDS => $data,
-                    CURLOPT_HTTPHEADER => [
-                        "Content-Type: application/json"
-                    ]
-                ]
-            );
-            $res = curl_exec($curl);
-            curl_close($curl);
-            echo $res;
+            $this->executeCurl($api_send_message, $data);
+
+            return redirect()->route('bulk.mailing');
         }
+    }
+
+    public function executeCurl($api_send_message, $data)
+    {
+        $curl = curl_init();
+        curl_setopt_array(
+            $curl,
+            [
+                CURLOPT_URL => $api_send_message,
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => "",
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+//                CURLOPT_HTTP_VERSION => CURLOPT_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_POSTFIELDS => $data,
+                CURLOPT_HTTPHEADER => [
+                    "Content-Type: application/json"
+                ]
+            ]
+        );
+        $res = curl_exec($curl);
+        curl_close($curl);
+        //echo $res;
     }
 }

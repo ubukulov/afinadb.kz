@@ -12,7 +12,7 @@
                     @if(empty($contact->name))
                     <option value="{{$contact->id}}">Нет имени</option>
                     @else
-                    <option value="{{$contact->id}}">{{ $contact->name }}</option>
+                    <option value="{{$contact->id}}">{{ $contact->name }} {{ ($contact->id) }}</option>
                     @endif
                 @endforeach
             </select>
