@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lead;
+use App\Models\SendMessage;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -95,8 +96,9 @@ class IndexController extends BaseController
             });
             Cache::put('contacts', $contacts, 86400);
         }
+        $sending_messages = SendMessage::all();
 
-        return view('bulk_mailing', compact('contacts'));
+        return view('bulk_mailing', compact('contacts', 'sending_messages'));
     }
 
     public function bulkMailingSend(Request $request)

@@ -104,13 +104,17 @@ class ManagerController extends BaseController
         } else {
             DB::beginTransaction();
             try {
-                ManagerLead::create([
-                    'lead_id' => $lead_id, 'manager_id' => Auth::user()->id, 'tm' => Carbon::now(),
-                    'type' => '1', 'ss' => '0'
-                ]);
-                DB::update("UPDATE leads SET ss='0' WHERE id='$lead_id'");
-                DB::commit();
-                return response('Запрос успешно закреплен!', 200);
+                $manager_id = Auth::user()->id;
+                $manager_lead = ManagerLead::where(['lead_id' => $lead_id, 'manager_id' => $manager_id])->get();
+                if (!$manager_lead) {
+                    ManagerLead::create([
+                        'lead_id' => $lead_id, 'manager_id' => $manager_id, 'tm' => Carbon::now(),
+                        'type' => '1', 'ss' => '0'
+                    ]);
+                    DB::update("UPDATE leads SET ss='0' WHERE id='$lead_id'");
+                    DB::commit();
+                    return response('Запрос успешно закреплен!', 200);
+                }
             } catch (\Exception $exception) {
                 DB::rollBack();
                 return response("Ошибка сервера: $exception", 500);

@@ -27,4 +27,12 @@
             <button type="submit" class="btn btn-success">Отправить</button>
         </div>
     </form>
+
+    <hr>
+
+    @foreach($sending_messages as $sm)
+    <div class="message_div">
+
+    </div>
+    @endforeach
 @stop
