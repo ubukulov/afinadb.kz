@@ -389,10 +389,10 @@ class Lead extends Model
 			$leads = Lead::orderBy('leads.id', 'DESC')
                 ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, accounts.name as user_name, accounts.last_name, cities.title as city_name'))
                 ->join('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
-                ->join('rejected_leads', 'rejected_leads.lead_id', '=', 'leads.id')
+                //->join('rejected_leads', 'rejected_leads.lead_id', '=', 'leads.id')
                 ->join('accounts', 'accounts.id', '=', 'manager_leads.manager_id')
                 ->join('cities', 'cities.id', '=', 'leads.city_id')
-                ->where(['manager_leads.ss' => '1', 'rejected_leads.ss' => '0', 'manager_leads.type' => '2', 'leads.company' => '2'])
+                ->where(['manager_leads.ss' => '0', /*'rejected_leads.ss' => '0',*/ 'manager_leads.type' => '0', 'leads.company' => '2'])
                 ->paginate(30);
         } else {
             $leads = Lead::orderBy('leads.id', 'DESC')
