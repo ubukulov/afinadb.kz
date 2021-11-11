@@ -139,9 +139,9 @@
                     })
             },
             getLeads(url){
-                url = url || "/api/leads";
+                url = url || "/api/archive/leads";
                 if (typeof url === 'number') {
-                    url = "/api/leads?page="+url;
+                    url = "/api/archive/leads?page="+url;
                 }
                 axios.get(url)
                     .then(response => {

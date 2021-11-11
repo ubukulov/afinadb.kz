@@ -2473,10 +2473,10 @@ __webpack_require__.r(__webpack_exports__);
     getLeads: function getLeads(url) {
       var _this2 = this;
 
-      url = url || "/api/leads";
+      url = url || "/api/archive/leads";
 
       if (typeof url === 'number') {
-        url = "/api/leads?page=" + url;
+        url = "/api/archive/leads?page=" + url;
       }
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(url).then(function (response) {
