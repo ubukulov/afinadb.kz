@@ -2446,6 +2446,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -75867,6 +75869,8 @@ var render = function() {
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(lead.phone))]),
               _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(lead.city_name))]),
+              _vm._v(" "),
               _c("td", [_vm._v(_vm._s(lead.comment))]),
               _vm._v(" "),
               _c("td", [
@@ -76156,6 +76160,8 @@ var staticRenderFns = [
       _c("th", { attrs: { width: "100" } }, [_vm._v("Имя")]),
       _vm._v(" "),
       _c("th", { attrs: { width: "150" } }, [_vm._v("Телефон")]),
+      _vm._v(" "),
+      _c("th", { attrs: { width: "150" } }, [_vm._v("Город")]),
       _vm._v(" "),
       _c("th", { attrs: { width: "350" } }, [_vm._v("Комментарии")]),
       _vm._v(" "),

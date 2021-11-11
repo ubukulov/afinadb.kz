@@ -106,7 +106,7 @@ class ManagerController extends BaseController
             try {
                 $manager_id = Auth::user()->id;
                 $manager_lead = ManagerLead::where(['lead_id' => $lead_id, 'manager_id' => $manager_id])->get();
-                if (!$manager_lead) {
+                if (count($manager_lead) == 0) {
                     ManagerLead::create([
                         'lead_id' => $lead_id, 'manager_id' => $manager_id, 'tm' => Carbon::now(),
                         'type' => '1', 'ss' => '0'

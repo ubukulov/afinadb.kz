@@ -22,6 +22,7 @@
             <th width="150">Дата</th>
             <th width="100">Имя</th>
             <th width="150">Телефон</th>
+            <th width="150">Город</th>
             <th width="350">Комментарии</th>
             <th width="200">Менеджер</th>
             <th>Действие</th>
@@ -33,6 +34,7 @@
                 <td v-else="lead.dn > 1">{{ lead.dt + " #" + lead.id + " (" + lead.dn + ") дней"  }}</td>
                 <td>{{ lead.name }}</td>
                 <td>{{ lead.phone }}</td>
+                <td>{{ lead.city_name }}</td>
                 <td>{{ lead.comment }}</td>
                 <td>
                     <div class="status_btn">

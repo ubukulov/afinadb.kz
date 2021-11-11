@@ -72,12 +72,21 @@ class Lead extends Model
 
     public static function getLeadsForVisas()
     {
-        $result = Lead::orderBy('leads.id', 'ASC')
+        if (Auth::user()->id == 157) {
+			$result = Lead::orderBy('leads.id', 'ASC')
+            ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn'))
+            ->where(['ss' => '1', 'company' => '2'])
+            ->where(['ss' => '1', 'company' => '2'])
+            ->whereRaw('leads.tm >= DATE_SUB(CURRENT_DATE(), INTERVAL 15 DAY)')
+            ->paginate(10);
+		} else {
+			$result = Lead::orderBy('leads.id', 'ASC')
             ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn'))
             ->where(['ss' => '1', 'company' => '2'])
             ->where(['city_id' => Auth::user()->city_id, 'ss' => '1', 'company' => '2'])
             ->whereRaw('leads.tm >= DATE_SUB(CURRENT_DATE(), INTERVAL 15 DAY)')
             ->paginate(10);
+		}
 
         return $result;
     }
@@ -377,19 +386,21 @@ class Lead extends Model
     public static function getArchiveLeads()
     {
         if (Auth::user()->company_id == 21) {
-            $leads = Lead::orderBy('leads.id', 'DESC')
-                ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, accounts.name as user_name, accounts.last_name'))
+			$leads = Lead::orderBy('leads.id', 'DESC')
+                ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, accounts.name as user_name, accounts.last_name, cities.title as city_name'))
                 ->join('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
                 ->join('rejected_leads', 'rejected_leads.lead_id', '=', 'leads.id')
                 ->join('accounts', 'accounts.id', '=', 'manager_leads.manager_id')
+                ->join('cities', 'cities.id', '=', 'leads.city_id')
                 ->where(['manager_leads.ss' => '1', 'rejected_leads.ss' => '0', 'manager_leads.type' => '2', 'leads.company' => '2'])
                 ->paginate(30);
         } else {
             $leads = Lead::orderBy('leads.id', 'DESC')
-                ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, accounts.name as user_name, accounts.last_name'))
+                ->select(DB::raw('leads.*, date_format(leads.tm, "%d.%m.%Y %H:%i") as dt, datediff(CURRENT_TIMESTAMP(), leads.tm) as dn, accounts.name as user_name, accounts.last_name, cities.title as city_name'))
                 ->join('manager_leads', 'manager_leads.lead_id', '=', 'leads.id')
                 ->join('rejected_leads', 'rejected_leads.lead_id', '=', 'leads.id')
                 ->join('accounts', 'accounts.id', '=', 'manager_leads.manager_id')
+                ->join('cities', 'cities.id', '=', 'leads.city_id')
                 ->where(['manager_leads.ss' => '1', 'rejected_leads.ss' => '0', 'manager_leads.type' => '2'])
                 ->where('leads.company', '<>', '2')
                 ->paginate(30);

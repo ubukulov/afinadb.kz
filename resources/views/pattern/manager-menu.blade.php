@@ -3,6 +3,7 @@
         <li><a class="{{ \Request::is('/') ? 'active' : '' }}" href="{{ route('home') }}">Главная</a></li>
         <li><a class="{{ \Request::is('manager/leads*') ? 'active' : '' }}" href="{{ route('manager.leads') }}">Запросы</a></li>
         <li><a class="{{ \Request::is('*my_leads*') ? 'active' : '' }}" href="{{ route('myLeads') }}">Мои запросы</a></li>
+		<li><a class="{{ \Request::is('call_center/archive/leads*') ? 'active' : '' }}" href="{{ route('archive.leads') }}">Архивные запросы</a></li>
         <li>
             <a class="all_education" href="#">Все обучение</a>
             <ul class="all_education_content" @if(!blockAllEducation(substr($_SERVER['REQUEST_URI'], 1))) style="display: none;" @endif>

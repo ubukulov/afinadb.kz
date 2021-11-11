@@ -179,6 +179,7 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         App\Providers\BinotelServiceProvider::class,
         Cyberduck\LaravelExcel\ExcelServiceProvider::class,
+		App\Providers\EsputnikServiceProvider::class,
     ],
 
     /*
@@ -233,7 +234,8 @@ return [
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Flash' => Laracasts\Flash\Flash::class,
         'Binotel' => App\Facades\Binotel::class,
-        'Exporter' => Cyberduck\LaravelExcel\ExporterFacade::class
+        'Exporter' => Cyberduck\LaravelExcel\ExporterFacade::class,
+		'Esputnik' => App\Facades\Esputnik::class,
     ],
 
 ];
